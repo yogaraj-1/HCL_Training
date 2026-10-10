@@ -1,0 +1,1 @@
+This repository contains my learning progress, practice exercises, and projects developed as part of the HCL .NET Training Program. The program focuses on building a strong foundation in programming, web development, and software development concepts through theoretical learning and hands-on implementation.
