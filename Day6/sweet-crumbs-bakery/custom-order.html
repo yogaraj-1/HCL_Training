@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Custom Cake Order | Sweet Crumbs Bakery</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"><link href="css/style.css" rel="stylesheet"></head>
+<body><div id="site-header"></div><main>
+<section class="page-hero"><div class="container text-center"><span class="eyebrow">MADE JUST FOR YOU</span><h1>Design your cake</h1><p>Tell us a little about your celebration and your dream cake.</p></div></section>
+<section class="section-space"><div class="container"><div class="row justify-content-center g-5"><div class="col-lg-7">
+<div class="form-shell"><div class="mb-4"><span class="eyebrow">CUSTOM ORDER REQUEST</span><h2 class="form-title">Let's make it special.</h2><p class="text-muted">Fields marked * are required. We'll use these details to discuss your request.</p></div>
+<form id="cakeOrderForm">
+<div class="row g-3">
+<div class="col-md-6"><label for="customerName" class="form-label">Your name *</label><input class="form-control" id="customerName" name="customerName" required placeholder="e.g. Priya"></div>
+<div class="col-md-6"><label for="phone" class="form-label">Phone number *</label><input class="form-control" id="phone" name="phone" type="tel" required pattern="[0-9+() -]{8,20}" placeholder="+91 98765 43210"></div>
+<div class="col-12"><label for="email" class="form-label">Email address</label><input class="form-control" id="email" name="email" type="email" placeholder="you@example.com"></div>
+<div class="col-md-6"><label for="occasion" class="form-label">Occasion *</label><select class="form-select" id="occasion" name="occasion" required><option value="">Choose occasion</option><option>Birthday</option><option>Wedding</option><option>Anniversary</option><option>Baby shower</option><option>Graduation</option><option>Just because</option><option>Other</option></select></div>
+<div class="col-md-6"><label for="flavour" class="form-label">Cake flavour *</label><select class="form-select" id="flavour" name="flavour" required><option value="">Choose flavour</option><option>Chocolate</option><option>Vanilla</option><option>Black Forest</option><option>Red Velvet</option><option>Strawberry</option><option>Butterscotch</option><option>Custom / please advise</option></select></div>
+<div class="col-md-6"><label for="size" class="form-label">Approximate size *</label><select class="form-select" id="size" name="size" required><option value="">Choose size</option><option>500 g</option><option>1 kg</option><option>1.5 kg</option><option>2 kg</option><option>3 kg or more</option><option>Not sure yet</option></select></div>
+<div class="col-md-6"><label for="date" class="form-label">Needed by *</label><input class="form-control" id="date" name="date" type="date" required></div>
+<div class="col-md-6"><label for="budget" class="form-label">Budget (₹)</label><select class="form-select" id="budget" name="budget"><option value="">Select a range</option><option>Under ₹750</option><option>₹750–₹1,500</option><option>₹1,500–₹3,000</option><option>₹3,000+</option><option>Discuss with me</option></select></div>
+<div class="col-md-6"><label for="colour" class="form-label">Preferred colours</label><input class="form-control" id="colour" name="colour" placeholder="e.g. blush pink and cream"></div>
+<div class="col-12"><label for="design" class="form-label">Cake design and message</label><textarea class="form-control" id="design" name="design" rows="4" placeholder="Describe your theme, decorations, writing on the cake, allergies or other details..."></textarea></div>
+<div class="col-12 form-check ms-2"><input class="form-check-input" type="checkbox" value="yes" id="consent" required><label class="form-check-label" for="consent">I agree that the bakery may contact me about this request. *</label></div>
+<div class="col-12"><button class="btn btn-brown btn-lg w-100" type="submit">Prepare my order request</button><p class="small text-muted mt-3 mb-0">This demo form shows a request summary in your browser. It does not send or save orders to a bakery yet.</p></div>
+</div></form>
+<div id="orderResult" class="alert alert-success mt-4 d-none" role="status" aria-live="polite"></div>
+</div></div><div class="col-lg-4"><aside class="order-aside"><img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=800&q=80" alt="Decorated celebration cake"><h3>A cake as unique as your day.</h3><p>Share the details you know. We can help you decide the rest, from flavours to finishing touches.</p><div class="aside-line"><span>♡</span><div><strong>Plan ahead</strong><br><small>For detailed designs, request early.</small></div></div><div class="aside-line"><span>✿</span><div><strong>Made personal</strong><br><small>Colours, message and theme are welcome.</small></div></div></aside></div></div></div></section>
+</main><div id="site-footer"></div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="js/main.js"></script></body></html>
