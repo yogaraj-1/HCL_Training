@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🎓 Student Management</h1>
+        <p>Manage your student records easily</p>
+    </header>
+
+    <main>
+        <section class="summary">
+            <h2>Total Students: <span id="total">0</span></h2>
+        </section>
+
+        <section class="form-section">
+            <h2>Add New Student</h2>
+
+            <form id="studentForm">
+                <input type="text" id="name"
+                    placeholder="Student Name" required>
+
+                <input type="text" id="roll"
+                    placeholder="Roll Number" required>
+
+                <input type="email" id="email"
+                    placeholder="Email Address" required>
+
+                <input type="text" id="department"
+                    placeholder="Department" required>
+
+                <button type="submit">Add Student</button>
+            </form>
+        </section>
+
+        <section class="list-section">
+            <h2>Student Records</h2>
+
+            <input type="text" id="search"
+                placeholder="🔍 Search students...">
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Roll No.</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentList"></tbody>
+                </table>
+            </div>
+
+            <p id="emptyMessage">No students added yet.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Student Management System | HTML, CSS & JavaScript</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
