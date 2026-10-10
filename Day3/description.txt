@@ -1,0 +1,5 @@
+On the third day, we explored JavaScript concepts and learned how to apply them to build interactive web applications. We practiced using variables, functions, conditional statements, user input, and basic mathematical operations to implement application logic.
+
+Later, we applied these concepts by developing a BMI (Body Mass Index) Calculator using HTML, CSS, and JavaScript. The calculator accepts the user's height and weight, calculates the BMI value, and displays the corresponding health category based on the result.
+
+This hands-on activity helped us understand how JavaScript handles user inputs, performs calculations, and dynamically displays results on a webpage.

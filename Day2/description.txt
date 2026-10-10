@@ -1,0 +1,5 @@
+On the second day, we explored HTML forms and tables in depth, learning how to organize data in tabular formats and create interactive forms to collect user information. We also learned the fundamentals of JavaScript, including basic syntax, variables, and simple programming concepts used to add functionality to web pages.
+
+Later, we applied our learning through a hands-on project by creating a clone of the LeetCode login page using HTML and CSS, incorporating our understanding of web page structure and styling. This activity helped us improve our frontend development skills and understand how professional login interfaces are designed and implemented.
+
+Overall, the session strengthened our knowledge of HTML elements, introduced us to JavaScript fundamentals, and provided practical experience in recreating a real-world website interface.

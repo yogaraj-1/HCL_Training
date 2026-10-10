@@ -1,0 +1,3 @@
+On the fifth day, we learned important JavaScript concepts, including Object-Oriented Programming (OOP), classes, and objects. We explored how classes and objects help organize code, represent real-world entities, and improve code reusability. We also learned about asynchronous programming, including async and await, and understood how JavaScript handles operations that take time to complete.
+
+Later, we applied our knowledge by developing a Student Management System using HTML, CSS, and JavaScript. The application allows users to add student details, view student records, search for students, and delete records. This hands-on project helped us understand how to manage data, handle user interactions, and build functional web applications.
