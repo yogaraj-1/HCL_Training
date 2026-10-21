@@ -1,0 +1,15 @@
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\bin\Debug\net10.0\PayrollCalculator.exe
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\bin\Debug\net10.0\PayrollCalculator.deps.json
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\bin\Debug\net10.0\PayrollCalculator.runtimeconfig.json
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\bin\Debug\net10.0\PayrollCalculator.dll
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\bin\Debug\net10.0\PayrollCalculator.pdb
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\obj\Debug\net10.0\PayrollCalculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\obj\Debug\net10.0\PayrollCalculator.AssemblyInfoInputs.cache
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\obj\Debug\net10.0\PayrollCalculator.AssemblyInfo.cs
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\obj\Debug\net10.0\PayrollCalculator.csproj.CoreCompileInputs.cache
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\obj\Debug\net10.0\PayrollCalculator.dll
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\obj\Debug\net10.0\refint\PayrollCalculator.dll
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\obj\Debug\net10.0\PayrollCalculator.pdb
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\obj\Debug\net10.0\PayrollCalculator.genruntimeconfig.cache
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\obj\Debug\net10.0\ref\PayrollCalculator.dll
+C:\Users\yogar\source\repos\PayrollCalculator\PayrollCalculator\obj\Debug\net10.0\PayrollC.90473457.Up2Date
