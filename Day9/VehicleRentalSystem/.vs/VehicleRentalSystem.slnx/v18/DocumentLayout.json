@@ -1,0 +1,215 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\models\\bikerental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\models\\bikerental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\models\\renter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\models\\renter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\models\\rentalcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\models\\rentalcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\payments\\ipaymentprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\payments\\ipaymentprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\payments\\cashpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\payments\\cashpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\payments\\digitalpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\payments\\digitalpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\services\\rentalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\services\\rentalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\vehiclerentalsystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\vehiclerentalsystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\models\\rentalsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\models\\rentalsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|c:\\users\\yogar\\source\\repos\\vehiclerentalsystem\\vehiclerentalsystem\\models\\rentalperiod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328E267D-A119-D1FB-5CAF-C9D739EBC278}|VehicleRentalSystem\\VehicleRentalSystem.csproj|solutionrelative:vehiclerentalsystem\\models\\rentalperiod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Program.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Program.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Program.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Program.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwB0AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T16:42:31.961Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Vehicle.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\Vehicle.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Models\\Vehicle.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\Vehicle.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Models\\Vehicle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T16:43:54.64Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BikeRental.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\BikeRental.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Models\\BikeRental.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\BikeRental.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Models\\BikeRental.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAUwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T17:24:57.706Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Renter.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\Renter.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Models\\Renter.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\Renter.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Models\\Renter.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAwBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T16:44:05.259Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RentalContract.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\RentalContract.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Models\\RentalContract.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\RentalContract.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Models\\RentalContract.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA9wDAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T16:45:16.329Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IPaymentProcessor.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Payments\\IPaymentProcessor.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Payments\\IPaymentProcessor.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Payments\\IPaymentProcessor.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Payments\\IPaymentProcessor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T16:48:02.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CashPayment.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Payments\\CashPayment.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Payments\\CashPayment.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Payments\\CashPayment.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Payments\\CashPayment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T16:48:13.097Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DigitalPayment.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Payments\\DigitalPayment.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Payments\\DigitalPayment.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Payments\\DigitalPayment.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Payments\\DigitalPayment.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAUwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T16:49:10.539Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RentalService.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Services\\RentalService.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Services\\RentalService.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Services\\RentalService.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Services\\RentalService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T16:46:50.706Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "VehicleRentalSystem.csproj",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\VehicleRentalSystem.csproj",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\VehicleRentalSystem.csproj",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\VehicleRentalSystem.csproj",
+              "RelativeToolTip": "VehicleRentalSystem\\VehicleRentalSystem.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-10-13T16:47:39.358Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RentalSummary.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\RentalSummary.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Models\\RentalSummary.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\RentalSummary.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Models\\RentalSummary.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T16:45:40.916Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RentalPeriod.cs",
+              "DocumentMoniker": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\RentalPeriod.cs",
+              "RelativeDocumentMoniker": "VehicleRentalSystem\\Models\\RentalPeriod.cs",
+              "ToolTip": "C:\\Users\\yogar\\source\\repos\\VehicleRentalSystem\\VehicleRentalSystem\\Models\\RentalPeriod.cs",
+              "RelativeToolTip": "VehicleRentalSystem\\Models\\RentalPeriod.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T16:45:29.847Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
