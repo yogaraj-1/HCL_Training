@@ -1,0 +1,23 @@
+[
+  {
+    "PatientId": "101",
+    "FullName": "RajaDurai",
+    "Age": 24,
+    "PhoneNumber": "6382142325",
+    "Email": "raja@gmail.com"
+  },
+  {
+    "PatientId": "102",
+    "FullName": "Yogaraj P",
+    "Age": 21,
+    "PhoneNumber": "6334678902",
+    "Email": null
+  },
+  {
+    "PatientId": "103",
+    "FullName": "Arun",
+    "Age": 34,
+    "PhoneNumber": "0987675445",
+    "Email": "het@gmail.com"
+  }
+]

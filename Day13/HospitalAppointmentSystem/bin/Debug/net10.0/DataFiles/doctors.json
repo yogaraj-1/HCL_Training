@@ -1,0 +1,20 @@
+[
+  {
+    "DoctorId": "D101",
+    "FullName": "Dr.Kumar",
+    "Specialization": "Cardiology",
+    "ConsultationFee": 500
+  },
+  {
+    "DoctorId": "D102",
+    "FullName": "Dr.Priya",
+    "Specialization": "Dermatology",
+    "ConsultationFee": 230
+  },
+  {
+    "DoctorId": "D103",
+    "FullName": "Dr.Ravi",
+    "Specialization": "Orthopedics",
+    "ConsultationFee": 450
+  }
+]

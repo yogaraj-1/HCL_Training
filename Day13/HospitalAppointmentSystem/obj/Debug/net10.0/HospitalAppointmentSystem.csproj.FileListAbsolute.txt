@@ -1,0 +1,15 @@
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\bin\Debug\net10.0\HospitalAppointmentSystem.exe
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\bin\Debug\net10.0\HospitalAppointmentSystem.deps.json
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\bin\Debug\net10.0\HospitalAppointmentSystem.runtimeconfig.json
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\bin\Debug\net10.0\HospitalAppointmentSystem.dll
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\bin\Debug\net10.0\HospitalAppointmentSystem.pdb
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\obj\Debug\net10.0\HospitalAppointmentSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\obj\Debug\net10.0\HospitalAppointmentSystem.AssemblyInfoInputs.cache
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\obj\Debug\net10.0\HospitalAppointmentSystem.AssemblyInfo.cs
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\obj\Debug\net10.0\HospitalAppointmentSystem.csproj.CoreCompileInputs.cache
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\obj\Debug\net10.0\HospitalAppointmentSystem.dll
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\obj\Debug\net10.0\refint\HospitalAppointmentSystem.dll
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\obj\Debug\net10.0\HospitalAppointmentSystem.pdb
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\obj\Debug\net10.0\HospitalAppointmentSystem.genruntimeconfig.cache
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\obj\Debug\net10.0\ref\HospitalAppointmentSystem.dll
+C:\Users\yogar\source\repos\HospitalAppointmentSystem\HospitalAppointmentSystem\obj\Debug\net10.0\Hospital.64A34FAC.Up2Date
