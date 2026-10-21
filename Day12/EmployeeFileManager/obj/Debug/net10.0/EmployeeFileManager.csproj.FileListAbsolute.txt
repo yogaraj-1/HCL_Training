@@ -1,0 +1,15 @@
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\bin\Debug\net10.0\EmployeeFileManager.exe
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\bin\Debug\net10.0\EmployeeFileManager.deps.json
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\bin\Debug\net10.0\EmployeeFileManager.runtimeconfig.json
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\bin\Debug\net10.0\EmployeeFileManager.dll
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\bin\Debug\net10.0\EmployeeFileManager.pdb
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\obj\Debug\net10.0\EmployeeFileManager.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\obj\Debug\net10.0\EmployeeFileManager.AssemblyInfoInputs.cache
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\obj\Debug\net10.0\EmployeeFileManager.AssemblyInfo.cs
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\obj\Debug\net10.0\EmployeeFileManager.csproj.CoreCompileInputs.cache
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\obj\Debug\net10.0\EmployeeFileManager.dll
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\obj\Debug\net10.0\refint\EmployeeFileManager.dll
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\obj\Debug\net10.0\EmployeeFileManager.pdb
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\obj\Debug\net10.0\EmployeeFileManager.genruntimeconfig.cache
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\obj\Debug\net10.0\ref\EmployeeFileManager.dll
+C:\Users\yogar\source\repos\EmployeeFileManager\EmployeeFileManager\obj\Debug\net10.0\Employee.F8BC07C6.Up2Date
