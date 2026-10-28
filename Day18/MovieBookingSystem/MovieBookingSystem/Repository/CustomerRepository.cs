@@ -34,4 +34,40 @@ public class CustomerRepository
 
         await command.ExecuteNonQueryAsync();
     }
+
+
+    public async Task<List<Customer>> GetAllCustomersAsync()
+    {
+        const string query = """
+        SELECT CustomerId, Name, Email, Phone
+        FROM Customers
+        ORDER BY CustomerId
+        """;
+
+        var customers = new List<Customer>();
+
+        await using var connection =
+            new SqlConnection(_connectionString);
+
+        await using var command =
+            new SqlCommand(query, connection);
+
+        await connection.OpenAsync();
+
+        await using var reader = await command.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync())
+        {
+            customers.Add(new Customer
+            {
+                CustomerId = reader.GetInt32(0),
+                Name = reader.GetString(1),
+                Email = reader.GetString(2),
+                Phone = reader.GetString(3)
+            });
+        }
+
+        return customers;
+    }
+
 }

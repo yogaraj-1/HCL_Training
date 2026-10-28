@@ -37,4 +37,11 @@ public class CustomerService
 
         await _repository.AddCustomerAsync(customer);
     }
+
+
+    public Task<List<Customer>> GetAllCustomersAsync()
+    {
+        return _repository.GetAllCustomersAsync();
+    }
+
 }
