@@ -13,6 +13,9 @@ var movieRepository = new MovieRepository(connectionString);
 var customerService = new CustomerService(customerRepository);
 var movieService = new MovieService(movieRepository);
 
+var bookingRepository = new BookingRepository(connectionString);
+var bookingService = new BookingService(bookingRepository);
+
 while (true)
 {
     Console.WriteLine("\n===== MOVIE BOOKING SYSTEM =====");
@@ -23,6 +26,7 @@ while (true)
     Console.WriteLine("5. View All Movies");
     Console.WriteLine("6. Search Movie by ID");
     Console.WriteLine("7. Exit");
+    Console.WriteLine("8. Book Tickets");
     Console.Write("Enter your choice: ");
 
     string choice = Console.ReadLine() ?? "";
@@ -215,6 +219,40 @@ while (true)
                 Console.WriteLine("Application closed.");
                 return;
 
+            case "8":
+                {
+                    Console.Write("Customer ID: ");
+
+                    if (!int.TryParse(Console.ReadLine(), out int customerId))
+                    {
+                        Console.WriteLine("Invalid customer ID.");
+                        break;
+                    }
+
+                    Console.Write("Movie ID: ");
+
+                    if (!int.TryParse(Console.ReadLine(), out int movieId))
+                    {
+                        Console.WriteLine("Invalid movie ID.");
+                        break;
+                    }
+
+                    Console.Write("Number of seats: ");
+
+                    if (!int.TryParse(Console.ReadLine(), out int seats))
+                    {
+                        Console.WriteLine("Invalid seat count.");
+                        break;
+                    }
+
+                    await bookingService.BookTicketsAsync(
+                        customerId, movieId, seats);
+
+                    Console.WriteLine("Tickets booked successfully!");
+                    break;
+                }
+
+
             default:
                 Console.WriteLine("Invalid choice.");
                 break;
@@ -227,6 +265,10 @@ while (true)
     catch (SqlException ex)
     {
         Console.WriteLine($"Database error: {ex.Message}");
+    }
+    catch (InvalidOperationException ex)
+    {
+        Console.WriteLine($"Booking failed: {ex.Message}");
     }
     catch (Exception ex)
     {
