@@ -1,43 +1,39 @@
 ﻿
+using Microsoft.Data.SqlClient;
+using MovieBookingSystem.Models;
 using MovieBookingSystem.Repository;
 using MovieBookingSystem.Services;
 
 string connectionString =
     @"Server=.\SQLEXPRESS;Database=MovieBookingDB;Trusted_Connection=True;TrustServerCertificate=True;";
 
-var repository = new CustomerRepository(connectionString);
-var service = new CustomerService(repository);
+var repository = new MovieRepository(connectionString);
+var service = new MovieService(repository);
 
 try
 {
-    Console.Write("Enter customer ID: ");
-
-    if (!int.TryParse(Console.ReadLine(), out int id))
+    var movie = new Movie
     {
-        Console.WriteLine("Invalid customer ID.");
-        return;
-    }
+        Title = "Interstellar",
+        Genre = "Sci-Fi",
+        DurationMinutes = 169,
+        TicketPrice = 250.00m,
+        AvailableSeats = 120
+    };
 
-    var customer = await service.GetCustomerByIdAsync(id);
+    await service.AddMovieAsync(movie);
 
-    if (customer is null)
-    {
-        Console.WriteLine("Customer not found.");
-    }
-    else
-    {
-        Console.WriteLine("\n=== CUSTOMER DETAILS ===");
-        Console.WriteLine($"ID    : {customer.CustomerId}");
-        Console.WriteLine($"Name  : {customer.Name}");
-        Console.WriteLine($"Email : {customer.Email}");
-        Console.WriteLine($"Phone : {customer.Phone}");
-    }
+    Console.WriteLine("Movie added successfully!");
 }
 catch (ArgumentException ex)
 {
     Console.WriteLine($"Validation error: {ex.Message}");
 }
+catch (SqlException ex)
+{
+    Console.WriteLine($"Database error: {ex.Message}");
+}
 catch (Exception ex)
 {
-    Console.WriteLine($"Error: {ex.Message}");
+    Console.WriteLine($"Unexpected error: {ex.Message}");
 }
