@@ -194,3 +194,41 @@ Retrieve and display all customer records stored in SQL Server.
 **Commit hash:** Add the actual short hash from Git.
 
 **Next step:** Implement searching for a customer by ID.
+
+
+---
+
+## Commit: Search Customer by ID
+
+**Commit message:** `bb1170a->.feat(customer): add search by id`
+
+### Objective
+Retrieve a specific customer record using its unique customer ID.
+
+### Changes made
+- Added `GetCustomerByIdAsync(int id)` to `CustomerRepository`.
+- Used a parameterized SQL SELECT query with a WHERE clause.
+- Mapped the matching database row into a Customer object.
+- Returned null when no matching customer exists.
+- Added positive-ID validation in `CustomerService`.
+- Displayed customer details in the console.
+
+### Concepts learned
+- Parameterized SQL queries.
+- WHERE clause filtering.
+- Nullable reference types (`Customer?`).
+- Single-record retrieval using `SqlDataReader`.
+- Input validation and handling missing records.
+
+### Testing performed
+- Searched for an existing customer.
+- Searched for a nonexistent customer ID.
+- Tested zero and negative IDs.
+- Tested non-numeric input.
+- Confirmed the project builds successfully.
+
+**Actual result:** Update according to the tests performed.
+
+**Commit hash:** Add the actual short hash from Git.
+
+**Next step:** Implement Add Movie.
