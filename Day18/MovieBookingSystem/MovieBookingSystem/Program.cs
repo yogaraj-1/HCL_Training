@@ -1,5 +1,6 @@
-﻿
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using MovieBookingSystem.Data;
 using MovieBookingSystem.Models;
 using MovieBookingSystem.Repository;
 using MovieBookingSystem.Services;
@@ -7,15 +8,19 @@ using MovieBookingSystem.Services;
 string connectionString =
     @"Server=.\SQLEXPRESS;Database=MovieBookingDB;Trusted_Connection=True;TrustServerCertificate=True;";
 
-var customerRepository = new CustomerRepository(connectionString);
-var movieRepository = new MovieRepository(connectionString);
+var options = new DbContextOptionsBuilder<MovieBookingDbContext>()
+    .UseSqlServer(connectionString)
+    .Options;
+
+using var context = new MovieBookingDbContext(options);
+
+var customerRepository = new CustomerRepository(context);
+var movieRepository = new MovieRepository(context);
+var bookingRepository = new BookingRepository(context);
 
 var customerService = new CustomerService(customerRepository);
 var movieService = new MovieService(movieRepository);
-
-var bookingRepository = new BookingRepository(connectionString);
 var bookingService = new BookingService(bookingRepository);
-
 while (true)
 {
     Console.WriteLine("\n===== MOVIE BOOKING SYSTEM =====");

@@ -1,15 +1,17 @@
 ﻿
-using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using MovieBookingSystem.Data;
+using MovieBookingSystem.Models;
 
 namespace MovieBookingSystem.Repository;
 
 public class BookingRepository
 {
-    private readonly string _connectionString;
+    private readonly MovieBookingDbContext _context;
 
-    public BookingRepository(string connectionString)
+    public BookingRepository(MovieBookingDbContext context)
     {
-        _connectionString = connectionString;
+        _context = context;
     }
 
     public async Task BookTicketsAsync(
@@ -17,144 +19,62 @@ public class BookingRepository
         int movieId,
         int seats)
     {
-        await using var connection =
-            new SqlConnection(_connectionString);
-
-        await connection.OpenAsync();
-
         await using var transaction =
-            (SqlTransaction)await connection.BeginTransactionAsync();
+            await _context.Database.BeginTransactionAsync();
 
         try
         {
-            // Step 1: Verify the customer exists.
-            const string customerSql = """
-                SELECT COUNT(*)
-                FROM Customers
-                WHERE CustomerId = @CustomerId
-                """;
+            bool customerExists = await _context.Customers
+                .AnyAsync(c => c.CustomerId == customerId);
 
-            await using (var command = new SqlCommand(
-                customerSql, connection, transaction))
+            if (!customerExists)
+                throw new InvalidOperationException("Customer not found.");
+
+            // Atomically decrease seats only if enough are available.
+            int rowsUpdated = await _context.Movies
+                .Where(m =>
+                    m.MovieId == movieId &&
+                    m.AvailableSeats >= seats)
+                .ExecuteUpdateAsync(setters => setters
+                    .SetProperty(
+                        m => m.AvailableSeats,
+                        m => m.AvailableSeats - seats));
+
+            if (rowsUpdated == 0)
             {
-                command.Parameters.Add("@CustomerId",
-                    System.Data.SqlDbType.Int).Value = customerId;
+                bool movieExists = await _context.Movies
+                    .AnyAsync(m => m.MovieId == movieId);
 
-                int count = (int)(await command.ExecuteScalarAsync()
-                    ?? 0);
+                if (!movieExists)
+                    throw new InvalidOperationException("Movie not found.");
 
-                if (count == 0)
-                {
-                    throw new InvalidOperationException(
-                        "Customer not found.");
-                }
+                throw new InvalidOperationException(
+                    "Not enough seats available.");
             }
 
-            // Step 2: Reserve seats only if enough are available.
-            const string seatSql = """
-                UPDATE Movies
-                SET AvailableSeats = AvailableSeats - @Seats
-                WHERE MovieId = @MovieId
-                  AND AvailableSeats >= @Seats
-                """;
+            var movie = await _context.Movies
+                .AsNoTracking()
+                .FirstAsync(m => m.MovieId == movieId);
 
-            await using (var command = new SqlCommand(
-                seatSql, connection, transaction))
+            var booking = new Booking
             {
-                command.Parameters.Add("@MovieId",
-                    System.Data.SqlDbType.Int).Value = movieId;
+                CustomerId = customerId,
+                MovieId = movieId,
+                Seats = seats,
+                TotalAmount = movie.TicketPrice * seats,
+                BookedAt = DateTime.Now
+            };
 
-                command.Parameters.Add("@Seats",
-                    System.Data.SqlDbType.Int).Value = seats;
+            _context.Bookings.Add(booking);
+            await _context.SaveChangesAsync();
 
-                int rows = await command.ExecuteNonQueryAsync();
-
-                if (rows == 0)
-                {
-                    const string movieSql = """
-                        SELECT COUNT(*)
-                        FROM Movies
-                        WHERE MovieId = @MovieId
-                        """;
-
-                    await using var checkMovie = new SqlCommand(
-                        movieSql, connection, transaction);
-
-                    checkMovie.Parameters.Add("@MovieId",
-                        System.Data.SqlDbType.Int).Value = movieId;
-
-                    int movieCount =
-                        (int)(await checkMovie.ExecuteScalarAsync() ?? 0);
-
-                    if (movieCount == 0)
-                    {
-                        throw new InvalidOperationException(
-                            "Movie not found.");
-                    }
-
-                    throw new InvalidOperationException(
-                        "Not enough seats available.");
-                }
-            }
-
-            // Step 3: Save the booking and calculate its total.
-            const string bookingSql = """
-                INSERT INTO Bookings
-                    (CustomerId, MovieId, Seats, TotalAmount)
-                SELECT
-                    @CustomerId,
-                    MovieId,
-                    @Seats,
-                    TicketPrice * @Seats
-                FROM Movies
-                WHERE MovieId = @MovieId
-                """;
-
-            await using (var command = new SqlCommand(
-                bookingSql, connection, transaction))
-            {
-                command.Parameters.Add("@CustomerId",
-                    System.Data.SqlDbType.Int).Value = customerId;
-
-                command.Parameters.Add("@MovieId",
-                    System.Data.SqlDbType.Int).Value = movieId;
-
-                command.Parameters.Add("@Seats",
-                    System.Data.SqlDbType.Int).Value = seats;
-
-                int rows = await command.ExecuteNonQueryAsync();
-
-                if (rows != 1)
-                {
-                    throw new InvalidOperationException(
-                        "Booking could not be saved.");
-                }
-            }
-
-            // Step 4: Record the audit entry.
-            const string auditSql = """
+            // Keep the audit insert inside the same transaction.
+            await _context.Database.ExecuteSqlInterpolatedAsync($@"
                 INSERT INTO BookingAudit
                     (CustomerId, MovieId, ActionName)
                 VALUES
-                    (@CustomerId, @MovieId, @ActionName)
-                """;
+                    ({customerId}, {movieId}, {"BOOKED"})");
 
-            await using (var command = new SqlCommand(
-                auditSql, connection, transaction))
-            {
-                command.Parameters.Add("@CustomerId",
-                    System.Data.SqlDbType.Int).Value = customerId;
-
-                command.Parameters.Add("@MovieId",
-                    System.Data.SqlDbType.Int).Value = movieId;
-
-                command.Parameters.Add("@ActionName",
-                    System.Data.SqlDbType.NVarChar, 50).Value = "BOOKED";
-
-                await command.ExecuteNonQueryAsync();
-            }
-
-            // Step 5: Confirm all changes together.
             await transaction.CommitAsync();
         }
         catch
