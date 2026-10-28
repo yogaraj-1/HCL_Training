@@ -10,25 +10,32 @@ var service = new CustomerService(repository);
 
 try
 {
-    var customers = await service.GetAllCustomersAsync();
+    Console.Write("Enter customer ID: ");
 
-    if (customers.Count == 0)
+    if (!int.TryParse(Console.ReadLine(), out int id))
     {
-        Console.WriteLine("No customers found.");
+        Console.WriteLine("Invalid customer ID.");
+        return;
+    }
+
+    var customer = await service.GetCustomerByIdAsync(id);
+
+    if (customer is null)
+    {
+        Console.WriteLine("Customer not found.");
     }
     else
     {
-        Console.WriteLine("\n=== CUSTOMER LIST ===");
-
-        foreach (var customer in customers)
-        {
-            Console.WriteLine(
-                $"{customer.CustomerId} | " +
-                $"{customer.Name} | " +
-                $"{customer.Email} | " +
-                $"{customer.Phone}");
-        }
+        Console.WriteLine("\n=== CUSTOMER DETAILS ===");
+        Console.WriteLine($"ID    : {customer.CustomerId}");
+        Console.WriteLine($"Name  : {customer.Name}");
+        Console.WriteLine($"Email : {customer.Email}");
+        Console.WriteLine($"Phone : {customer.Phone}");
     }
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"Validation error: {ex.Message}");
 }
 catch (Exception ex)
 {

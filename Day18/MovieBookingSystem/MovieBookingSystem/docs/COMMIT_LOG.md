@@ -156,3 +156,41 @@ Implement the first customer-management operation using ADO.NET.
 
 **Next step:** Implement viewing all customers.
 
+
+
+
+---
+
+## Commit: View All Customers
+
+**Commit message:** `3c94fe8->feat(customer): add list customers operation`
+
+**Objective:**  
+Retrieve and display all customer records stored in SQL Server.
+
+**Changes made:**
+- Added `GetAllCustomersAsync()` to `CustomerRepository`.
+- Used `ExecuteReaderAsync()` and `SqlDataReader` to retrieve records.
+- Converted database rows into `Customer` objects.
+- Returned the records as a `List<Customer>` through the service layer.
+- Displayed customer details in the console.
+- Handled the empty result case.
+
+**Concepts learned:**
+- SELECT queries in ADO.NET.
+- `ExecuteReaderAsync()` and `ReadAsync()`.
+- Mapping database columns to C# properties.
+- Collections and `List<Customer>`.
+- Asynchronous database operations.
+
+**Testing performed:**
+- Verified retrieval of existing customer records.
+- Verified output ordering by customer ID.
+- Verified the empty-table scenario, if tested.
+- Confirmed successful build.
+
+**Actual result:** Update based on the tests performed.
+
+**Commit hash:** Add the actual short hash from Git.
+
+**Next step:** Implement searching for a customer by ID.
