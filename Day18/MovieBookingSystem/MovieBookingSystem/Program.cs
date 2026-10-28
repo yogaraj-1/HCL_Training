@@ -1,6 +1,4 @@
 ﻿
-using Microsoft.Data.SqlClient;
-using MovieBookingSystem.Models;
 using MovieBookingSystem.Repository;
 using MovieBookingSystem.Services;
 
@@ -12,28 +10,27 @@ var service = new MovieService(repository);
 
 try
 {
-    var movie = new Movie
+    var movies = await service.GetAllMoviesAsync();
+
+    if (movies.Count == 0)
     {
-        Title = "Interstellar",
-        Genre = "Sci-Fi",
-        DurationMinutes = 169,
-        TicketPrice = 250.00m,
-        AvailableSeats = 120
-    };
+        Console.WriteLine("No movies found.");
+    }
+    else
+    {
+        Console.WriteLine("\n=== MOVIE LIST ===");
 
-    await service.AddMovieAsync(movie);
-
-    Console.WriteLine("Movie added successfully!");
-}
-catch (ArgumentException ex)
-{
-    Console.WriteLine($"Validation error: {ex.Message}");
-}
-catch (SqlException ex)
-{
-    Console.WriteLine($"Database error: {ex.Message}");
+        foreach (var movie in movies)
+        {
+            Console.WriteLine(
+                $"{movie.MovieId} | {movie.Title} | " +
+                $"{movie.Genre} | {movie.DurationMinutes} min | " +
+                $"{movie.TicketPrice:N2} | " +
+                $"Seats: {movie.AvailableSeats}");
+        }
+    }
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Unexpected error: {ex.Message}");
+    Console.WriteLine($"Error: {ex.Message}");
 }

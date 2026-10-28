@@ -45,4 +45,10 @@ public class MovieService
 
         await _repository.AddMovieAsync(movie);
     }
+
+    public Task<List<Movie>> GetAllMoviesAsync()
+    {
+        return _repository.GetAllMoviesAsync();
+    }
+
 }
