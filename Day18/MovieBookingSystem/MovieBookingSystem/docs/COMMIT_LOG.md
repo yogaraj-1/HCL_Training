@@ -119,4 +119,40 @@ The application has the initial data models and the foundation required to commu
 ### 7. Next Step
 Implement the Customer Repository, starting with the `AddCustomerAsync()` method to insert customer records using parameterized SQL.
 
-**Commit hash:** Add the actual hash from `git log --oneline`.
+**Commit hash:** Add the actual hash from `git log --oneline`
+
+---
+
+## Commit: Add Customer Feature
+
+**Commit message:** `c5a2a58  feat(customer): implement add customer`
+
+**Objective:**  
+Implement the first customer-management operation using ADO.NET.
+
+**Changes made:**
+- Created `CustomerRepository.cs` to insert customer records into SQL Server.
+- Created `CustomerService.cs` to validate customer input.
+- Used parameterized SQL to insert customer details.
+- Integrated the service and repository in `Program.cs` for testing.
+- Added exception handling for validation and database errors.
+
+**Concepts learned:**
+- Repository and service layers.
+- Dependency passing through constructors.
+- `SqlConnection` and `SqlCommand`.
+- SQL parameters and `ExecuteNonQueryAsync()`.
+- Asynchronous methods and exception handling.
+
+**Testing performed:**
+- Valid customer insertion.
+- Empty customer name validation.
+- Database verification using SSMS.
+- Duplicate email handling, if tested.
+
+**Actual result:** Update after testing.
+
+**Commit hash:** Add the actual hash from Git.
+
+**Next step:** Implement viewing all customers.
+
