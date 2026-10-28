@@ -1,29 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 using EmployeeManagement.Models;
+using EmployeeManagement.Repositories;
 
 namespace EmployeeManagement.Services;
 
 public class DepartmentService
 {
-    private readonly List<Department> departments = new();
+    private readonly DepartmentRepository repository;
+
+    public DepartmentService()
+    {
+        repository = new DepartmentRepository();
+    }
 
     public void AddDepartment(Department department)
     {
-        if (departments.Any(d => d.Id == department.Id))
+        if (department.Id <= 0 ||
+            string.IsNullOrWhiteSpace(department.Name))
         {
-            Console.WriteLine("Department ID already exists.");
+            Console.WriteLine("Invalid department details.");
             return;
         }
 
-        departments.Add(department);
-        Console.WriteLine("Department added successfully.");
+        repository.AddDepartment(department);
     }
 
     public void ViewDepartments()
     {
+        List<Department> departments = repository.GetAllDepartments();
+
         if (departments.Count == 0)
         {
             Console.WriteLine("No departments found.");
@@ -39,8 +44,7 @@ public class DepartmentService
 
     public void SearchDepartment(int id)
     {
-        Department? department =
-            departments.FirstOrDefault(d => d.Id == id);
+        Department? department = repository.GetDepartmentById(id);
 
         if (department == null)
         {
@@ -54,31 +58,35 @@ public class DepartmentService
 
     public void UpdateDepartment(int id, string name)
     {
-        Department? department =
-            departments.FirstOrDefault(d => d.Id == id);
-
-        if (department == null)
+        if (id <= 0 || string.IsNullOrWhiteSpace(name))
         {
-            Console.WriteLine("Department not found.");
+            Console.WriteLine("Invalid department details.");
             return;
         }
 
-        department.Name = name;
-        Console.WriteLine("Department updated successfully.");
+        bool updated = repository.UpdateDepartment(new Department
+        {
+            Id = id,
+            Name = name
+        });
+
+        Console.WriteLine(updated
+            ? "Department updated successfully."
+            : "Department not found.");
     }
 
     public void DeleteDepartment(int id)
     {
-        Department? department =
-            departments.FirstOrDefault(d => d.Id == id);
-
-        if (department == null)
+        if (id <= 0)
         {
-            Console.WriteLine("Department not found.");
+            Console.WriteLine("Invalid department ID.");
             return;
         }
 
-        departments.Remove(department);
-        Console.WriteLine("Department deleted successfully.");
+        bool deleted = repository.DeleteDepartment(id);
+
+        Console.WriteLine(deleted
+            ? "Department deleted successfully."
+            : "Department not found.");
     }
 }

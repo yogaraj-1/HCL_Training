@@ -1,29 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 using EmployeeManagement.Models;
+using EmployeeManagement.Repositories;
 
 namespace EmployeeManagement.Services;
 
 public class SalaryService
 {
-    private readonly List<Salary> salaries = new();
+    private readonly SalaryRepository repository;
+
+    public SalaryService()
+    {
+        repository = new SalaryRepository();
+    }
 
     public void AddSalary(Salary salary)
     {
-        if (salaries.Any(s => s.EmployeeId == salary.EmployeeId))
+        if (salary.EmployeeId <= 0 ||
+            salary.BasicSalary < 0 ||
+            salary.Bonus < 0)
         {
-            Console.WriteLine("Salary record already exists.");
+            Console.WriteLine("Invalid salary details.");
             return;
         }
 
-        salaries.Add(salary);
-        Console.WriteLine("Salary added successfully.");
+        repository.AddSalary(salary);
     }
 
     public void ViewSalaries()
     {
+        List<Salary> salaries = repository.GetAllSalaries();
+
         if (salaries.Count == 0)
         {
             Console.WriteLine("No salary records found.");
@@ -33,17 +39,16 @@ public class SalaryService
         foreach (Salary salary in salaries)
         {
             Console.WriteLine($"Employee ID: {salary.EmployeeId}");
-            Console.WriteLine($"Basic Salary: {salary.BasicSalary:C}");
-            Console.WriteLine($"Bonus: {salary.Bonus:C}");
-            Console.WriteLine($"Total Salary: {salary.TotalSalary:C}");
-            Console.WriteLine("----------------------------");
+            Console.WriteLine($"Basic Salary: {salary.BasicSalary:N2}");
+            Console.WriteLine($"Bonus: {salary.Bonus:N2}");
+            Console.WriteLine($"Total Salary: {salary.TotalSalary:N2}");
+            Console.WriteLine("-------------------------");
         }
     }
 
     public void SearchSalary(int employeeId)
     {
-        Salary? salary =
-            salaries.FirstOrDefault(s => s.EmployeeId == employeeId);
+        Salary? salary = repository.GetSalaryByEmployeeId(employeeId);
 
         if (salary == null)
         {
@@ -52,9 +57,9 @@ public class SalaryService
         }
 
         Console.WriteLine($"Employee ID: {salary.EmployeeId}");
-        Console.WriteLine($"Basic Salary: {salary.BasicSalary:C}");
-        Console.WriteLine($"Bonus: {salary.Bonus:C}");
-        Console.WriteLine($"Total Salary: {salary.TotalSalary:C}");
+        Console.WriteLine($"Basic Salary: {salary.BasicSalary:N2}");
+        Console.WriteLine($"Bonus: {salary.Bonus:N2}");
+        Console.WriteLine($"Total Salary: {salary.TotalSalary:N2}");
     }
 
     public void UpdateSalary(
@@ -62,33 +67,38 @@ public class SalaryService
         decimal basicSalary,
         decimal bonus)
     {
-        Salary? salary =
-            salaries.FirstOrDefault(s => s.EmployeeId == employeeId);
-
-        if (salary == null)
+        if (employeeId <= 0 || basicSalary < 0 || bonus < 0)
         {
-            Console.WriteLine("Salary record not found.");
+            Console.WriteLine("Invalid salary details.");
             return;
         }
 
-        salary.BasicSalary = basicSalary;
-        salary.Bonus = bonus;
+        Salary salary = new Salary
+        {
+            EmployeeId = employeeId,
+            BasicSalary = basicSalary,
+            Bonus = bonus
+        };
 
-        Console.WriteLine("Salary updated successfully.");
+        bool updated = repository.UpdateSalary(salary);
+
+        Console.WriteLine(updated
+            ? "Salary updated successfully."
+            : "Salary record not found.");
     }
 
     public void DeleteSalary(int employeeId)
     {
-        Salary? salary =
-            salaries.FirstOrDefault(s => s.EmployeeId == employeeId);
-
-        if (salary == null)
+        if (employeeId <= 0)
         {
-            Console.WriteLine("Salary record not found.");
+            Console.WriteLine("Invalid employee ID.");
             return;
         }
 
-        salaries.Remove(salary);
-        Console.WriteLine("Salary deleted successfully.");
+        bool deleted = repository.DeleteSalary(employeeId);
+
+        Console.WriteLine(deleted
+            ? "Salary deleted successfully."
+            : "Salary record not found.");
     }
 }

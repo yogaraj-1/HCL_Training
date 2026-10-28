@@ -45,13 +45,15 @@ while (true)
     }
 }
 
+// ================= EMPLOYEE MENU =================
+
 void EmployeeMenu()
 {
     while (true)
     {
         Console.WriteLine("\n--- Employee Management ---");
         Console.WriteLine("1. Add Employee");
-        Console.WriteLine("2. View Employees");
+        Console.WriteLine("2. View All Employees");
         Console.WriteLine("3. Search Employee");
         Console.WriteLine("4. Update Employee");
         Console.WriteLine("5. Delete Employee");
@@ -70,14 +72,14 @@ void EmployeeMenu()
                 Console.Write("Employee ID: ");
                 if (!int.TryParse(Console.ReadLine(), out int id))
                 {
-                    Console.WriteLine("Invalid ID.");
+                    Console.WriteLine("Invalid employee ID.");
                     break;
                 }
 
                 Console.Write("Employee Name: ");
                 string name = Console.ReadLine() ?? "";
 
-                Console.Write("Employee Age: ");
+                Console.Write("Age: ");
                 if (!int.TryParse(Console.ReadLine(), out int age))
                 {
                     Console.WriteLine("Invalid age.");
@@ -109,14 +111,14 @@ void EmployeeMenu()
                 if (int.TryParse(Console.ReadLine(), out int searchId))
                     employeeService.SearchEmployee(searchId);
                 else
-                    Console.WriteLine("Invalid ID.");
+                    Console.WriteLine("Invalid employee ID.");
                 break;
 
             case 4:
-                Console.Write("Employee ID: ");
+                Console.Write("Employee ID to update: ");
                 if (!int.TryParse(Console.ReadLine(), out int updateId))
                 {
-                    Console.WriteLine("Invalid ID.");
+                    Console.WriteLine("Invalid employee ID.");
                     break;
                 }
 
@@ -130,15 +132,23 @@ void EmployeeMenu()
                     break;
                 }
 
-                employeeService.UpdateEmployee(updateId, newName, newAge);
+                Console.Write("New Department ID: ");
+                if (!int.TryParse(Console.ReadLine(), out int newDeptId))
+                {
+                    Console.WriteLine("Invalid department ID.");
+                    break;
+                }
+
+                employeeService.UpdateEmployee(
+                    updateId, newName, newAge, newDeptId);
                 break;
 
             case 5:
-                Console.Write("Employee ID: ");
+                Console.Write("Employee ID to delete: ");
                 if (int.TryParse(Console.ReadLine(), out int deleteId))
                     employeeService.DeleteEmployee(deleteId);
                 else
-                    Console.WriteLine("Invalid ID.");
+                    Console.WriteLine("Invalid employee ID.");
                 break;
 
             case 6:
@@ -151,13 +161,15 @@ void EmployeeMenu()
     }
 }
 
+// ================= DEPARTMENT MENU =================
+
 void DepartmentMenu()
 {
     while (true)
     {
         Console.WriteLine("\n--- Department Management ---");
         Console.WriteLine("1. Add Department");
-        Console.WriteLine("2. View Departments");
+        Console.WriteLine("2. View All Departments");
         Console.WriteLine("3. Search Department");
         Console.WriteLine("4. Update Department");
         Console.WriteLine("5. Delete Department");
@@ -176,7 +188,7 @@ void DepartmentMenu()
                 Console.Write("Department ID: ");
                 if (!int.TryParse(Console.ReadLine(), out int id))
                 {
-                    Console.WriteLine("Invalid ID.");
+                    Console.WriteLine("Invalid department ID.");
                     break;
                 }
 
@@ -199,14 +211,14 @@ void DepartmentMenu()
                 if (int.TryParse(Console.ReadLine(), out int searchId))
                     departmentService.SearchDepartment(searchId);
                 else
-                    Console.WriteLine("Invalid ID.");
+                    Console.WriteLine("Invalid department ID.");
                 break;
 
             case 4:
-                Console.Write("Department ID: ");
+                Console.Write("Department ID to update: ");
                 if (!int.TryParse(Console.ReadLine(), out int updateId))
                 {
-                    Console.WriteLine("Invalid ID.");
+                    Console.WriteLine("Invalid department ID.");
                     break;
                 }
 
@@ -217,11 +229,11 @@ void DepartmentMenu()
                 break;
 
             case 5:
-                Console.Write("Department ID: ");
+                Console.Write("Department ID to delete: ");
                 if (int.TryParse(Console.ReadLine(), out int deleteId))
                     departmentService.DeleteDepartment(deleteId);
                 else
-                    Console.WriteLine("Invalid ID.");
+                    Console.WriteLine("Invalid department ID.");
                 break;
 
             case 6:
@@ -233,6 +245,8 @@ void DepartmentMenu()
         }
     }
 }
+
+// ================= SALARY MENU =================
 
 void SalaryMenu()
 {
@@ -319,11 +333,12 @@ void SalaryMenu()
                     break;
                 }
 
-                salaryService.UpdateSalary(updateId, newBasic, newBonus);
+                salaryService.UpdateSalary(
+                    updateId, newBasic, newBonus);
                 break;
 
             case 5:
-                Console.Write("Employee ID: ");
+                Console.Write("Employee ID to delete salary: ");
                 if (int.TryParse(Console.ReadLine(), out int deleteId))
                     salaryService.DeleteSalary(deleteId);
                 else

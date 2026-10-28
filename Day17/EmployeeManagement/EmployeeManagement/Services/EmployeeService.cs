@@ -2,28 +2,39 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 using EmployeeManagement.Models;
+using EmployeeManagement.Repositories;
 
 namespace EmployeeManagement.Services;
 
 public class EmployeeService
 {
-    private readonly List<Employee> employees = new();
+    private readonly EmployeeRepository repository;
+
+    public EmployeeService()
+    {
+        repository = new EmployeeRepository();
+    }
 
     public void AddEmployee(Employee employee)
     {
-        if (employees.Any(e => e.Id == employee.Id))
+        if (employee.Id <= 0 ||
+            string.IsNullOrWhiteSpace(employee.Name) ||
+            employee.Age <= 0 ||
+            employee.DepartmentId <= 0)
         {
-            Console.WriteLine("Employee ID already exists.");
+            Console.WriteLine("Invalid employee details.");
             return;
         }
 
-        employees.Add(employee);
-        Console.WriteLine("Employee added successfully.");
+        repository.AddEmployee(employee);
     }
 
     public void ViewEmployees()
     {
+        List<Employee> employees = repository.GetAllEmployees();
+
         if (employees.Count == 0)
         {
             Console.WriteLine("No employees found.");
@@ -42,7 +53,7 @@ public class EmployeeService
 
     public void SearchEmployee(int id)
     {
-        Employee? employee = employees.FirstOrDefault(e => e.Id == id);
+        Employee? employee = repository.GetEmployeeById(id);
 
         if (employee == null)
         {
@@ -56,33 +67,44 @@ public class EmployeeService
         Console.WriteLine($"Department ID: {employee.DepartmentId}");
     }
 
-    public void UpdateEmployee(int id, string name, int age)
+    public void UpdateEmployee(int id, string name, int age, int departmentId)
     {
-        Employee? employee = employees.FirstOrDefault(e => e.Id == id);
-
-        if (employee == null)
+        if (id <= 0 ||
+            string.IsNullOrWhiteSpace(name) ||
+            age <= 0 ||
+            departmentId <= 0)
         {
-            Console.WriteLine("Employee not found.");
+            Console.WriteLine("Invalid employee details.");
             return;
         }
 
-        employee.Name = name;
-        employee.Age = age;
+        Employee employee = new Employee
+        {
+            Id = id,
+            Name = name,
+            Age = age,
+            DepartmentId = departmentId
+        };
 
-        Console.WriteLine("Employee updated successfully.");
+        bool updated = repository.UpdateEmployee(employee);
+
+        Console.WriteLine(updated
+            ? "Employee updated successfully."
+            : "Employee not found.");
     }
 
     public void DeleteEmployee(int id)
     {
-        Employee? employee = employees.FirstOrDefault(e => e.Id == id);
-
-        if (employee == null)
+        if (id <= 0)
         {
-            Console.WriteLine("Employee not found.");
+            Console.WriteLine("Invalid employee ID.");
             return;
         }
 
-        employees.Remove(employee);
-        Console.WriteLine("Employee deleted successfully.");
+        bool deleted = repository.DeleteEmployee(id);
+
+        Console.WriteLine(deleted
+            ? "Employee deleted successfully."
+            : "Employee not found.");
     }
 }
