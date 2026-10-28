@@ -496,7 +496,131 @@ Record the actual test results before marking the module as complete.
 | Test scenario | Expected result | Status |
 |---|---|---|
 | Book tickets with valid customer, movie, and seats | Booking and audit records are inserted; available seats decrease | Pending |
-| Use a
+
+
+## EF Core Migration
+
+### 1. Add EF Core SQL Server Support
+
+**Commit message**
+```text
+feat: add EF Core SQL Server support
+```
+
+**Changes made**
+- Installed `Microsoft.EntityFrameworkCore.SqlServer`.
+- Prepared the project to use EF Core with the existing SQL Server database.
+- Retained the existing database and tables.
+
+**Purpose**
+
+Enable EF Core to communicate with SQL Server without manually managing database connections and SQL commands in every repository.
+
+---
+
+### 2. Add EF Core DbContext
+
+**Commit message**
+```text
+feat: add MovieBookingDbContext
+```
+
+**Changes made**
+- Created `Data/MovieBookingDbContext.cs`.
+- Added `DbSet<Customer>`, `DbSet<Movie>`, and `DbSet<Booking>`.
+- Configured existing table names, primary keys, property constraints, and booking relationships.
+- Configured the decimal precision of ticket prices and booking totals.
+
+**Purpose**
+
+Provide a central database context for accessing existing tables through EF Core.
+
+---
+
+### 3. Migrate Customer and Movie Repositories
+
+**Commit message**
+```text
+refactor: migrate customer and movie repositories to EF Core
+```
+
+**Changes made**
+- Replaced ADO.NET connection and command operations with EF Core.
+- Used `Add()` and `SaveChangesAsync()` to insert records.
+- Used LINQ and `ToListAsync()` to retrieve customers and movies.
+- Implemented ID searches using `FirstOrDefaultAsync()`.
+- Used `AsNoTracking()` for read-only queries.
+
+**Purpose**
+
+Simplify customer and movie data access while retaining the existing repository method interfaces.
+
+---
+
+### 4. Migrate Booking Repository
+
+**Commit message**
+```text
+refactor: migrate booking repository to EF Core
+```
+
+**Changes made**
+- Replaced ADO.NET booking operations with EF Core.
+- Used an EF Core database transaction for the booking workflow.
+- Added a conditional seat update using `ExecuteUpdateAsync()`.
+- Saved the booking record through `SaveChangesAsync()`.
+- Preserved the booking audit insert within the transaction.
+- Added rollback handling for failed booking operations.
+
+**Purpose**
+
+Preserve transactional booking behavior while using EF Core for data access.
+
+---
+
+### 5. Integrate EF Core into Program
+
+**Commit message**
+```text
+refactor: configure EF Core in Program
+```
+
+**Changes made**
+- Configured `DbContextOptionsBuilder<MovieBookingDbContext>`.
+- Configured the SQL Server provider with the existing connection string.
+- Created a `MovieBookingDbContext` instance.
+- Updated repository initialization to receive the context instead of the connection string.
+- Retained the existing services and console menu.
+
+**Purpose**
+
+Connect the application to EF Core while minimizing changes to the existing project architecture.
+
+---
+
+## EF Core Migration Testing
+
+| Test | Expected result | Status |
+|---|---|---|
+| Project build | Build succeeds without errors | Pending |
+| Add and list customers | Operations work correctly | Pending |
+| Search customer by ID | Correct customer is returned | Pending |
+| Add and list movies | Operations work correctly | Pending |
+| Search movie by ID | Correct movie is returned | Pending |
+| Book tickets | Booking is saved and seats decrease | Pending |
+| Insufficient seats | Booking fails and seats remain unchanged | Pending |
+| Booking audit | Successful booking has an audit entry | Pending |
+| Rollback behavior | Failed booking does not leave partial changes | Pending |
+
+Update each status after running the tests.
+
+## Important Notes
+
+- The existing `MovieBookingDB` database is reused.
+- The existing Models and Services are retained unless compatibility changes are needed.
+- EF Core migrations are not required merely to replace ADO.NET repository code.
+- Record the actual Git commit hashes and test outcomes when the work is complete.
+
 
 
 
