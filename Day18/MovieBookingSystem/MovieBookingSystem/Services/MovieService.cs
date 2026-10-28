@@ -51,4 +51,16 @@ public class MovieService
         return _repository.GetAllMoviesAsync();
     }
 
+
+    public async Task<Movie?> GetMovieByIdAsync(int id)
+    {
+        if (id <= 0)
+        {
+            throw new ArgumentException(
+                "Movie ID must be greater than zero.");
+        }
+
+        return await _repository.GetMovieByIdAsync(id);
+    }
+
 }

@@ -10,25 +10,34 @@ var service = new MovieService(repository);
 
 try
 {
-    var movies = await service.GetAllMoviesAsync();
+    Console.Write("Enter movie ID: ");
 
-    if (movies.Count == 0)
+    if (!int.TryParse(Console.ReadLine(), out int id))
     {
-        Console.WriteLine("No movies found.");
+        Console.WriteLine("Invalid movie ID.");
+        return;
+    }
+
+    var movie = await service.GetMovieByIdAsync(id);
+
+    if (movie is null)
+    {
+        Console.WriteLine("Movie not found.");
     }
     else
     {
-        Console.WriteLine("\n=== MOVIE LIST ===");
-
-        foreach (var movie in movies)
-        {
-            Console.WriteLine(
-                $"{movie.MovieId} | {movie.Title} | " +
-                $"{movie.Genre} | {movie.DurationMinutes} min | " +
-                $"{movie.TicketPrice:N2} | " +
-                $"Seats: {movie.AvailableSeats}");
-        }
+        Console.WriteLine("\n=== MOVIE DETAILS ===");
+        Console.WriteLine($"ID       : {movie.MovieId}");
+        Console.WriteLine($"Title    : {movie.Title}");
+        Console.WriteLine($"Genre    : {movie.Genre}");
+        Console.WriteLine($"Duration : {movie.DurationMinutes} minutes");
+        Console.WriteLine($"Price    : {movie.TicketPrice:N2}");
+        Console.WriteLine($"Seats    : {movie.AvailableSeats}");
     }
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"Validation error: {ex.Message}");
 }
 catch (Exception ex)
 {
