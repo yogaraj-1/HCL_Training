@@ -232,3 +232,41 @@ Retrieve a specific customer record using its unique customer ID.
 **Commit hash:** Add the actual short hash from Git.
 
 **Next step:** Implement Add Movie.
+
+---
+
+## Commit: Add Movie Feature
+
+**Commit message:** `c318c58 ->feat(movie): implement add movie`
+
+### Objective
+Implement the functionality to insert movie records into SQL Server using ADO.NET.
+
+### Changes made
+- Created `MovieRepository.cs`.
+- Implemented `AddMovieAsync()` using a parameterized SQL INSERT statement.
+- Created `MovieService.cs`.
+- Added validation for movie title, genre, duration, ticket price, and available seats.
+- Tested the feature through `Program.cs`.
+
+### Concepts learned
+- Repository and service layers.
+- Parameterized SQL commands.
+- `ExecuteNonQueryAsync()`.
+- Asynchronous database operations.
+- Business validation and SQL CHECK constraints.
+- Exception handling.
+
+### Testing performed
+- Tested insertion of a valid movie.
+- Tested invalid title and genre.
+- Tested invalid duration, ticket price, and seat count.
+- Verified saved movie records using SSMS.
+- Confirmed that the project builds successfully.
+
+**Actual result:** Update after performing the tests.
+
+**Commit hash:** Add the actual short hash from Git.
+
+**Next step:** Implement View All Movies.
+
