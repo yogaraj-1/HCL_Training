@@ -270,3 +270,41 @@ Implement the functionality to insert movie records into SQL Server using ADO.NE
 
 **Next step:** Implement View All Movies.
 
+---
+
+## Commit: View All Movies
+
+**Commit message:** `a3cdaea->feat(movie): add list movies operation`
+
+### Objective
+Retrieve and display all movie records stored in SQL Server.
+
+### Changes made
+- Added `GetAllMoviesAsync()` to `MovieRepository`.
+- Used `ExecuteReaderAsync()` and `SqlDataReader` to retrieve movie records.
+- Mapped database rows into `Movie` objects.
+- Returned the results as a `List<Movie>` through the service layer.
+- Displayed movie details, ticket prices, and available seats.
+- Handled the empty result case.
+
+### Concepts learned
+- SELECT queries in ADO.NET.
+- Reading multiple database rows asynchronously.
+- Mapping database values to C# properties.
+- Collections and `List<Movie>`.
+- Decimal formatting for ticket prices.
+
+### Testing performed
+- Verified retrieval of existing movies.
+- Verified ordering by movie ID.
+- Verified ticket price and seat display.
+- Tested the empty-table scenario, if performed.
+- Confirmed a successful build.
+
+**Actual result:** Update according to the tests performed.
+
+**Commit hash:** Add the actual short hash from Git.
+
+**Next step:** Implement Search Movie by ID.
+
+
