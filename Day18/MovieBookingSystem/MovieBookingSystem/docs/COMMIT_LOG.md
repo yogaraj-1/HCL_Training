@@ -72,3 +72,51 @@ Create the SQL Server database schema required to store customer and movie infor
 - Implement customer management.
 - Implement movie management.
 - Implement transactional ticket booking.
+
+---
+
+## Commit: Models and Database Connectivity
+
+**Commit message:** `05059e2->feat: add models and database connectivity`
+
+### 1. Objective
+Create the C# model classes for customers and movies and establish a connection between the console application and SQL Server using ADO.NET.
+
+### 2. Changes Made
+- Created the `Models` folder.
+- Added `Customer.cs` to represent customer data.
+- Added `Movie.cs` to represent movie data.
+- Installed the `Microsoft.Data.SqlClient` NuGet package.
+- Configured a SQL Server connection string in `Program.cs`.
+- Implemented an asynchronous database connection test using `SqlConnection` and `OpenAsync()`.
+
+### 3. Files Changed
+- `Models/Customer.cs`
+- `Models/Movie.cs`
+- `Program.cs`
+- `MovieBookingSystem.csproj` (if modified by package installation)
+
+### 4. Concepts Learned
+- C# classes and properties.
+- Model-layer responsibilities in layered architecture.
+- NuGet package management.
+- ADO.NET database connectivity.
+- `SqlConnection` and `OpenAsync()`.
+- Asynchronous programming using `async` and `await`.
+- Exception handling with `try-catch`.
+
+### 5. Testing Performed
+- Verified that the project builds successfully.
+- Ran the console application.
+- Tested the SQL Server connection using `OpenAsync()`.
+- Expected successful output: `Database connected successfully!`
+
+**Actual result:** Update after running the test.
+
+### 6. Outcome
+The application has the initial data models and the foundation required to communicate with SQL Server.
+
+### 7. Next Step
+Implement the Customer Repository, starting with the `AddCustomerAsync()` method to insert customer records using parameterized SQL.
+
+**Commit hash:** Add the actual hash from `git log --oneline`.
