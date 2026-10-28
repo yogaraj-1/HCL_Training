@@ -380,6 +380,124 @@ Combine the six customer and movie operations into a single persistent console a
 
 **Next step:** Implement transactional ticket booking.
 
+# Commit Log — Movie Booking System
+
+## Ticket Booking Module
+
+### 1. Create Booking and Audit Tables
+
+**Commit message**
+```text
+feat(db): add bookings and audit tables
+```
+
+**Changes made**
+- Created the `Bookings` table to store ticket booking details.
+- Added foreign key relationships to `Customers` and `Movies`.
+- Added constraints to ensure the number of seats is positive and the total amount is non-negative.
+- Created the `BookingAudit` table to record booking actions.
+- Added booking timestamps using SQL Server's `SYSDATETIME()` default.
+
+**Purpose**
+
+Establish the database structure required to save bookings and maintain an audit record of successful booking operations.
+
+---
+
+### 2. Implement Transactional Booking Repository
+
+**Commit message**
+```text
+feat(booking): implement transactional booking
+```
+
+**Changes made**
+- Created `Models/Booking.cs` to represent a booking.
+- Created `Repository/BookingRepository.cs`.
+- Implemented `BookTicketsAsync()` using ADO.NET.
+- Validated that the customer exists.
+- Checked movie availability before reducing the available seat count.
+- Calculated the total booking amount using the movie's ticket price and requested seats.
+- Inserted the booking record.
+- Inserted a corresponding record into `BookingAudit`.
+- Used a SQL transaction to commit all booking operations together or roll them back on failure.
+- Used parameterized SQL commands to prevent SQL injection.
+
+**Purpose**
+
+Ensure that updating available seats, recording a booking, and recording the audit entry are treated as a single database transaction.
+
+---
+
+### 3. Add Booking Service and Validation
+
+**Commit message**
+```text
+feat(booking): add booking validation
+```
+
+**Changes made**
+- Created `Services/BookingService.cs`.
+- Added validation for customer ID, movie ID, and seat count.
+- Rejected non-positive IDs and seat counts.
+- Delegated valid booking requests to `BookingRepository`.
+
+**Purpose**
+
+Separate business validation from database operations and maintain the project's layered architecture.
+
+---
+
+### 4. Integrate Ticket Booking into the Main Menu
+
+**Commit message**
+```text
+feat: integrate ticket booking menu
+```
+
+**Changes made**
+- Added the `Book Tickets` option to `Program.cs`.
+- Collected customer ID, movie ID, and requested seat count from the user.
+- Validated numeric console input.
+- Called `BookingService.BookTicketsAsync()`.
+- Displayed success or failure messages.
+- Handled booking-related exceptions.
+
+**Purpose**
+
+Allow users to book movie tickets through the console application while keeping booking logic in the service and repository layers.
+
+---
+
+### 5. Document the Ticket Booking Module
+
+**Commit message**
+```text
+docs: document ticket booking module
+```
+
+**Changes made**
+- Documented the booking workflow.
+- Explained the role of the booking service and repository.
+- Documented database transaction and rollback behavior.
+- Added booking test scenarios and expected results.
+- Recorded the relevant database tables and relationships.
+
+**Purpose**
+
+Make the ticket-booking implementation, database behavior, and testing process easier to understand and maintain.
+
+---
+
+## Booking Module Testing Checklist
+
+Record the actual test results before marking the module as complete.
+
+| Test scenario | Expected result | Status |
+|---|---|---|
+| Book tickets with valid customer, movie, and seats | Booking and audit records are inserted; available seats decrease | Pending |
+| Use a
+
 
 
 
