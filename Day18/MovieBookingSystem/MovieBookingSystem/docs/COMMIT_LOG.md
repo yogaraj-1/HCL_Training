@@ -307,4 +307,42 @@ Retrieve and display all movie records stored in SQL Server.
 
 **Next step:** Implement Search Movie by ID.
 
+---
+
+## Commit: Search Movie by ID
+
+**Commit message:** `-> feat(movie): add search by id`
+
+### Objective
+Retrieve a specific movie using its unique ID.
+
+### Changes made
+- Added `GetMovieByIdAsync(int id)` to `MovieRepository`.
+- Used a parameterized SELECT query with a WHERE clause.
+- Mapped the matching database row into a Movie object.
+- Returned null when no matching movie exists.
+- Added positive-ID validation in `MovieService`.
+- Displayed the movie's details in the console.
+
+### Concepts learned
+- Parameterized SQL queries.
+- WHERE clause filtering.
+- Nullable reference types (`Movie?`).
+- Single-record retrieval with SqlDataReader.
+- Input validation and missing-record handling.
+
+### Testing performed
+- Searched for an existing movie.
+- Tested a nonexistent movie ID.
+- Tested zero and negative IDs.
+- Tested non-numeric input.
+- Verified the project builds successfully.
+
+**Actual result:** Update according to the tests performed.
+
+**Commit hash:** Add the actual short hash from Git.
+
+**Next step:** Integrate customer and movie operations into the main console menu.
+
+
 
