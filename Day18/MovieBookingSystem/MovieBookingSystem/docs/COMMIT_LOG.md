@@ -344,5 +344,42 @@ Retrieve a specific movie using its unique ID.
 
 **Next step:** Integrate customer and movie operations into the main console menu.
 
+---
+
+## Commit: Integrate Customer and Movie Menu
+
+**Commit message:** `2b0c096->feat: integrate customer and movie menu`
+
+### Objective
+Combine the six customer and movie operations into a single persistent console application.
+
+### Changes made
+- Added a main menu with seven options, including Exit.
+- Integrated Add Customer, View All Customers, and Search Customer by ID.
+- Integrated Add Movie, View All Movies, and Search Movie by ID.
+- Added input parsing for numeric fields and IDs.
+- Added centralized exception handling for validation, database, and unexpected errors.
+- Kept the application running until the user selects Exit.
+
+### Concepts learned
+- Switch statements.
+- Loops and menu-driven applications.
+- Reusing service and repository instances.
+- Input validation and exception handling.
+- Integrating independently developed features.
+
+### Testing performed
+- Tested all six operations through the main menu.
+- Tested nonexistent IDs and invalid input.
+- Verified that the menu reappears after operations.
+- Verified application exit.
+
+**Actual result:** Update based on tests performed.
+
+**Commit hash:** Add the actual short hash from Git.
+
+**Next step:** Implement transactional ticket booking.
+
+
 
 
