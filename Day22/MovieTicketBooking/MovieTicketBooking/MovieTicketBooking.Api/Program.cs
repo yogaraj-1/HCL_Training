@@ -10,6 +10,10 @@ using MovieTicketBooking.Api.Repositories.Interfaces;
 using MovieTicketBooking.Api.Services;
 using MovieTicketBooking.Api.Services.Interfaces;
 using MovieTicketBooking.Api.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,6 +65,62 @@ builder.Services.Configure<JwtSettings>(
 
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
+var jwtSettings = builder.Configuration
+    .GetSection("Jwt")
+    .Get<JwtSettings>()
+    ?? throw new InvalidOperationException(
+        "JWT configuration is missing.");
+
+if (string.IsNullOrWhiteSpace(jwtSettings.Key) ||
+    Encoding.UTF8.GetByteCount(jwtSettings.Key) < 32)
+{
+    throw new InvalidOperationException(
+        "JWT signing key must contain at least 32 bytes.");
+}
+
+if (jwtSettings.ExpiryMinutes <= 0)
+{
+    throw new InvalidOperationException(
+        "JWT expiration must be greater than zero.");
+}
+
+builder.Services
+    .AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme =
+            JwtBearerDefaults.AuthenticationScheme;
+
+        options.DefaultChallengeScheme =
+            JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters =
+            new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+
+                ValidIssuer = jwtSettings.Issuer,
+
+                ValidateAudience = true,
+
+                ValidAudience = jwtSettings.Audience,
+
+                ValidateLifetime = true,
+
+                ValidateIssuerSigningKey = true,
+
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(jwtSettings.Key)),
+
+                ClockSkew = TimeSpan.Zero,
+
+                NameClaimType = System.Security.Claims.ClaimTypes.Name,
+
+                RoleClaimType = System.Security.Claims.ClaimTypes.Role
+            };
+    });
+
 // Register OpenAPI
 builder.Services.AddOpenApi();
 
@@ -76,6 +136,8 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
