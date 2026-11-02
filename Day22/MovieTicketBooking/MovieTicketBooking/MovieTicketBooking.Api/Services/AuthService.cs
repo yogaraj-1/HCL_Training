@@ -10,12 +10,60 @@ public class AuthService : IAuthService
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
 
+    private readonly IJwtTokenService _jwtTokenService;
+
     public AuthService(
-        UserManager<ApplicationUser> userManager,
-        RoleManager<IdentityRole> roleManager)
+    UserManager<ApplicationUser> userManager,
+    RoleManager<IdentityRole> roleManager,
+    IJwtTokenService jwtTokenService)
     {
         _userManager = userManager;
         _roleManager = roleManager;
+        _jwtTokenService = jwtTokenService;
+    }
+
+    public async Task<LoginResponse> LoginAsync(LoginRequest request)
+    {
+        // 1. Find user using email.
+        var user = await _userManager.FindByEmailAsync(
+            request.Email.Trim());
+
+        // Use the same error for unknown email and incorrect password.
+        if (user == null)
+        {
+            throw new UnauthorizedAccessException(
+                "Invalid email or password.");
+        }
+
+        // 2. Verify password using ASP.NET Core Identity.
+        var isPasswordValid = await _userManager.CheckPasswordAsync(
+            user,
+            request.Password);
+
+        if (!isPasswordValid)
+        {
+            throw new UnauthorizedAccessException(
+                "Invalid email or password.");
+        }
+
+        // 3. Get the user's assigned roles.
+        var roles = await _userManager.GetRolesAsync(user);
+
+        // 4. Generate JWT.
+        var token = await _jwtTokenService.GenerateTokenAsync(user);
+
+        // 5. Return login response.
+        return new LoginResponse
+        {
+            UserId = user.Id,
+            FullName = user.FullName ?? string.Empty,
+            Email = user.Email ?? string.Empty,
+            UserName = user.UserName ?? string.Empty,
+            Roles = roles.ToList(),
+            AccessToken = token.AccessToken,
+            TokenType = token.TokenType,
+            ExpiresAt = token.ExpiresAt
+        };
     }
 
     public async Task<RegisterResponse> RegisterAsync(

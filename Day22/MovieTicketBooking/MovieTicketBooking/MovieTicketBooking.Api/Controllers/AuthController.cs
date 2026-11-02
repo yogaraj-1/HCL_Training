@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieTicketBooking.Api.DTOs.Auth;
 using MovieTicketBooking.Api.Services.Interfaces;
 
@@ -16,6 +17,7 @@ public class AuthController : ControllerBase
     }
 
     // POST: api/auth/register
+    [AllowAnonymous]
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
@@ -24,5 +26,15 @@ public class AuthController : ControllerBase
         return StatusCode(
             StatusCodes.Status201Created,
             response);
+    }
+
+    // POST: api/auth/login
+    [AllowAnonymous]
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginRequest request)
+    {
+        var response = await _service.LoginAsync(request);
+
+        return Ok(response);
     }
 }

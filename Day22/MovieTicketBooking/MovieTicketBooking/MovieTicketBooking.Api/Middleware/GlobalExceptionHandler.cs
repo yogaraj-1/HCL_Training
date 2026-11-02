@@ -20,9 +20,18 @@ public class GlobalExceptionHandler : IExceptionHandler
     {
         var statusCode = exception switch
         {
-            KeyNotFoundException => StatusCodes.Status404NotFound,
-            ArgumentException => StatusCodes.Status400BadRequest,
-            InvalidOperationException => StatusCodes.Status409Conflict,
+            UnauthorizedAccessException =>
+                StatusCodes.Status401Unauthorized,
+
+            KeyNotFoundException =>
+                StatusCodes.Status404NotFound,
+
+            ArgumentException =>
+                StatusCodes.Status400BadRequest,
+
+            InvalidOperationException =>
+                StatusCodes.Status409Conflict,
+
             _ => StatusCodes.Status500InternalServerError
         };
 
@@ -55,6 +64,7 @@ public class GlobalExceptionHandler : IExceptionHandler
         return statusCode switch
         {
             400 => "Bad Request",
+            401 => "Unauthorized",
             404 => "Resource Not Found",
             409 => "Conflict",
             _ => "Internal Server Error"
