@@ -71,4 +71,56 @@ public class BookingRepository : IBookingRepository
             throw;
         }
     }
+
+    public async Task<Booking?> GetBookingByIdAsync(int bookingId)
+    {
+        return await _context.Bookings
+            .Include(b => b.BookingSeats)
+            .FirstOrDefaultAsync(b => b.BookingId == bookingId);
+    }
+
+    public async Task<bool> CancelBookingAsync(Booking booking)
+    {
+        await using var transaction =
+            await _context.Database.BeginTransactionAsync();
+
+        try
+        {
+            var seatIds = booking.BookingSeats
+                .Select(bs => bs.SeatId)
+                .ToList();
+
+            var showSeats = await _context.ShowSeats
+                .Where(ss =>
+                    ss.ShowId == booking.ShowId &&
+                    seatIds.Contains(ss.SeatId))
+                .ToListAsync();
+
+            if (showSeats.Count != seatIds.Count)
+            {
+                throw new InvalidOperationException(
+                    "Some booking seats could not be found for this show.");
+            }
+
+            // Release the seats.
+            foreach (var showSeat in showSeats)
+            {
+                showSeat.Status = ShowSeatStatus.Available;
+            }
+
+            // Preserve booking history; only update its status.
+            booking.Status = BookingStatus.Cancelled;
+
+            await _context.SaveChangesAsync();
+
+            await transaction.CommitAsync();
+
+            return true;
+        }
+        catch
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
+    }
 }

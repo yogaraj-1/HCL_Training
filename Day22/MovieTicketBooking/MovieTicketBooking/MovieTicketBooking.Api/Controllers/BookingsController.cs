@@ -38,4 +38,35 @@ public class BookingsController : ControllerBase
             return BadRequest(new { message = ex.Message });
         }
     }
+
+    // POST: api/bookings/1/cancel
+    [HttpPost("{id:int}/cancel")]
+    public async Task<IActionResult> Cancel(int id)
+    {
+        try
+        {
+            var cancelled = await _service.CancelBookingAsync(id);
+
+            if (!cancelled)
+                return NotFound(new { message = "Booking not found." });
+
+            return Ok(new
+            {
+                message = "Booking cancelled successfully."
+            });
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
 }

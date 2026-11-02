@@ -102,4 +102,25 @@ public class BookingService : IBookingService
             }).ToList()
         };
     }
+    public async Task<bool> CancelBookingAsync(int bookingId)
+    {
+        if (bookingId <= 0)
+            throw new ArgumentException("Invalid booking ID.");
+
+        // Find the booking.
+        var booking = await _repository.GetBookingByIdAsync(bookingId);
+
+        if (booking == null)
+            throw new KeyNotFoundException("Booking not found.");
+
+        // Only confirmed bookings can be cancelled.
+        if (booking.Status != BookingStatus.Confirmed)
+        {
+            throw new InvalidOperationException(
+                "Only confirmed bookings can be cancelled.");
+        }
+
+        // Cancel booking and release seats.
+        return await _repository.CancelBookingAsync(booking);
+    }
 }

@@ -6,4 +6,5 @@ public interface IBookingService
 {
     Task<BookingResponse> CreateBookingAsync(
         CreateBookingRequest request);
+    Task<bool> CancelBookingAsync(int bookingId);
 }

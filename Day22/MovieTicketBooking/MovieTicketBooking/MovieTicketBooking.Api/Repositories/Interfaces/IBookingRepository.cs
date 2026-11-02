@@ -14,4 +14,8 @@ public interface IBookingRepository
         Booking booking,
         List<BookingSeat> bookingSeats,
         List<ShowSeat> showSeats);
+
+    Task<Booking?> GetBookingByIdAsync(int bookingId);
+
+    Task<bool> CancelBookingAsync(Booking booking);
 }
