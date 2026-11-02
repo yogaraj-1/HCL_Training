@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieTicketBooking.Api.DTOs.Screens;
 using MovieTicketBooking.Api.Services.Interfaces;
@@ -17,6 +18,7 @@ public class ScreensController : ControllerBase
     }
 
     // POST: api/screens
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<IActionResult> Create(CreateScreenRequest request)
     {
@@ -38,6 +40,7 @@ public class ScreensController : ControllerBase
 
     // GET: api/screens
     // GET: api/screens?theatreId=1
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] int? theatreId)
     {
@@ -55,6 +58,7 @@ public class ScreensController : ControllerBase
     }
 
     // GET: api/screens/1
+    [AllowAnonymous]
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -72,6 +76,7 @@ public class ScreensController : ControllerBase
     }
 
     // GET: api/screens/theatre/1
+    [AllowAnonymous]
     [HttpGet("theatre/{theatreId:int}")]
     public async Task<IActionResult> GetByTheatreId(int theatreId)
     {
@@ -97,6 +102,7 @@ public class ScreensController : ControllerBase
     }
 
     // PUT: api/screens/1
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(
         int id,
@@ -116,6 +122,7 @@ public class ScreensController : ControllerBase
     }
 
     // DELETE: api/screens/1
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieTicketBooking.Api.DTOs.Bookings;
 using MovieTicketBooking.Api.Services.Interfaces;
-
+using Microsoft.AspNetCore.Authorization;
 namespace MovieTicketBooking.Api.Controllers;
 
 [ApiController]
@@ -16,6 +16,7 @@ public class BookingsController : ControllerBase
     }
 
     // POST: api/bookings
+    [Authorize(Roles = "User")]
     [HttpPost]
     public async Task<IActionResult> Create(CreateBookingRequest request)
     {
@@ -25,6 +26,7 @@ public class BookingsController : ControllerBase
     }
 
     // POST: api/bookings/1/cancel
+    [Authorize(Roles = "User,Admin")]
     [HttpPost("{id:int}/cancel")]
     public async Task<IActionResult> Cancel(int id)
     {

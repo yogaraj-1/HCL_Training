@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieTicketBooking.Api.DTOs.Shows;
 using MovieTicketBooking.Api.Services;
 using MovieTicketBooking.Api.Services.Interfaces;
@@ -17,6 +18,7 @@ public class ShowsController : ControllerBase
     }
 
     // POST: api/shows
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<IActionResult> Create(CreateShowRequest request)
     {
@@ -29,6 +31,7 @@ public class ShowsController : ControllerBase
     }
 
     // GET: api/shows?movieId=1&theatreId=1&date=2026-11-05
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> GetAll(
         [FromQuery] int? movieId,
@@ -47,6 +50,7 @@ public class ShowsController : ControllerBase
     }
 
     // GET: api/shows/search?date=2026-11-05
+    [AllowAnonymous]
     [HttpGet("search")]
     public async Task<IActionResult> SearchByDate([FromQuery] DateTime? date)
     {
@@ -59,6 +63,7 @@ public class ShowsController : ControllerBase
     }
 
     // GET: api/shows/movie/1
+    [AllowAnonymous]
     [HttpGet("movie/{movieId:int}")]
     public async Task<IActionResult> GetByMovieId(int movieId)
     {
@@ -74,6 +79,7 @@ public class ShowsController : ControllerBase
     }
 
     // GET: api/shows/theatre/1
+    [AllowAnonymous]
     [HttpGet("theatre/{theatreId:int}")]
     public async Task<IActionResult> GetByTheatreId(int theatreId)
     {
@@ -89,6 +95,7 @@ public class ShowsController : ControllerBase
     }
 
     // GET: api/shows/1
+    [AllowAnonymous]
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -101,6 +108,7 @@ public class ShowsController : ControllerBase
     }
 
     // PUT: api/shows/1
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(
         int id,
@@ -115,6 +123,7 @@ public class ShowsController : ControllerBase
     }
 
     // DELETE: api/shows/1
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
@@ -127,6 +136,7 @@ public class ShowsController : ControllerBase
     }
 
     // GET: api/shows/1/seats
+    [AllowAnonymous]
     [HttpGet("{showId:int}/seats")]
     public async Task<IActionResult> GetSeatLayout(int showId)
     {
@@ -139,6 +149,7 @@ public class ShowsController : ControllerBase
     }
 
     // GET: api/shows/1/seats/available
+    [AllowAnonymous]
     [HttpGet("{showId:int}/seats/available")]
     public async Task<IActionResult> GetAvailableSeats(int showId)
     {
@@ -151,6 +162,7 @@ public class ShowsController : ControllerBase
     }
 
     // GET: api/shows/1/seats/booked
+    [AllowAnonymous]
     [HttpGet("{showId:int}/seats/booked")]
     public async Task<IActionResult> GetBookedSeats(int showId)
     {
