@@ -9,6 +9,7 @@ using MovieTicketBooking.Api.Repositories;
 using MovieTicketBooking.Api.Repositories.Interfaces;
 using MovieTicketBooking.Api.Services;
 using MovieTicketBooking.Api.Services.Interfaces;
+using MovieTicketBooking.Api.Configuration;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +55,11 @@ builder.Services
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.Configure<JwtSettings>(
+    builder.Configuration.GetSection("Jwt"));
+
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
 // Register OpenAPI
 builder.Services.AddOpenApi();
