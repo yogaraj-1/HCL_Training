@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovieTicketBooking.Api.DTOs.Seats;
 using MovieTicketBooking.Api.Services.Interfaces;
 
@@ -20,31 +19,20 @@ public class SeatsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateSeatRequest request)
     {
-        try
-        {
-            var seat = await _service.CreateAsync(request);
+        var seat = await _service.CreateAsync(request);
 
-            if (seat == null)
+        if (seat == null)
+        {
+            return NotFound(new
             {
-                return NotFound(new
-                {
-                    message = $"Screen with ID {request.ScreenId} was not found."
-                });
-            }
+                message = $"Screen with ID {request.ScreenId} was not found."
+            });
+        }
 
-            return CreatedAtAction(
-                nameof(GetById),
-                new { id = seat.SeatId },
-                seat);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = seat.SeatId },
+            seat);
     }
 
     // POST: api/seats/bulk
@@ -52,30 +40,19 @@ public class SeatsController : ControllerBase
     public async Task<IActionResult> CreateBulk(
         BulkCreateSeatsRequest request)
     {
-        try
-        {
-            var seats = await _service.CreateBulkAsync(request);
+        var seats = await _service.CreateBulkAsync(request);
 
-            if (seats == null)
+        if (seats == null)
+        {
+            return NotFound(new
             {
-                return NotFound(new
-                {
-                    message = $"Screen with ID {request.ScreenId} was not found."
-                });
-            }
+                message = $"Screen with ID {request.ScreenId} was not found."
+            });
+        }
 
-            return StatusCode(
-                StatusCodes.Status201Created,
-                seats);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        return StatusCode(
+            StatusCodes.Status201Created,
+            seats);
     }
 
     // GET: api/seats/screen/1
@@ -121,28 +98,17 @@ public class SeatsController : ControllerBase
         int id,
         UpdateSeatRequest request)
     {
-        try
-        {
-            var seat = await _service.UpdateAsync(id, request);
+        var seat = await _service.UpdateAsync(id, request);
 
-            if (seat == null)
+        if (seat == null)
+        {
+            return NotFound(new
             {
-                return NotFound(new
-                {
-                    message = "Seat or specified screen was not found."
-                });
-            }
+                message = "Seat or specified screen was not found."
+            });
+        }
 
-            return Ok(seat);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        return Ok(seat);
     }
 
     // DELETE: api/seats/1

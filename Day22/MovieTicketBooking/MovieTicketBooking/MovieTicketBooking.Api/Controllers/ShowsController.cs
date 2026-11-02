@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovieTicketBooking.Api.DTOs.Shows;
 using MovieTicketBooking.Api.Services;
 using MovieTicketBooking.Api.Services.Interfaces;
@@ -21,27 +20,12 @@ public class ShowsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateShowRequest request)
     {
-        try
-        {
-            var show = await _service.CreateAsync(request);
+        var show = await _service.CreateAsync(request);
 
-            return CreatedAtAction(
-                nameof(GetById),
-                new { id = show.ShowId },
-                show);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-        catch (InvalidOperationException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = show.ShowId },
+            show);
     }
 
     // GET: api/shows?movieId=1&theatreId=1&date=2026-11-05
@@ -122,42 +106,24 @@ public class ShowsController : ControllerBase
         int id,
         UpdateShowRequest request)
     {
-        try
-        {
-            var show = await _service.UpdateAsync(id, request);
+        var show = await _service.UpdateAsync(id, request);
 
-            if (show == null)
-                return NotFound(new { message = $"Show {id} was not found." });
+        if (show == null)
+            return NotFound(new { message = $"Show {id} was not found." });
 
-            return Ok(show);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        return Ok(show);
     }
 
     // DELETE: api/shows/1
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
-        try
-        {
-            var deleted = await _service.DeleteAsync(id);
+        var deleted = await _service.DeleteAsync(id);
 
-            if (!deleted)
-                return NotFound(new { message = $"Show {id} was not found or could not be deleted." });
+        if (!deleted)
+            return NotFound(new { message = $"Show {id} was not found or could not be deleted." });
 
-            return NoContent();
-        }
-        catch (InvalidOperationException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
+        return NoContent();
     }
 
     // GET: api/shows/1/seats
@@ -195,6 +161,4 @@ public class ShowsController : ControllerBase
 
         return Ok(seats);
     }
-
-
 }

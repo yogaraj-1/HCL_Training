@@ -1,11 +1,12 @@
 
 using Microsoft.EntityFrameworkCore;
 using MovieTicketBooking.Api.Data;
-using Scalar.AspNetCore;
+using MovieTicketBooking.Api.Middleware;
 using MovieTicketBooking.Api.Repositories;
 using MovieTicketBooking.Api.Repositories.Interfaces;
 using MovieTicketBooking.Api.Services;
 using MovieTicketBooking.Api.Services.Interfaces;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,10 +39,14 @@ builder.Services.AddScoped<IShowService, ShowService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 // Register OpenAPI
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
 
 // Configure middleware
 if (app.Environment.IsDevelopment())
@@ -49,6 +54,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
+app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 
