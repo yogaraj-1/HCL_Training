@@ -1,6 +1,4 @@
 ﻿
-using MovieTicketBooking.MovieTicketBooking.Api.Enum;
-
 namespace MovieTicketBooking.Api.Models;
 
 public class ShowSeat

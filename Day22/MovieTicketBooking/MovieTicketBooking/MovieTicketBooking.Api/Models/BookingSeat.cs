@@ -1,10 +1,4 @@
-﻿namespace MovieTicketBooking.MovieTicketBooking.Api.Models
-{
-    public class BookingSeat
-    {
-    }
-}
-
+﻿
 namespace MovieTicketBooking.Api.Models;
 
 public class BookingSeat

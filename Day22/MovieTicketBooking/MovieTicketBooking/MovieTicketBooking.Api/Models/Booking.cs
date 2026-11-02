@@ -1,7 +1,4 @@
 ﻿
-using MovieTicketBooking.MovieTicketBooking.Api.Enum;
-using MovieTicketBooking.MovieTicketBooking.Api.Models;
-
 namespace MovieTicketBooking.Api.Models;
 
 public class Booking
