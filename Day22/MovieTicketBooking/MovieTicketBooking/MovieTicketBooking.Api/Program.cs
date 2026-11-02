@@ -126,6 +126,15 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+// Seed default roles and Admin account.
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    await DbSeeder.SeedRolesAndAdminAsync(
+        services,
+        app.Configuration);
+}
 
 // Configure middleware
 if (app.Environment.IsDevelopment())
@@ -135,7 +144,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseExceptionHandler();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
