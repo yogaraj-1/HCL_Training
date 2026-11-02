@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.18.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="MovieTicketBooking.Api\Models\" />
+    <Folder Include="MovieTicketBooking.Api\DTOs\" />
+    <Folder Include="MovieTicketBooking.Api\Data\" />
+    <Folder Include="MovieTicketBooking.Api\Middleware\" />
+    <Folder Include="MovieTicketBooking.Api\Repositories\Interfaces\" />
+    <Folder Include="MovieTicketBooking.Api\Services\Interfaces\" />
+  </ItemGroup>
+
+</Project>
