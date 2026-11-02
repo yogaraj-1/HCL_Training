@@ -206,4 +206,45 @@ public class ShowService : IShowService
             TicketPrice = show.TicketPrice
         };
     }
+
+    public async Task<List<ShowSeatResponse>?> GetSeatLayoutAsync(int showId)
+    {
+        var show = await _repository.GetByIdAsync(showId);
+
+        if (show == null)
+            return null;
+
+        var showSeats =
+            await _repository.GetSeatAvailabilityByShowIdAsync(showId);
+
+        return showSeats.Select(ss => new ShowSeatResponse
+        {
+            ShowSeatId = ss.ShowSeatId,
+            SeatId = ss.SeatId,
+            RowName = ss.Seat!.RowName,
+            SeatNumber = ss.Seat.SeatNumber,
+            SeatLabel = $"{ss.Seat.RowName}{ss.Seat.SeatNumber}",
+            SeatType = ss.Seat.SeatType.ToString(),
+            Price = show.TicketPrice,
+            Status = ss.Status.ToString()
+        }).ToList();
+    }
+
+    public async Task<List<ShowSeatResponse>?> GetAvailableSeatsAsync(int showId)
+    {
+        var seats = await GetSeatLayoutAsync(showId);
+
+        return seats?
+            .Where(s => s.Status == ShowSeatStatus.Available.ToString())
+            .ToList();
+    }
+
+    public async Task<List<ShowSeatResponse>?> GetBookedSeatsAsync(int showId)
+    {
+        var seats = await GetSeatLayoutAsync(showId);
+
+        return seats?
+            .Where(s => s.Status == ShowSeatStatus.Booked.ToString())
+            .ToList();
+    }
 }

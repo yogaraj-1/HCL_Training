@@ -34,6 +34,7 @@ public interface IShowRepository
 
     Task<List<Show>> GetByTheatreIdAsync(int theatreId);
 
+    Task<List<ShowSeat>> GetSeatAvailabilityByShowIdAsync(int showId);
     Task<bool> TheatreExistsAsync(int theatreId);
 
     Task<bool> UpdateAsync(Show show);

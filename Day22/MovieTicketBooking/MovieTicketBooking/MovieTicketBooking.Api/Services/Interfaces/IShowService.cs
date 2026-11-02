@@ -23,4 +23,8 @@ public interface IShowService
         UpdateShowRequest request);
 
     Task<bool> DeleteAsync(int id);
+
+    Task<List<ShowSeatResponse>?> GetSeatLayoutAsync(int showId);
+    Task<List<ShowSeatResponse>?> GetAvailableSeatsAsync(int showId);
+    Task<List<ShowSeatResponse>?> GetBookedSeatsAsync(int showId);
 }

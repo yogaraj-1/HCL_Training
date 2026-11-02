@@ -15,5 +15,5 @@ public class ShowSeat
     // Navigation properties
     public Show Show { get; set; } = null!;
 
-    public Seat Seat { get; set; } = null!;
+    public Seat? Seat { get; set; } = null!;
 }

@@ -170,4 +170,16 @@ public class ShowRepository : IShowRepository
 
         return true;
     }
+
+    public async Task<List<ShowSeat>> GetSeatAvailabilityByShowIdAsync(
+    int showId)
+    {
+        return await _context.ShowSeats
+            .Include(ss => ss.Seat)
+            .AsNoTracking()
+            .Where(ss => ss.ShowId == showId)
+            .OrderBy(ss => ss.Seat!.RowName)
+            .ThenBy(ss => ss.Seat!.SeatNumber)
+            .ToListAsync();
+    }
 }

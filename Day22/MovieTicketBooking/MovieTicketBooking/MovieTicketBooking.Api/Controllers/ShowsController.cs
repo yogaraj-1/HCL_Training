@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using MovieTicketBooking.Api.DTOs.Shows;
+using MovieTicketBooking.Api.Services;
 using MovieTicketBooking.Api.Services.Interfaces;
 
 namespace MovieTicketBooking.Api.Controllers;
@@ -158,4 +159,42 @@ public class ShowsController : ControllerBase
             return Conflict(new { message = ex.Message });
         }
     }
+
+    // GET: api/shows/1/seats
+    [HttpGet("{showId:int}/seats")]
+    public async Task<IActionResult> GetSeatLayout(int showId)
+    {
+        var seats = await _service.GetSeatLayoutAsync(showId);
+
+        if (seats == null)
+            return NotFound(new { message = "Show not found." });
+
+        return Ok(seats);
+    }
+
+    // GET: api/shows/1/seats/available
+    [HttpGet("{showId:int}/seats/available")]
+    public async Task<IActionResult> GetAvailableSeats(int showId)
+    {
+        var seats = await _service.GetAvailableSeatsAsync(showId);
+
+        if (seats == null)
+            return NotFound(new { message = "Show not found." });
+
+        return Ok(seats);
+    }
+
+    // GET: api/shows/1/seats/booked
+    [HttpGet("{showId:int}/seats/booked")]
+    public async Task<IActionResult> GetBookedSeats(int showId)
+    {
+        var seats = await _service.GetBookedSeatsAsync(showId);
+
+        if (seats == null)
+            return NotFound(new { message = "Show not found." });
+
+        return Ok(seats);
+    }
+
+
 }
