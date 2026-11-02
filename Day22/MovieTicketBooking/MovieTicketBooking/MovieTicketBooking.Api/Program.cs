@@ -45,6 +45,8 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 builder.Services.AddDataProtection();
 
 builder.Services
