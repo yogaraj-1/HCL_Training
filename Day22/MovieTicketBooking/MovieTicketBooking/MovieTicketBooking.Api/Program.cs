@@ -1,7 +1,10 @@
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MovieTicketBooking.Api.Data;
+using Microsoft.AspNetCore.DataProtection;
 using MovieTicketBooking.Api.Middleware;
+using MovieTicketBooking.Api.Models;
 using MovieTicketBooking.Api.Repositories;
 using MovieTicketBooking.Api.Repositories.Interfaces;
 using MovieTicketBooking.Api.Services;
@@ -41,6 +44,14 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
+
+builder.Services.AddDataProtection();
+
+builder.Services
+    .AddIdentityCore<ApplicationUser>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 // Register OpenAPI
 builder.Services.AddOpenApi();
