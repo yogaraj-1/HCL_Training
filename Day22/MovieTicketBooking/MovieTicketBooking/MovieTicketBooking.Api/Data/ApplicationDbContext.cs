@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using MovieTicketBooking.Api.Models;
-using System.Reflection.Emit;
 
 namespace MovieTicketBooking.Api.Data;
 
