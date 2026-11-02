@@ -23,6 +23,8 @@ builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 // Service registrations
 builder.Services.AddScoped<IMovieService, MovieService>();
 
+builder.Services.AddScoped<ITheatreRepository, TheatreRepository>();
+builder.Services.AddScoped<ITheatreService, TheatreService>();
 
 // Register OpenAPI
 builder.Services.AddOpenApi();
