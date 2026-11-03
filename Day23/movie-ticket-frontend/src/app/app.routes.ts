@@ -55,6 +55,12 @@ export const routes: Routes = [
       .then(m => m.SeatSelection)
 },
 {
+  path: 'booking-summary',
+  loadComponent: () =>
+    import('./features/bookings/booking-summary/booking-summary')
+      .then(m => m.BookingSummary)
+},
+{
     path: '**',
     redirectTo: 'home'
   }

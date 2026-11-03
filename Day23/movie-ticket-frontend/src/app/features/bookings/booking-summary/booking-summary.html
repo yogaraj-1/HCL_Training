@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+
+<section class="summary-page">
+
+  <div class="page-heading">
+    <span>FINAL STEP</span>
+    <h1>Booking Summary</h1>
+    <p>Review your booking details before confirmation.</p>
+  </div>
+
+  <div class="summary-card">
+
+    <div class="movie-details">
+      <div class="poster">
+        <img
+          src="https://placehold.co/150x200/18181f/ffffff?text=LEO"
+          alt="Movie poster">
+      </div>
+
+      <div>
+        <span class="tag">MOVIE TICKET</span>
+        <h2>{{ movieName }}</h2>
+        <p>{{ theatreName }}</p>
+        <p>{{ showDate }} | {{ showTime }}</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="seat-details">
+      <h3>Selected Seats</h3>
+
+      <div class="seat-list">
+        @for (seat of selectedSeats; track seat) {
+          <span>{{ seat }}</span>
+        }
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="price-details">
+      <div>
+        <span>Tickets ({{ selectedSeats.length }})</span>
+        <span>₹{{ subtotal }}</span>
+      </div>
+
+      <div>
+        <span>Convenience Fee</span>
+        <span>₹{{ convenienceFee }}</span>
+      </div>
+
+      <div class="total">
+        <strong>Total Amount</strong>
+        <strong>₹{{ totalAmount }}</strong>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="back-btn" (click)="goBack()">
+        Back
+      </button>
+
+      <button class="confirm-btn" (click)="confirmBooking()">
+        Confirm Booking
+      </button>
+    </div>
+
+  </div>
+
+</section>
