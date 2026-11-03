@@ -1,0 +1,165 @@
+.seat-page {
+  min-height: 100vh;
+  background: #0c0c11;
+  color: white;
+  padding: 50px 8%;
+}
+
+.page-heading {
+  text-align: center;
+  margin-bottom: 40px;
+
+  span {
+    color: #ef3340;
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 35px;
+    margin: 12px 0;
+  }
+
+  p {
+    color: #aaa;
+  }
+}
+
+.seat-container {
+  max-width: 750px;
+  margin: auto;
+  background: #18181f;
+  border-radius: 15px;
+  padding: 35px 20px;
+}
+
+.screen {
+  width: 70%;
+  margin: 0 auto 45px;
+  padding: 12px;
+  text-align: center;
+  color: #aaa;
+  border-top: 5px solid #ef3340;
+  border-radius: 50% 50% 0 0;
+  letter-spacing: 3px;
+}
+
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-bottom: 35px;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ccc;
+    font-size: 13px;
+  }
+
+  span {
+    width: 15px;
+    height: 15px;
+    border-radius: 4px;
+  }
+}
+
+.available {
+  background: #34343e;
+}
+
+.selected {
+  background: #ef3340;
+}
+
+.booked {
+  background: #777;
+}
+
+.seat-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.row-label {
+  width: 20px;
+  color: #aaa;
+  font-weight: bold;
+}
+
+.seat {
+  width: 42px;
+  height: 38px;
+  border: 1px solid #555;
+  border-radius: 7px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.seat.available {
+  background: #34343e;
+}
+
+.seat.selected {
+  background: #ef3340;
+  border-color: #ef3340;
+}
+
+.seat.booked {
+  background: #777;
+  cursor: not-allowed;
+}
+
+.booking-summary {
+  max-width: 750px;
+  margin: 25px auto;
+  padding: 22px;
+  background: #18181f;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  span {
+    color: #aaa;
+    font-size: 13px;
+  }
+
+  h3 {
+    margin-top: 8px;
+  }
+
+  button {
+    background: #ef3340;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 600px) {
+  .seat-row {
+    gap: 6px;
+  }
+
+  .seat {
+    width: 30px;
+    height: 32px;
+    font-size: 11px;
+  }
+
+  .booking-summary {
+    flex-wrap: wrap;
+  }
+}

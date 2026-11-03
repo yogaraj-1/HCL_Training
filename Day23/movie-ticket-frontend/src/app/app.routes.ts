@@ -49,6 +49,12 @@ export const routes: Routes = [
         .then(m => m.AdminDashboard)
   },
   {
+  path: 'seat-selection',
+  loadComponent: () =>
+    import('./features/seats/seat-selection/seat-selection')
+      .then(m => m.SeatSelection)
+},
+{
     path: '**',
     redirectTo: 'home'
   }

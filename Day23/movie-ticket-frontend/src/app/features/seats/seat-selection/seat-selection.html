@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+
+<section class="seat-page">
+
+  <div class="page-heading">
+    <span>BOOK YOUR TICKETS</span>
+    <h1>Select Your Seats</h1>
+    <p>Choose your preferred seats for the movie.</p>
+  </div>
+
+  <div class="seat-container">
+
+    <div class="screen">
+      SCREEN THIS WAY
+    </div>
+
+    <div class="seat-legend">
+
+      <div><span class="available"></span> Available</div>
+      <div><span class="selected"></span> Selected</div>
+      <div><span class="booked"></span> Booked</div>
+
+    </div>
+
+    <div class="seat-layout">
+
+      @for (row of ['A', 'B', 'C', 'D', 'E']; track row) {
+
+        <div class="seat-row">
+
+          <span class="row-label">{{ row }}</span>
+
+          @for (seat of seats; track seat.id) {
+
+            @if (seat.row === row) {
+
+              <button
+                class="seat"
+                [class.available]="seat.status === 'available'"
+                [class.selected]="seat.status === 'selected'"
+                [class.booked]="seat.status === 'booked'"
+                [disabled]="seat.status === 'booked'"
+                (click)="selectSeat(seat)">
+
+                {{ seat.number }}
+
+              </button>
+
+            }
+
+          }
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+
+  <div class="booking-summary">
+
+    <div>
+      <span>Selected Seats</span>
+      <h3>
+        {{ selectedSeats.length ? selectedSeats.length : 'None' }}
+      </h3>
+    </div>
+
+    <div>
+      <span>Total Amount</span>
+      <h3>₹{{ totalAmount }}</h3>
+    </div>
+
+    <button (click)="continueBooking()">
+      Continue
+    </button>
+
+  </div>
+
+</section>
