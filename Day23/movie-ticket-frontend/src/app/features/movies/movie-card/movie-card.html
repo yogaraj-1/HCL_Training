@@ -1,0 +1,19 @@
+<div class="movie-card">
+
+  <div class="poster-container">
+    <img [src]="poster" [alt]="title">
+
+    <span class="rating">★ {{ rating }}</span>
+  </div>
+
+  <div class="movie-info">
+    <h3>{{ title }}</h3>
+
+    <p>{{ genre }}</p>
+
+    <a [routerLink]="['/movies', id]" class="book-btn">
+      Book Tickets
+    </a>
+  </div>
+
+</div>

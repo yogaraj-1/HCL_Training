@@ -1,0 +1,124 @@
+.details-page {
+  min-height: 100vh;
+  background: #0c0c11;
+  color: white;
+  padding: 55px 8%;
+}
+
+.movie-banner {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 55px;
+}
+
+.movie-poster img {
+  width: 260px;
+  height: 370px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.movie-info {
+  max-width: 600px;
+
+  h1 {
+    font-size: 42px;
+    margin: 18px 0;
+  }
+}
+
+.tag {
+  color: #ef3340;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.movie-meta,
+.description,
+.movie-id {
+  color: #aaa;
+  line-height: 1.8;
+}
+
+.rating {
+  color: #ffc107;
+  font-weight: 700;
+}
+
+.booking-section {
+  max-width: 750px;
+  background: #18181f;
+  padding: 30px;
+  border-radius: 12px;
+
+  h2 {
+    margin-bottom: 25px;
+  }
+}
+
+.form-group {
+  margin-bottom: 22px;
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    color: #ccc;
+  }
+
+  select {
+    width: 100%;
+    padding: 13px;
+    border-radius: 7px;
+    background: #25252d;
+    border: 1px solid #444;
+    color: white;
+  }
+}
+
+.showtimes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  button {
+    padding: 12px 18px;
+    background: #25252d;
+    border: 1px solid #555;
+    color: white;
+    border-radius: 7px;
+    cursor: pointer;
+
+    &.selected {
+      background: #ef3340;
+      border-color: #ef3340;
+    }
+  }
+}
+
+.continue-btn {
+  width: 100%;
+  padding: 15px;
+  background: #ef3340;
+  border: none;
+  color: white;
+  font-weight: 700;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+@media (max-width: 650px) {
+  .movie-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .movie-poster img {
+    width: 200px;
+    height: 290px;
+  }
+
+  .movie-info h1 {
+    font-size: 30px;
+  }
+}

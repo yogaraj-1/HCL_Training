@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+
+<main class="home-container">
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <span class="tag">NOW SHOWING</span>
+
+      <h1>Experience Movies<br>Like Never Before.</h1>
+
+      <p>
+        Discover the latest blockbusters, explore exciting stories
+        and book your favourite movie tickets with CineBook.
+      </p>
+
+      <div class="hero-buttons">
+        <a routerLink="/movies" class="primary-btn">
+          Book Tickets
+        </a>
+
+        <a routerLink="/movies" class="secondary-btn">
+          Explore Movies
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+  <section class="movies-section">
+
+  <div class="section-heading">
+    <div>
+      <span class="section-tag">EXPLORE</span>
+      <h2>Now Showing</h2>
+    </div>
+
+    <a routerLink="/movies" class="view-all">View All →</a>
+  </div>
+
+  <div class="movies-grid">
+
+    @for (movie of movies; track movie.id) {
+      <app-movie-card
+        [id]="movie.id"
+        [title]="movie.title"
+        [genre]="movie.genre"
+        [rating]="movie.rating"
+        [poster]="movie.poster">
+      </app-movie-card>
+    }
+
+  </div>
+
+</section>
+
+</main>

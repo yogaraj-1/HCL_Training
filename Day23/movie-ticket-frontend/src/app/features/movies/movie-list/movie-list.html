@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<section class="movies-page">
+
+  <div class="page-heading">
+    <span>DISCOVER CINEMA</span>
+    <h1>Explore Movies</h1>
+    <p>Find your favourite movies and book your tickets.</p>
+  </div>
+
+  <div class="filters">
+
+    <input
+      type="text"
+      placeholder="Search movies..."
+      [(ngModel)]="searchText">
+
+    <select [(ngModel)]="selectedGenre">
+      @for (genre of genres; track genre) {
+        <option [value]="genre">{{ genre }}</option>
+      }
+    </select>
+
+  </div>
+
+  <div class="movies-grid">
+
+    @for (movie of filteredMovies; track movie.id) {
+      <app-movie-card
+        [id]="movie.id"
+        [title]="movie.title"
+        [genre]="movie.genre"
+        [rating]="movie.rating"
+        [poster]="movie.poster">
+      </app-movie-card>
+    } @empty {
+      <div class="empty-state">
+        <h2>No movies found</h2>
+        <p>Try another movie name or genre.</p>
+      </div>
+    }
+
+  </div>
+
+</section>

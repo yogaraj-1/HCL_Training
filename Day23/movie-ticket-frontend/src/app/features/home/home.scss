@@ -1,0 +1,145 @@
+.home-container {
+  min-height: 100vh;
+  background: #0c0c11;
+  color: white;
+}
+
+.hero {
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  padding: 60px 8%;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(12, 12, 17, 1) 0%,
+      rgba(12, 12, 17, 0.88) 45%,
+      rgba(12, 12, 17, 0.2) 100%
+    ),
+    url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba')
+    center / cover no-repeat;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.tag {
+  display: inline-block;
+  background: rgba(239, 51, 64, 0.15);
+  color: #ff4d5a;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 5vw, 65px);
+  line-height: 1.15;
+  margin: 25px 0;
+  font-weight: 800;
+}
+
+.hero p {
+  color: #c1c1ca;
+  font-size: 17px;
+  line-height: 1.8;
+  max-width: 520px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons a {
+  padding: 14px 25px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.primary-btn {
+  background: #ef3340;
+  color: white;
+}
+
+.primary-btn:hover {
+  background: #d91f2c;
+  transform: translateY(-3px);
+}
+
+.secondary-btn {
+  border: 1px solid #777;
+  color: white;
+}
+
+.secondary-btn:hover {
+  background: white;
+  color: #111;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 500px;
+    padding: 40px 6%;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+}
+
+.movies-section {
+  padding: 70px 8%;
+  background: #0c0c11;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+
+  h2 {
+    color: white;
+    font-size: 32px;
+    margin-top: 10px;
+  }
+}
+
+.section-tag {
+  color: #ef3340;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.view-all {
+  color: #ef3340;
+  text-decoration: none;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 25px;
+}
+
+@media (max-width: 900px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 500px) {
+  .movies-grid {
+    grid-template-columns: 1fr;
+  }
+}

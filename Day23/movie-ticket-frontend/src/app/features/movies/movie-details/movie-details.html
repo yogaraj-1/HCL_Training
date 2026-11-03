@@ -1,0 +1,86 @@
+<app-navbar></app-navbar>
+
+<section class="details-page">
+
+  <div class="movie-banner">
+
+    <div class="movie-poster">
+      <img
+        src="https://placehold.co/400x600/18181f/ffffff?text=Movie+Poster"
+        alt="Movie poster">
+    </div>
+
+    <div class="movie-info">
+
+      <span class="tag">NOW SHOWING</span>
+
+      <h1>Movie Details</h1>
+
+      <p class="movie-meta">
+        Action | Thriller | 2h 45m
+      </p>
+
+      <p class="rating">★ 8.2 / 10</p>
+
+      <p class="description">
+        Experience an exciting cinematic journey with
+        incredible action, suspense and entertainment.
+      </p>
+
+      <p class="movie-id">Movie ID: {{ movieId }}</p>
+
+    </div>
+
+  </div>
+
+  <div class="booking-section">
+
+    <h2>Book Your Tickets</h2>
+
+    <div class="form-group">
+      <label>Select Theatre</label>
+
+      <select [(ngModel)]="selectedTheatre">
+        <option value="">Choose Theatre</option>
+
+        @for (theatre of theatres; track theatre) {
+          <option [value]="theatre">{{ theatre }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Select Date</label>
+
+      <select [(ngModel)]="selectedDate">
+        <option value="">Choose Date</option>
+
+        @for (date of dates; track date) {
+          <option [value]="date">{{ date }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Available Showtimes</label>
+
+      <div class="showtimes">
+
+        @for (show of showtimes; track show) {
+          <button
+            [class.selected]="selectedShow === show"
+            (click)="selectedShow = show">
+            {{ show }}
+          </button>
+        }
+
+      </div>
+    </div>
+
+    <button class="continue-btn" (click)="continueToSeats()">
+      Continue to Seat Selection
+    </button>
+
+  </div>
+
+</section>
