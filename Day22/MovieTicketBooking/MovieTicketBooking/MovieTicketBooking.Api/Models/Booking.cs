@@ -22,8 +22,13 @@ public class Booking
 
     public BookingStatus Status { get; set; }
 
+    public string? UserId { get; set; } = string.Empty;
+
+
     // Navigation properties
     public Show Show { get; set; } = null!;
+
+    public ApplicationUser? User { get; set; } = null!;
 
     public ICollection<BookingSeat> BookingSeats { get; set; }
         = new List<BookingSeat>();

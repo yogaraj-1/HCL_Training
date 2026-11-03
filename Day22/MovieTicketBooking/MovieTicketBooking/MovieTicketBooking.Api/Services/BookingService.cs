@@ -2,6 +2,7 @@
 using MovieTicketBooking.Api.Models;
 using MovieTicketBooking.Api.Repositories.Interfaces;
 using MovieTicketBooking.Api.Services.Interfaces;
+using MovieTicketBooking.Api.Exceptions;
 
 namespace MovieTicketBooking.Api.Services;
 
@@ -15,8 +16,11 @@ public class BookingService : IBookingService
     }
 
     public async Task<BookingResponse> CreateBookingAsync(
-        CreateBookingRequest request)
+     CreateBookingRequest request,
+     string userId)
     {
+        if (string.IsNullOrWhiteSpace(userId))
+            throw new UnauthorizedAccessException("User is not authenticated.");
         // 1. Validate selected seat IDs.
         if (request.SeatIds == null || request.SeatIds.Count == 0)
             throw new ArgumentException("Please select at least one seat.");
@@ -65,7 +69,8 @@ public class BookingService : IBookingService
             CustomerPhone = request.CustomerPhone.Trim(),
             BookingDate = DateTime.UtcNow,
             TotalAmount = totalAmount,
-            Status = BookingStatus.Confirmed
+            Status = BookingStatus.Confirmed,
+            UserId = userId
         };
 
         // 7. Create booking seat records.
@@ -102,25 +107,62 @@ public class BookingService : IBookingService
             }).ToList()
         };
     }
-    public async Task<bool> CancelBookingAsync(int bookingId)
+    public async Task CancelBookingAsync(
+    int bookingId,
+    string userId,
+    bool isAdmin)
     {
         if (bookingId <= 0)
             throw new ArgumentException("Invalid booking ID.");
 
-        // Find the booking.
+        if (string.IsNullOrWhiteSpace(userId))
+            throw new UnauthorizedAccessException("User is not authenticated.");
+
+        // 1. Find the booking.
         var booking = await _repository.GetBookingByIdAsync(bookingId);
 
         if (booking == null)
             throw new KeyNotFoundException("Booking not found.");
 
-        // Only confirmed bookings can be cancelled.
+        // 2. Verify booking ownership.
+        if (!isAdmin && booking.UserId != userId)
+        {
+            throw new ForbiddenAccessException(
+                "You cannot cancel another user's booking.");
+        }
+
+        // 3. Only confirmed bookings can be cancelled.
         if (booking.Status != BookingStatus.Confirmed)
         {
             throw new InvalidOperationException(
                 "Only confirmed bookings can be cancelled.");
         }
 
-        // Cancel booking and release seats.
-        return await _repository.CancelBookingAsync(booking);
+        // 4. Cancel booking and release seats.
+        await _repository.CancelBookingAsync(booking);
     }
+
+    public async Task<IEnumerable<BookingResponse>> GetMyBookingsAsync(
+    string userId)
+    {
+        if (string.IsNullOrWhiteSpace(userId))
+            throw new UnauthorizedAccessException("User is not authenticated.");
+
+        var bookings = await _repository.GetBookingsByUserIdAsync(userId);
+
+        return bookings.Select(b => new BookingResponse
+        {
+            BookingId = b.BookingId,
+            BookingReference = b.BookingReference,
+            ShowId = b.ShowId,
+            CustomerName = b.CustomerName,
+            CustomerEmail = b.CustomerEmail,
+            CustomerPhone = b.CustomerPhone,
+            BookingDate = b.BookingDate,
+            TotalAmount = b.TotalAmount,
+            Status = b.Status.ToString()
+        });
+    }
+
+
 }

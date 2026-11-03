@@ -123,4 +123,11 @@ public class BookingRepository : IBookingRepository
             throw;
         }
     }
+    public async Task<IEnumerable<Booking>> GetBookingsByUserIdAsync(
+    string userId)
+    {
+        return await _context.Bookings
+            .Where(b => b.UserId == userId)
+            .ToListAsync();
+    }
 }

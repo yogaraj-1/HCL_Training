@@ -276,5 +276,13 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                     "[Price] >= 0");
             });
         });
+
+        modelBuilder.Entity<Booking>()
+    .HasOne(b => b.User)
+    .WithMany()
+    .HasForeignKey(b => b.UserId)
+    .IsRequired(false)
+    .OnDelete(DeleteBehavior.NoAction);
     }
 }
+

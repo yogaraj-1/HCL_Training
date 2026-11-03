@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using MovieTicketBooking.Api.Exceptions;
 
 namespace MovieTicketBooking.Api.Middleware;
 
@@ -20,6 +21,9 @@ public class GlobalExceptionHandler : IExceptionHandler
     {
         var statusCode = exception switch
         {
+            ForbiddenAccessException =>
+                StatusCodes.Status403Forbidden,
+
             UnauthorizedAccessException =>
                 StatusCodes.Status401Unauthorized,
 
@@ -34,7 +38,6 @@ public class GlobalExceptionHandler : IExceptionHandler
 
             _ => StatusCodes.Status500InternalServerError
         };
-
         _logger.LogError(
             exception,
             "An exception occurred: {Message}",
@@ -65,6 +68,7 @@ public class GlobalExceptionHandler : IExceptionHandler
         {
             400 => "Bad Request",
             401 => "Unauthorized",
+            403 => "Forbidden",
             404 => "Resource Not Found",
             409 => "Conflict",
             _ => "Internal Server Error"

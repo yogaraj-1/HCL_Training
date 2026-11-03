@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieTicketBooking.Api.DTOs.Bookings;
 using MovieTicketBooking.Api.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+
 namespace MovieTicketBooking.Api.Controllers;
 
 [ApiController]
@@ -20,7 +23,13 @@ public class BookingsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateBookingRequest request)
     {
-        var booking = await _service.CreateBookingAsync(request);
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                     ?? User.FindFirstValue("sub");
+
+        if (string.IsNullOrWhiteSpace(userId))
+            return Unauthorized();
+
+        var booking = await _service.CreateBookingAsync(request, userId);
 
         return StatusCode(StatusCodes.Status201Created, booking);
     }
@@ -30,14 +39,35 @@ public class BookingsController : ControllerBase
     [HttpPost("{id:int}/cancel")]
     public async Task<IActionResult> Cancel(int id)
     {
-        var cancelled = await _service.CancelBookingAsync(id);
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                     ?? User.FindFirstValue("sub");
 
-        if (!cancelled)
-            return NotFound(new { message = "Booking not found." });
+        if (string.IsNullOrWhiteSpace(userId))
+            return Unauthorized();
+
+        bool isAdmin = User.IsInRole("Admin");
+
+        await _service.CancelBookingAsync(id, userId, isAdmin);
 
         return Ok(new
         {
             message = "Booking cancelled successfully."
         });
+    }
+
+    // GET: api/bookings/my-bookings
+    [Authorize(Roles = "User")]
+    [HttpGet("my-bookings")]
+    public async Task<IActionResult> GetMyBookings()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                     ?? User.FindFirstValue("sub");
+
+        if (string.IsNullOrWhiteSpace(userId))
+            return Unauthorized();
+
+        var bookings = await _service.GetMyBookingsAsync(userId);
+
+        return Ok(bookings);
     }
 }

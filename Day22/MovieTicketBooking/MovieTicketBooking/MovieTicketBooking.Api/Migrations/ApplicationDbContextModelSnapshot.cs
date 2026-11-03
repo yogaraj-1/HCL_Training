@@ -266,12 +266,17 @@ namespace MovieTicketBooking.Api.Migrations
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("BookingId");
 
                     b.HasIndex("BookingReference")
                         .IsUnique();
 
                     b.HasIndex("ShowId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Bookings", t =>
                         {
@@ -552,7 +557,14 @@ namespace MovieTicketBooking.Api.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("MovieTicketBooking.Api.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
                     b.Navigation("Show");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MovieTicketBooking.Api.Models.BookingSeat", b =>
