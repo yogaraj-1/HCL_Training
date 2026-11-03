@@ -1,1 +1,56 @@
-<p>login works!</p>
+<section class="auth-page">
+
+  <div class="auth-card">
+
+    <div class="logo">▶ CINEBOOK</div>
+
+    <h1>Welcome Back!</h1>
+    <p class="subtitle">Login to continue your movie experience.</p>
+
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+
+      <label>Email Address</label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Enter your email"
+        required
+        email>
+
+      <label>Password</label>
+
+      <div class="password-field">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Enter your password"
+          required>
+
+        <button
+          type="button"
+          (click)="showPassword = !showPassword">
+          {{ showPassword ? 'Hide' : 'Show' }}
+        </button>
+      </div>
+
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="loginForm.invalid">
+        Login
+      </button>
+
+    </form>
+
+    <p class="register-text">
+      Don't have an account?
+      <a routerLink="/register">Create Account</a>
+    </p>
+
+    <a routerLink="/home" class="back-home">← Back to Home</a>
+
+  </div>
+
+</section>
