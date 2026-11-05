@@ -107,38 +107,16 @@ public class BookingService : IBookingService
             }).ToList()
         };
     }
-    public async Task CancelBookingAsync(
-    int bookingId,
-    string userId,
-    bool isAdmin)
+    public async Task CancelBookingAsync(Booking booking)
     {
-        if (bookingId <= 0)
-            throw new ArgumentException("Invalid booking ID.");
-
-        if (string.IsNullOrWhiteSpace(userId))
-            throw new UnauthorizedAccessException("User is not authenticated.");
-
-        // 1. Find the booking.
-        var booking = await _repository.GetBookingByIdAsync(bookingId);
-
-        if (booking == null)
-            throw new KeyNotFoundException("Booking not found.");
-
-        // 2. Verify booking ownership.
-        if (!isAdmin && booking.UserId != userId)
-        {
-            throw new ForbiddenAccessException(
-                "You cannot cancel another user's booking.");
-        }
-
-        // 3. Only confirmed bookings can be cancelled.
+        // Only confirmed bookings can be cancelled.
         if (booking.Status != BookingStatus.Confirmed)
         {
             throw new InvalidOperationException(
                 "Only confirmed bookings can be cancelled.");
         }
 
-        // 4. Cancel booking and release seats.
+        // Cancel booking and release seats.
         await _repository.CancelBookingAsync(booking);
     }
 
@@ -162,6 +140,10 @@ public class BookingService : IBookingService
             TotalAmount = b.TotalAmount,
             Status = b.Status.ToString()
         });
+    }
+    public async Task<Booking?> GetBookingForAuthorizationAsync(int bookingId)
+    {
+        return await _repository.GetBookingByIdAsync(bookingId);
     }
 
 

@@ -35,13 +35,12 @@
         </button>
       </div>
 
-      <button
-        type="submit"
-        class="submit-btn"
-        [disabled]="loginForm.invalid">
-        Login
-      </button>
-
+      <button type="submit" [disabled]="isLoading">
+                {{ isLoading ? 'Logging in...' : 'Login' }}
+        </button>
+      @if (errorMessage) {
+  <p class="error-message">{{ errorMessage }}</p>
+}
     </form>
 
     <p class="register-text">

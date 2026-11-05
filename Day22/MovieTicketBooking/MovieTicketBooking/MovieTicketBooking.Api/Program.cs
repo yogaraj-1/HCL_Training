@@ -13,7 +13,8 @@ using MovieTicketBooking.Api.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using Microsoft.AspNetCore.Authorization;
+using MovieTicketBooking.Api.Authorization.Handlers;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -64,12 +65,16 @@ builder.Services.Configure<JwtSettings>(
     builder.Configuration.GetSection("Jwt"));
 
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+builder.Services.AddScoped<
+    IAuthorizationHandler,
+    BookingOwnerAuthorizationHandler>();
 
 var jwtSettings = builder.Configuration
     .GetSection("Jwt")
     .Get<JwtSettings>()
     ?? throw new InvalidOperationException(
         "JWT configuration is missing.");
+
 
 if (string.IsNullOrWhiteSpace(jwtSettings.Key) ||
     Encoding.UTF8.GetByteCount(jwtSettings.Key) < 32)
@@ -153,6 +158,7 @@ app.UseExceptionHandler();
 //app.UseHttpsRedirection();
 
 app.UseAuthentication();
+app.UseMiddleware<CustomAuthorizationMiddleware>();
 
 app.UseAuthorization();
 

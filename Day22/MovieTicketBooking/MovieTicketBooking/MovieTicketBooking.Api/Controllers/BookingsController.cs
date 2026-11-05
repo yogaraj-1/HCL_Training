@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MovieTicketBooking.Api.Authorization.Requirements;
 using MovieTicketBooking.Api.DTOs.Bookings;
 using MovieTicketBooking.Api.Services.Interfaces;
 using System.Security.Claims;
@@ -12,10 +13,14 @@ namespace MovieTicketBooking.Api.Controllers;
 public class BookingsController : ControllerBase
 {
     private readonly IBookingService _service;
+    private readonly IAuthorizationService _authorizationService;
 
-    public BookingsController(IBookingService service)
+    public BookingsController(
+    IBookingService service,
+    IAuthorizationService authorizationService)
     {
         _service = service;
+        _authorizationService = authorizationService;
     }
 
     // POST: api/bookings
@@ -37,17 +42,29 @@ public class BookingsController : ControllerBase
     // POST: api/bookings/1/cancel
     [Authorize(Roles = "User,Admin")]
     [HttpPost("{id:int}/cancel")]
+    // POST: api/bookings/1/cancel
+    [Authorize(Roles = "User,Admin")]
+    [HttpPost("{id:int}/cancel")]
     public async Task<IActionResult> Cancel(int id)
     {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)
-                     ?? User.FindFirstValue("sub");
+        // 1. Retrieve booking
+        var booking = await _service.GetBookingForAuthorizationAsync(id);
 
-        if (string.IsNullOrWhiteSpace(userId))
-            return Unauthorized();
+        if (booking == null)
+            return NotFound();
 
-        bool isAdmin = User.IsInRole("Admin");
+        // 2. Check resource-based authorization
+        var authorizationResult =
+            await _authorizationService.AuthorizeAsync(
+                User,
+                booking,
+                new BookingOwnerRequirement());
 
-        await _service.CancelBookingAsync(id, userId, isAdmin);
+        if (!authorizationResult.Succeeded)
+            return Forbid();
+
+        // 3. Cancel booking
+        await _service.CancelBookingAsync(booking);
 
         return Ok(new
         {
@@ -67,7 +84,7 @@ public class BookingsController : ControllerBase
             return Unauthorized();
 
         var bookings = await _service.GetMyBookingsAsync(userId);
-
+            
         return Ok(bookings);
     }
 }

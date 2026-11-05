@@ -18,6 +18,7 @@ public interface IBookingRepository
     Task<Booking?> GetBookingByIdAsync(int bookingId);
 
     Task<bool> CancelBookingAsync(Booking booking);
+    
 
     Task<IEnumerable<Booking>> GetBookingsByUserIdAsync(string userId);
 }

@@ -1,4 +1,5 @@
 ﻿using MovieTicketBooking.Api.DTOs.Bookings;
+using MovieTicketBooking.Api.Models;
 
 namespace MovieTicketBooking.Api.Services.Interfaces;
 
@@ -8,11 +9,9 @@ public interface IBookingService
         CreateBookingRequest request,
         string userId);
 
-    Task CancelBookingAsync(
-        int bookingId,
-        string userId,
-        bool isAdmin);
+    Task CancelBookingAsync(Booking booking);
 
     Task<IEnumerable<BookingResponse>> GetMyBookingsAsync(
         string userId);
+    Task<Booking?> GetBookingForAuthorizationAsync(int bookingId);
 }
