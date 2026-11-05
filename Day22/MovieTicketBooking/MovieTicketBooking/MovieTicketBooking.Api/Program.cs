@@ -19,6 +19,17 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 // Register controllers
 builder.Services.AddControllers();
 
@@ -158,7 +169,19 @@ app.UseExceptionHandler();
 //app.UseHttpsRedirection();
 
 app.UseAuthentication();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseMiddleware<EndpointMetadataMiddleware>();
+
+    app.UseMiddleware<AuthenticationDiagnosticsMiddleware>();
+
+    app.UseMiddleware<AuthorizationDiagnosticsMiddleware>();
+}
+
 app.UseMiddleware<CustomAuthorizationMiddleware>();
+
+app.UseAuthorization();
 
 app.UseAuthorization();
 
