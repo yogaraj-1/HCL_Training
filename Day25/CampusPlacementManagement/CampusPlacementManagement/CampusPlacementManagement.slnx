@@ -1,6 +1,0 @@
-<Solution>
-  <Project Path="CampusPlacementManagement.API/CampusPlacementManagement.API.csproj" />
-  <Project Path="CampusPlacementManagement.Application/CampusPlacementManagement.Application.csproj" />
-  <Project Path="CampusPlacementManagement.Domain/CampusPlacementManagement.Domain.csproj" />
-  <Project Path="CampusPlacementManagement.Infrastructure/CampusPlacementManagement.Infrastructure.csproj" />
-</Solution>

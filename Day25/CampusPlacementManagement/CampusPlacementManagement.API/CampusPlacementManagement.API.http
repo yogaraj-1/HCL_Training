@@ -1,6 +1,6 @@
-@CampusPlacementManagement.API_HostAddress = http://localhost:5003
+@CampusPlacementManagement.Api_HostAddress = http://localhost:5112
 
-GET {{CampusPlacementManagement.API_HostAddress}}/weatherforecast/
+GET {{CampusPlacementManagement.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
