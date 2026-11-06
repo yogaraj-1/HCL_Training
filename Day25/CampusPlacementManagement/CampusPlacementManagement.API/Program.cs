@@ -25,6 +25,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+builder.Services.AddScoped<IAccountService, AccountService>();
+
 // Add JWT Authentication
 builder.Services.AddAuthentication(options =>
 {
@@ -62,6 +64,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     await IdentitySeeder.SeedRolesAsync(services);
+    await SuperAdminSeeder.SeedAsync(services);
 }
 
 // HTTP request pipeline
