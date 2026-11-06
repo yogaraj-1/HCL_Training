@@ -57,6 +57,13 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    await IdentitySeeder.SeedRolesAsync(services);
+}
+
 // HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
