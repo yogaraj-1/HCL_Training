@@ -1,5 +1,7 @@
 using CampusPlacementManagement.Api.Data;
 using CampusPlacementManagement.Api.Models;
+using CampusPlacementManagement.Api.Interfaces;
+using CampusPlacementManagement.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +22,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Add JWT Authentication
 builder.Services.AddAuthentication(options =>
