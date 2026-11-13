@@ -15,6 +15,13 @@ export class StudentRegister {
   studentEmail: string = '';
   studentCourse: string = '';
 
+coursePrices: { [key: string]: number } = {
+  Angular: 15000,
+  React: 14000,
+  Java: 18000,
+  Python: 16000
+};
+
   constructor(
     private router: Router,
     private studentService: StudentService
@@ -25,6 +32,8 @@ addStudent(){
       Age:this.studentAge,
       Email:this.studentEmail,
       Course:this.studentCourse,
+      RegistrationDate: new Date(),
+      Price: this.coursePrices[this.studentCourse],
   }
   this.studentService.addStudent(student);
   this.router.navigate(['/student-list']);

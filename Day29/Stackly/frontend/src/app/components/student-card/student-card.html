@@ -1,11 +1,41 @@
-<div class="student-card">
+<td
+  [ngClass]="{ 'hover-cell': isHovered }"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false">
+  {{ student().Name | uppercase }}
+</td>
 
-  <h3>{{ student().Name }}</h3>
+<td
+  [ngClass]="{ 'hover-cell': isHovered }"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false">
+  {{ student().Age }}
+</td>
 
-  <p>Age: {{ student().Age }}</p>
+<td
+  [ngClass]="{ 'hover-cell': isHovered }"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false">
+  {{ student().Email }}
+</td>
 
-  <p>Email: {{ student().Email }}</p>
+<td
+  [ngClass]="{ 'hover-cell': isHovered }"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false">
+  {{ student().Course }}
+</td>
 
-  <p>Course: {{ student().Course }}</p>
+<td
+  [ngClass]="{ 'hover-cell': isHovered }"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false">
+  {{ student().Price | currency:'INR':'symbol':'1.0-0' }}
+</td>
 
-</div>
+<td
+  [ngClass]="{ 'hover-cell': isHovered }"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false">
+  {{ student().RegistrationDate | date:'dd-MM-yyyy' }}
+</td>

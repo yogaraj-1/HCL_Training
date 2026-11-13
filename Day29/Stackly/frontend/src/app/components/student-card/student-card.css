@@ -1,15 +1,17 @@
-.student-card {
-  padding: 20px;
-  margin: 15px 0;
+:host {
+  display: table-row;
+}
+
+td {
+  padding: 14px 16px;
+  text-align: left;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  background: white;
+  color: #333;
 }
 
-.student-card h3 {
-  color: #1e293b;
+:host:hover {
+  background-color: #eff6ff;
 }
-
-.student-card p {
-  color: #555;
+.hover-cell {
+  background-color: grey;
 }

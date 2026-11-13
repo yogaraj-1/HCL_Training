@@ -1,6 +1,6 @@
-
 .student-list-container {
-  max-width: 500px;
+  width: 90%;
+  max-width: 1200px;
   margin: 40px auto;
   padding: 25px;
   background: white;
@@ -16,18 +16,77 @@
   color: #222;
 }
 
-.student-card {
-  padding: 20px;
-  border-radius: 8px;
-  background: #eff6ff;
-  border-left: 4px solid #2563eb;
+/* Table */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
-.student-card h3 {
-  color: #1d4ed8;
+/* Header */
+
+th {
+  padding: 14px 16px;
+  text-align: left;
+  background-color: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #ddd;
 }
 
-.student-card p {
+/* Table cells */
+
+td {
+  padding: 14px 16px;
+  text-align: left;
+  border: 1px solid #ddd;
   color: #333;
-  margin: 12px 0;
+}
+
+/* Column widths */
+
+th:nth-child(1) {
+  width: 18%;
+}
+
+th:nth-child(2) {
+  width: 8%;
+}
+
+th:nth-child(3) {
+  width: 28%;
+}
+
+th:nth-child(4) {
+  width: 17%;
+}
+
+th:nth-child(5) {
+  width: 14%;
+}
+
+th:nth-child(6) {
+  width: 15%;
+}
+
+/* Alternate rows */
+
+tbody tr:nth-child(even) {
+  background-color: #f5f9ff;
+}
+
+/* Hover */
+
+tbody tr:hover {
+  background-color: #eff6ff;
+}
+
+/* Empty message */
+
+.student-list-container > p {
+  text-align: center;
+  color: #666;
+  padding: 20px;
 }

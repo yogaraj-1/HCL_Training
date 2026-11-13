@@ -4,13 +4,32 @@
 
   @if (students.length > 0) {
 
-    @for (student of students; track $index) {
+    <table>
 
-      <app-student-card
-        [student]="student">
-      </app-student-card>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>Course</th>
+          <th>Price</th>
+          <th>Registration Date</th>
+        </tr>
+      </thead>
 
-    }
+      <tbody>
+
+        @for (student of students; track $index) {
+
+          <app-student-card
+            [student]="student">
+          </app-student-card>
+
+        }
+
+      </tbody>
+
+    </table>
 
   } @else {
 

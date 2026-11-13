@@ -4,7 +4,9 @@ export interface studentRecord{
     Name:string;
     Age:number;
     Email:string;
-    Course:string
+    Course:string;
+    RegistrationDate: Date;
+    Price: number;
   }
   
 @Injectable({
