@@ -1,0 +1,30 @@
+<h1 class="page-title">About Me</h1>
+
+<section class="about">
+  <p class="about__text">
+    I'm {{ name }}, an Information Technology student at {{ college }}, graduating in
+    {{ graduation }}. {{ careerGoal }}
+  </p>
+
+  <div class="about__grid">
+    <article class="panel">
+      <h2>Quick Facts</h2>
+      <dl>
+        <dt>Education</dt><dd>{{ college }}</dd>
+        <dt>Current Degree</dt><dd>{{ degree }}</dd>
+        <dt>CGPA</dt><dd>{{ cgpa | number: '1.1-1' }} / 10</dd>
+        <dt>Location</dt><dd>{{ location }}</dd>
+        <dt>Career Goal</dt><dd>{{ careerGoal }}</dd>
+      </dl>
+    </article>
+
+    <article class="panel">
+      <h2>Interested In</h2>
+      <ul class="interests">
+        @for (interest of interests; track interest) {
+          <li>{{ interest }}</li>
+        }
+      </ul>
+    </article>
+  </div>
+</section>

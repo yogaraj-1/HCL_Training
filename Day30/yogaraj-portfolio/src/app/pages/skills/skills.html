@@ -1,0 +1,30 @@
+<h1 class="page-title">Skills</h1>
+
+<div class="filters" role="group" aria-label="Filter skills by category">
+  @for (category of categories; track category) {
+    <button type="button" class="chip" [class.active]="selectedCategory() === category"
+            [attr.aria-pressed]="selectedCategory() === category"
+            (click)="filterSkills(category)">
+      {{ category }}
+    </button>
+  }
+</div>
+
+@if (loading()) {
+  <p class="state-msg">Loading skills...</p>
+} @else if (error()) {
+  <div class="state-msg">
+    <p>Unable to load skills. Please try again.</p>
+    <button type="button" class="btn btn--outline" (click)="retry()">Try Again</button>
+  </div>
+} @else {
+  @if (filteredSkills().length > 0) {
+    <div class="grid">
+      @for (skill of filteredSkills(); track skill.id) {
+        <app-skill-card [skill]="skill" />
+      }
+    </div>
+  } @else {
+    <p class="state-msg">No skills found.</p>
+  }
+}

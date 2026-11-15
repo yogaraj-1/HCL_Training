@@ -1,0 +1,10 @@
+<ul class="social" aria-label="Social profiles">
+  @for (link of links; track link.id) {
+    <li>
+      <a [href]="link.url" target="_blank" rel="noopener noreferrer"
+         [attr.aria-label]="link.name + ' profile (opens in a new tab)'">
+        {{ link.name }}
+      </a>
+    </li>
+  }
+</ul>

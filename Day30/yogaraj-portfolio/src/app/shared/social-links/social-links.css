@@ -1,0 +1,14 @@
+.social { list-style: none; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+.social a {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--muted);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: color var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.social a:hover { color: var(--primary); border-color: var(--primary); transform: translateY(-2px); }
+.social a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }

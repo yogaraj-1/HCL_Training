@@ -1,0 +1,20 @@
+<section class="hero">
+  <div class="hero__text">
+    <p class="hero__greeting">Hi, I'm <span class="hero__name">{{ name }}</span></p>
+    <h1 class="hero__role">{{ role }}</h1>
+    <p class="hero__intro">{{ intro }}</p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary" routerLink="/projects">View My Projects</a>
+      <button type="button" class="btn btn--outline" (click)="goTo('/contact')">Contact Me</button>
+    </div>
+
+    <app-social-links />
+  </div>
+
+  <div class="hero__photo">
+    <img [src]="photoUrl" [alt]="photoAlt" width="320" height="395">
+  </div>
+</section>
+
+<app-stats [stats]="stats" />

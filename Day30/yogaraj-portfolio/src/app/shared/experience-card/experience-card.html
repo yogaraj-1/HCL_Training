@@ -1,0 +1,15 @@
+<article class="exp">
+  <header class="exp__head">
+    <div>
+      <h3 class="exp__role">{{ experience.role }}</h3>
+      <p class="exp__company">{{ experience.company }}</p>
+    </div>
+    <p class="exp__duration">{{ experience.duration | titlecase }}</p>
+  </header>
+  <p class="exp__desc">{{ experience.description }}</p>
+  <ul class="tags" aria-label="Technologies">
+    @for (tech of experience.technologies; track tech) {
+      <li class="tag" appHighlight>{{ tech }}</li>
+    }
+  </ul>
+</article>

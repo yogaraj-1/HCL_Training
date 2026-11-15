@@ -1,0 +1,8 @@
+.skill { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.1rem; transition: transform var(--transition); }
+.skill:hover { transform: translateY(-3px); }
+.skill__head { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+.skill__name { font-size: 1.05rem; padding: 0.1rem 0.4rem; margin-left: -0.4rem; border-radius: 6px; transition: background var(--transition); }
+.skill__category { font-size: 0.75rem; color: var(--primary); border: 1px solid var(--primary); border-radius: 999px; padding: 0 0.6rem; }
+.skill__level { color: var(--muted); font-size: 0.85rem; margin: 0.4rem 0 0.6rem; }
+.bar { height: 8px; background: var(--bg); border-radius: 999px; overflow: hidden; }
+.bar__fill { height: 100%; background: var(--primary); border-radius: 999px; transition: width 0.8s ease; }

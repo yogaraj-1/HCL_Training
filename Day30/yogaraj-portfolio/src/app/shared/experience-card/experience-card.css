@@ -1,0 +1,9 @@
+.exp { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.5rem; border-left: 4px solid var(--primary); transition: transform var(--transition); }
+.exp:hover { transform: translateY(-3px); }
+.exp__head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.8rem; }
+.exp__role { font-size: 1.2rem; }
+.exp__company { color: var(--primary); }
+.exp__duration { color: var(--muted); font-size: 0.9rem; }
+.exp__desc { color: var(--muted); margin-bottom: 1rem; }
+.tags { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag { font-size: 0.75rem; color: var(--primary); border: 1px solid var(--primary); border-radius: 999px; padding: 0.1rem 0.65rem; transition: background var(--transition); }

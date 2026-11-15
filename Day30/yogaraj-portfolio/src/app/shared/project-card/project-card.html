@@ -1,0 +1,24 @@
+<article class="card">
+  @if (project.image) {
+    <img class="card__img" [src]="project.image" [alt]="project.title + ' screenshot'" loading="lazy">
+  }
+  <div class="card__body">
+    <p class="card__category">{{ project.category }}</p>
+    <h3 class="card__title">{{ project.title | uppercase }}</h3>
+    <p class="card__desc">{{ project.description }}</p>
+
+    <ul class="tags" aria-label="Technologies">
+      @for (tech of project.technologies; track tech) {
+        <li class="tag" appHighlight>{{ tech }}</li>
+      }
+    </ul>
+
+    <div class="card__actions">
+      <button type="button" class="btn btn--primary" (click)="onViewDetails()">View Details</button>
+      <a class="link" [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+      @if (project.liveUrl) {
+        <a class="link" [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">Live Demo</a>
+      }
+    </div>
+  </div>
+</article>

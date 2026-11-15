@@ -1,0 +1,42 @@
+<h1 class="page-title">Education</h1>
+
+@if (loading()) {
+  <p class="state-msg">Loading education...</p>
+} @else if (error()) {
+  <div class="state-msg">
+    <p>Unable to load education. Please try again.</p>
+    <button type="button" class="btn btn--outline" (click)="retry()">Try Again</button>
+  </div>
+} @else {
+  <ol class="timeline">
+    @for (item of education(); track item.id) {
+      <li class="timeline__item">
+        <article class="entry">
+          <p class="entry__year">{{ item.year }}</p>
+          <h2 class="entry__institution">{{ item.institution }}</h2>
+          <p class="entry__degree">{{ item.degree }}</p>
+          <p class="entry__result">{{ item.result }}</p>
+        </article>
+      </li>
+    } @empty {
+      <p class="state-msg">No education found.</p>
+    }
+  </ol>
+
+  @if (certifications(); as certs) {
+    <h2 class="section-title">Certifications &amp; Achievements</h2>
+    <ul class="certs">
+      @for (cert of certs; track cert.id) {
+        <li class="cert">
+          <div>
+            <p class="cert__title">{{ cert.title }}</p>
+            <p class="cert__date">{{ cert.date }}</p>
+          </div>
+          @if (cert.url) {
+            <a class="cert__link" [href]="cert.url" target="_blank" rel="noopener noreferrer">View</a>
+          }
+        </li>
+      }
+    </ul>
+  }
+}

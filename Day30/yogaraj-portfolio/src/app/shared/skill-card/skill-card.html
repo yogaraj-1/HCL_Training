@@ -1,0 +1,11 @@
+<article class="skill">
+  <div class="skill__head">
+    <h3 class="skill__name" appHighlight>{{ skill.name }}</h3>
+    <span class="skill__category">{{ skill.category }}</span>
+  </div>
+  <p class="skill__level">{{ skill.level | skillLevel }} · {{ skill.level }}%</p>
+  <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+       [attr.aria-valuenow]="skill.level" [attr.aria-label]="skill.name + ' proficiency'">
+    <div class="bar__fill" [style.width.%]="skill.level"></div>
+  </div>
+</article>

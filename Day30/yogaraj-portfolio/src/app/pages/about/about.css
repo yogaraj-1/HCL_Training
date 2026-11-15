@@ -1,0 +1,10 @@
+.about__text { max-width: 46rem; color: var(--muted); font-size: 1.05rem; margin-bottom: 2rem; }
+.about__grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; }
+.panel { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.5rem; }
+.panel h2 { color: var(--primary); font-size: 1.1rem; margin-bottom: 1rem; }
+dt { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.8rem; }
+dt:first-child { margin-top: 0; }
+dd { margin: 0.1rem 0 0; }
+.interests { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.interests li { padding: 0.6rem 0.9rem; background: var(--bg); border-radius: 8px; border-left: 3px solid var(--primary); }
+@media (max-width: 800px) { .about__grid { grid-template-columns: 1fr; } }

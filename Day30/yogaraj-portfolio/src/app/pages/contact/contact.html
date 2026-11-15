@@ -1,0 +1,66 @@
+<h1 class="page-title">Get In Touch</h1>
+
+<div class="contact">
+  <section class="info" aria-label="Contact details">
+    <ul>
+      <li><span class="info__label">Email</span><a [href]="'mailto:' + email">{{ email }}</a></li>
+      <li><span class="info__label">Phone</span><a [href]="phoneHref">{{ phone }}</a></li>
+      <li><span class="info__label">Location</span><span>{{ location }}</span></li>
+      <li><span class="info__label">GitHub</span><a [href]="github" target="_blank" rel="noopener noreferrer">{{ github }}</a></li>
+      <li><span class="info__label">LinkedIn</span><a [href]="linkedin" target="_blank" rel="noopener noreferrer">View profile</a></li>
+    </ul>
+  </section>
+
+  <form class="form" [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="field">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name" autocomplete="name"
+             [attr.aria-invalid]="name.invalid && name.touched">
+      @if (name.invalid && (name.touched || name.dirty)) {
+        <p class="error" role="alert">Name is required</p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" autocomplete="email"
+             [attr.aria-invalid]="emailControl.invalid && emailControl.touched">
+      @if (emailControl.invalid && (emailControl.touched || emailControl.dirty)) {
+        <p class="error" role="alert">
+          {{ emailControl.hasError('required') ? 'Email is required' : 'Enter a valid email' }}
+        </p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="subject">Subject</label>
+      <input id="subject" type="text" formControlName="subject"
+             [attr.aria-invalid]="subject.invalid && subject.touched">
+      @if (subject.invalid && (subject.touched || subject.dirty)) {
+        <p class="error" role="alert">Subject is required</p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" rows="5" formControlName="message"
+                [attr.aria-invalid]="message.invalid && message.touched"></textarea>
+      @if (message.invalid && (message.touched || message.dirty)) {
+        <p class="error" role="alert">
+          {{ message.hasError('required') ? 'Message is required' : 'Message must contain at least 10 characters' }}
+        </p>
+      }
+    </div>
+
+    <div class="form__actions">
+      <button type="submit" class="btn btn--primary" [disabled]="sending()">
+        {{ sending() ? 'Sending...' : 'Send Message' }}
+      </button>
+      <button type="button" class="btn btn--outline" (click)="onReset()">Reset</button>
+    </div>
+
+    @if (status() !== 'idle') {
+      <p class="feedback" [class.feedback--error]="status() === 'error'" role="status">{{ feedback() }}</p>
+    }
+  </form>
+</div>

@@ -1,0 +1,8 @@
+<section class="stats" aria-label="Highlights">
+  @for (stat of stats; track stat.id; let i = $index) {
+    <div class="stat" [style.animation-delay]="i * 120 + 'ms'">
+      <p class="stat__value">{{ stat.value }}</p>
+      <p class="stat__label">{{ stat.label }}</p>
+    </div>
+  }
+</section>

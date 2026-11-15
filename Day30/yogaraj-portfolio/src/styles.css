@@ -1,0 +1,47 @@
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --primary: #38bdf8;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --radius: 12px;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  --transition: 0.25s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 { line-height: 1.25; }
+button { font-family: inherit; }
+
+.page-title { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--text); margin-bottom: 1.5rem; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 200; background: var(--primary); color: var(--bg); padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; }
+.skip-link:focus { top: 1rem; }
+main:focus { outline: none; }
+
+.btn { display: inline-block; padding: 0.6rem 1.3rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: transform var(--transition), background var(--transition), color var(--transition); }
+.btn:hover:not(:disabled) { transform: translateY(-2px); }
+.btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn--primary { background: var(--primary); color: var(--bg); border: 2px solid var(--primary); }
+.btn--outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+.btn--outline:hover:not(:disabled) { background: var(--primary); color: var(--bg); }
+
+.chip { background: var(--card); color: var(--muted); border: 1px solid var(--card); border-radius: 999px; padding: 0.4rem 1.1rem; cursor: pointer; font-size: 0.9rem; transition: color var(--transition), border-color var(--transition), background var(--transition); }
+.chip:hover { color: var(--text); border-color: var(--primary); }
+.chip.active { background: var(--primary); color: var(--bg); border-color: var(--primary); font-weight: 600; }
+.chip:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+.state-msg { color: var(--muted); padding: 2rem 0; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }

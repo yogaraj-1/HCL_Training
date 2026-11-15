@@ -1,0 +1,17 @@
+.contact { display: grid; grid-template-columns: 1fr 1.3fr; gap: 2rem; align-items: start; }
+.info, .form { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.5rem; }
+.info ul { list-style: none; display: grid; gap: 1.1rem; }
+.info li { display: flex; flex-direction: column; overflow-wrap: anywhere; }
+.info__label { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+.info a { color: var(--primary); }
+.info a:hover { text-decoration: underline; }
+.field { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1.1rem; }
+label { font-size: 0.9rem; color: var(--muted); }
+input, textarea { background: var(--bg); color: var(--text); border: 1px solid var(--muted); border-radius: 8px; padding: 0.65rem 0.85rem; font: inherit; transition: border-color var(--transition); }
+input:focus, textarea:focus { outline: none; border-color: var(--primary); }
+.ng-invalid.ng-touched { border-color: #f87171; }
+.error { color: #fca5a5; font-size: 0.85rem; }
+.form__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.feedback { margin-top: 1rem; color: #86efac; }
+.feedback--error { color: #fca5a5; }
+@media (max-width: 800px) { .contact { grid-template-columns: 1fr; } }

@@ -1,0 +1,55 @@
+@switch (state().status) {
+  @case ('loading') {
+    <p class="state-msg">Loading project...</p>
+  }
+  @case ('error') {
+    <div class="state-msg">
+      <p>Unable to load this project. Please try again.</p>
+      <a class="btn btn--outline" routerLink="/projects">Back to Projects</a>
+    </div>
+  }
+  @default {
+    @if (project; as p) {
+      <a class="back" routerLink="/projects">← Back to Projects</a>
+
+      <article class="details">
+        <p class="details__category">{{ p.category }}</p>
+        <h1 class="page-title">{{ p.title }}</h1>
+
+        @if (p.image) {
+          <img class="details__img" [src]="p.image" [alt]="p.title + ' screenshot'">
+        }
+
+        <h2>Overview</h2>
+        <p class="details__desc">{{ p.longDescription }}</p>
+
+        <h2>Technologies</h2>
+        <ul class="tags">
+          @for (tech of p.technologies; track tech) {
+            <li class="tag" appHighlight>{{ tech }}</li>
+          }
+        </ul>
+
+        <h2>Features</h2>
+        <ul class="features">
+          @for (feature of p.features; track feature) {
+            <li>{{ feature }}</li>
+          }
+        </ul>
+
+        <div class="details__actions">
+          <a class="btn btn--primary" [href]="p.githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+          @if (p.liveUrl) {
+            <a class="btn btn--outline" [href]="p.liveUrl" target="_blank" rel="noopener noreferrer">Live Demo</a>
+          }
+        </div>
+      </article>
+    } @else {
+      <div class="state-msg">
+        <h1>Project Not Found</h1>
+        <p>We couldn't find a project with that ID.</p>
+        <a class="btn btn--primary" routerLink="/projects">Back to Projects</a>
+      </div>
+    }
+  }
+}

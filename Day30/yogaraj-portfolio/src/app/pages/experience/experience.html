@@ -1,0 +1,18 @@
+<h1 class="page-title">Experience</h1>
+
+@if (loading()) {
+  <p class="state-msg">Loading experience...</p>
+} @else if (error()) {
+  <div class="state-msg">
+    <p>Unable to load experience. Please try again.</p>
+    <button type="button" class="btn btn--outline" (click)="retry()">Try Again</button>
+  </div>
+} @else {
+  <div class="list">
+    @for (experience of experiences(); track experience.id) {
+      <app-experience-card [experience]="experience" />
+    } @empty {
+      <p class="state-msg">No experience found.</p>
+    }
+  </div>
+}

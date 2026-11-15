@@ -1,0 +1,36 @@
+<h1 class="page-title">Projects</h1>
+
+<div class="toolbar">
+  <label class="sr-only" for="project-search">Search projects</label>
+  <input id="project-search" class="search" type="search" placeholder="Search projects..."
+         [(ngModel)]="searchTerm" autocomplete="off">
+
+  <div class="filters" role="group" aria-label="Filter projects by category">
+    @for (category of categories; track category) {
+      <button type="button" class="chip" [class.active]="selectedCategory() === category"
+              [attr.aria-pressed]="selectedCategory() === category"
+              (click)="selectCategory(category)">
+        {{ category }}
+      </button>
+    }
+  </div>
+</div>
+
+@if (loading()) {
+  <p class="state-msg">Loading projects...</p>
+} @else if (error()) {
+  <div class="state-msg">
+    <p>Unable to load projects. Please try again.</p>
+    <button type="button" class="btn btn--outline" (click)="retry()">Try Again</button>
+  </div>
+} @else {
+  @if (filteredProjects().length > 0) {
+    <div class="grid">
+      @for (project of filteredProjects(); track project.id) {
+        <app-project-card [project]="project" (viewDetails)="openProject($event)" />
+      }
+    </div>
+  } @else {
+    <p class="state-msg">No projects found.</p>
+  }
+}
