@@ -1,82 +1,584 @@
-.edit-card {
-  max-width: 800px;
-  background: white;
-  padding: 25px;
+/* ==============================
+   ADMIN DASHBOARD
+============================== */
+
+.admin-container {
+  min-height: 100vh;
+  padding: 40px 50px;
+  background: #f4f7fb;
+  box-sizing: border-box;
+}
+
+
+/* ==============================
+   HEADER
+============================== */
+
+.admin-container h1 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 8px;
   margin-bottom: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #64748b;
+  font-size: 16px;
+}
+
+
+/* ==============================
+   SUCCESS / ERROR
+============================== */
+
+.success {
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  background: #ecfdf5;
+  color: #047857;
+  border-left: 4px solid #10b981;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.error {
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  background: #fef2f2;
+  color: #b91c1c;
+  border-left: 4px solid #ef4444;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+
+/* ==============================
+   ADD / EDIT CARD
+============================== */
+
+.edit-card {
+  width: 100%;
+  max-width: 900px;
+  background: #ffffff;
+  padding: 30px;
+  margin-bottom: 30px;
+  border-radius: 14px;
+  box-sizing: border-box;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
 }
 
 .edit-card h2 {
-  margin-bottom: 20px;
+  margin: 0 0 25px 0;
+  color: #1e293b;
+  font-size: 22px;
+  font-weight: 700;
 }
+
+
+/* ==============================
+   FORM GRID
+============================== */
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 25px;
+}
+
+
+/* ==============================
+   FORM GROUP
+============================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  color: #334155;
+  font-size: 14px;
   font-weight: 600;
 }
+
+
+/* ==============================
+   INPUTS
+============================== */
 
 .form-group input,
 .form-group select {
   width: 100%;
+  height: 44px;
+  padding: 0 13px;
   box-sizing: border-box;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #1e293b;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
+
+
+/* Focus */
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* Disabled fields */
 
 .form-group input:disabled {
-  background: #f3f4f6;
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: not-allowed;
 }
 
+
+/* ==============================
+   BUTTON GROUP
+============================== */
+
 .button-group {
-  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  margin-top: 28px;
 }
+
+
+/* ==============================
+   SAVE / ADD BUTTON
+============================== */
+
+.save-button {
+  background: #16a34a;
+  color: #ffffff;
+
+  border: none;
+
+  padding: 11px 20px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+}
+
+.save-button:hover {
+  background: #15803d;
+}
+
+.save-button:active {
+  transform: translateY(1px);
+}
+
+.save-button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+
+/* ==============================
+   CANCEL BUTTON
+============================== */
+
+.cancel-button {
+  background: #f1f5f9;
+  color: #334155;
+
+  border: 1px solid #cbd5e1;
+
+  padding: 10px 20px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin-left: 12px;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.cancel-button:hover {
+  background: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+
+/* ==============================
+   ADD STUDENT BUTTON
+============================== */
+
+.add-button {
+  background: #2563eb;
+  color: #ffffff;
+
+  border: none;
+
+  padding: 11px 20px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin-bottom: 20px;
+
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+}
+
+.add-button:hover {
+  background: #1d4ed8;
+}
+
+.add-button:active {
+  transform: translateY(1px);
+}
+
+
+/* ==============================
+   SEARCH
+============================== */
+
+.search-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  width: 100%;
+  max-width: 500px;
+  height: 44px;
+
+  padding: 0 15px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #1e293b;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search-container input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.search-container input::placeholder {
+  color: #94a3b8;
+}
+
+
+/* ==============================
+   STATISTICS CARD
+============================== */
+
+.stats-card {
+  display: flex;
+
+  width: 100%;
+  max-width: 300px;
+
+  margin-bottom: 20px;
+
+  background: #ffffff;
+
+  padding: 20px 25px;
+
+  border-radius: 12px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow:
+    0 5px 20px rgba(15, 23, 42, 0.06);
+}
+
+.stats-card span {
+  display: block;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  margin-bottom: 6px;
+}
+
+.stats-card strong {
+  display: block;
+
+  color: #1e293b;
+
+  font-size: 28px;
+}
+
+
+/* ==============================
+   TABLE
+============================== */
+
+.table-container {
+  width: 100%;
+
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow:
+    0 5px 20px rgba(15, 23, 42, 0.06);
+
+  overflow-x: auto;
+}
+
+
+/* ==============================
+   TABLE
+============================== */
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 950px;
+}
+
+
+/* Table Header */
+
+thead {
+  background: #f8fafc;
+}
+
+th {
+  padding: 15px 16px;
+
+  text-align: left;
+
+  color: #475569;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+
+/* Table Body */
+
+td {
+  padding: 15px 16px;
+
+  color: #334155;
+
+  font-size: 14px;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  white-space: nowrap;
+}
+
+
+/* Row hover */
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+
+/* Remove border from last row */
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* ==============================
+   EDIT BUTTON
+============================== */
 
 .edit-button {
   background: #2563eb;
-  color: white;
+
+  color: #ffffff;
+
   border: none;
+
   padding: 8px 14px;
-  border-radius: 5px;
+
+  border-radius: 6px;
+
   cursor: pointer;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
   margin-right: 8px;
+
+  transition:
+    background 0.2s ease;
 }
 
 .edit-button:hover {
   background: #1d4ed8;
 }
 
-.save-button {
-  background: #16a34a;
-  color: white;
+
+/* ==============================
+   DELETE BUTTON
+============================== */
+
+.delete-button {
+  background: #dc2626;
+
+  color: #ffffff;
+
   border: none;
-  padding: 10px 18px;
+
+  padding: 8px 14px;
+
   border-radius: 6px;
+
   cursor: pointer;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease;
 }
 
-.cancel-button {
-  background: #e5e7eb;
-  color: #111827;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-left: 10px;
+.delete-button:hover {
+  background: #b91c1c;
 }
 
-.success {
-  margin-bottom: 20px;
-  padding: 12px;
-  background: #dcfce7;
-  color: #166534;
-  border-radius: 6px;
+
+/* ==============================
+   LOADING
+============================== */
+
+.loading {
+  padding: 30px;
+
+  text-align: center;
+
+  color: #64748b;
+
+  font-size: 16px;
+}
+
+
+/* ==============================
+   EMPTY
+============================== */
+
+.empty {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 35px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  color: #64748b;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 12px;
+
+  font-size: 15px;
+}
+
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 768px) {
+
+  .admin-container {
+    padding: 25px 20px;
+  }
+
+  .admin-container h1 {
+    font-size: 26px;
+  }
+
+  .edit-card {
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .button-group {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .cancel-button {
+    margin-left: 0;
+  }
+
+  .search-container input {
+    max-width: 100%;
+  }
+
 }

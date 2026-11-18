@@ -27,6 +27,16 @@ interface UpdateStudent {
   phone: string;
 }
 
+interface NewStudent {
+  name: string;
+  email: string;
+  password: string;
+  registerNumber: string;
+  department: string;
+  year: number;
+  phone: string;
+}
+
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
@@ -44,6 +54,10 @@ export class AdminDashboardComponent implements OnInit {
 
   selectedStudent: Student | null = null;
 
+  showAddForm = false;
+
+  adding = false;
+
   loading = true;
 
   saving = false;
@@ -52,8 +66,21 @@ export class AdminDashboardComponent implements OnInit {
 
   successMessage = '';
 
+  newStudent: NewStudent = {
+    name: '',
+    email: '',
+    password: '',
+    registerNumber: '',
+    department: '',
+    year: 1,
+    phone: ''
+  };
+
   private apiUrl =
     'https://localhost:7143/api/students';
+
+  private authApiUrl =
+    'https://localhost:7143/api/auth';
 
   constructor(
     private http: HttpClient,
@@ -78,7 +105,8 @@ export class AdminDashboardComponent implements OnInit {
 
         this.students = response;
 
-        this.filteredStudents = response;
+        this.filteredStudents =
+          response;
 
         this.loading = false;
 
@@ -151,11 +179,129 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
+  openAddStudentForm(): void {
+
+    this.showAddForm = true;
+
+    this.selectedStudent = null;
+
+    this.errorMessage = '';
+
+    this.successMessage = '';
+
+    this.resetNewStudent();
+
+  }
+
+  cancelAddStudent(): void {
+
+    this.showAddForm = false;
+
+    this.errorMessage = '';
+
+    this.resetNewStudent();
+
+  }
+
+  resetNewStudent(): void {
+
+    this.newStudent = {
+
+      name: '',
+
+      email: '',
+
+      password: '',
+
+      registerNumber: '',
+
+      department: '',
+
+      year: 1,
+
+      phone: ''
+
+    };
+
+  }
+
+  addStudent(): void {
+
+    this.errorMessage = '';
+
+    this.successMessage = '';
+
+    if (
+      !this.newStudent.name ||
+      !this.newStudent.email ||
+      !this.newStudent.password ||
+      !this.newStudent.registerNumber ||
+      !this.newStudent.department ||
+      !this.newStudent.phone
+    ) {
+
+      this.errorMessage =
+        'Please fill all fields.';
+
+      return;
+
+    }
+
+    this.adding = true;
+
+    this.http.post(
+      `${this.authApiUrl}/register`,
+      this.newStudent
+    ).subscribe({
+
+      next: (response) => {
+
+        console.log(
+          'STUDENT CREATED:',
+          response
+        );
+
+        this.showAddForm = false;
+
+        this.adding = false;
+
+        this.successMessage =
+          'Student added successfully.';
+
+        this.resetNewStudent();
+
+        this.loadStudents();
+
+      },
+
+      error: (error) => {
+
+        console.error(
+          'ADD STUDENT ERROR:',
+          error
+        );
+
+        this.adding = false;
+
+        this.errorMessage =
+          error.error?.message ||
+          'Unable to add student.';
+
+        this.cdr.detectChanges();
+
+      }
+
+    });
+
+  }
+
   editStudent(student: Student): void {
 
     this.selectedStudent = {
       ...student
     };
+
+    this.showAddForm = false;
 
     this.errorMessage = '';
 
