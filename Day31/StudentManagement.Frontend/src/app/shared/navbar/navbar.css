@@ -25,3 +25,17 @@
 .nav-links a:hover {
   text-decoration: underline;
 }
+
+.logout-button {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.logout-button:hover {
+  background: #b91c1c;
+}

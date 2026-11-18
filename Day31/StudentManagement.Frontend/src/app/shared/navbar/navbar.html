@@ -6,15 +6,49 @@
 
   <div class="nav-links">
 
-    <a routerLink="/login">Login</a>
+    @if (!loggedIn) {
 
-    <a routerLink="/register">Register</a>
+      <a routerLink="/login">
+        Login
+      </a>
 
-    <a routerLink="/student/dashboard">Student</a>
+      <a routerLink="/register">
+        Register
+      </a>
 
-    <a routerLink="/student/profile">Profile</a>
+    }
 
-    <a routerLink="/admin/dashboard">Admin</a>
+    @if (loggedIn && role === 'Student') {
+
+      <a routerLink="/student/dashboard">
+        Dashboard
+      </a>
+
+      <a routerLink="/student/profile">
+        Profile
+      </a>
+
+      <button
+        class="logout-button"
+        (click)="logout()">
+        Logout
+      </button>
+
+    }
+
+    @if (loggedIn && role === 'Admin') {
+
+      <a routerLink="/admin/dashboard">
+        Admin Dashboard
+      </a>
+
+      <button
+        class="logout-button"
+        (click)="logout()">
+        Logout
+      </button>
+
+    }
 
   </div>
 
