@@ -5,6 +5,7 @@ using StudentManagement.Api.Data;
 using StudentManagement.Api.Repositories;
 using StudentManagement.Api.Services;
 using System.Text;
+using StudentManagement.Api.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,5 +70,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+using (var scope = app.Services.CreateScope())
+{
+    var context =
+        scope.ServiceProvider
+            .GetRequiredService<ApplicationDbContext>();
+
+    await AdminSeeder.SeedAsync(context);
+}
 
 app.Run();
