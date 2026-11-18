@@ -10,6 +10,8 @@ namespace StudentManagement.Api.Repositories
 
         Task<User> CreateAsync(User user);
 
+        Task<bool> DeleteAsync(int id);
+
         Task<bool> EmailExistsAsync(string email);
     }
 }

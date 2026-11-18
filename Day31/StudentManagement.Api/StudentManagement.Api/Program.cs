@@ -6,6 +6,7 @@ using StudentManagement.Api.Repositories;
 using StudentManagement.Api.Services;
 using System.Text;
 using StudentManagement.Api.Authorization;
+using StudentManagement.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +64,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 

@@ -38,5 +38,22 @@ namespace StudentManagement.Api.Repositories
             return await _context.Users
                 .AnyAsync(u => u.Email == email);
         }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            _context.Users.Remove(user);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

@@ -7,11 +7,14 @@ namespace StudentManagement.Api.Services
     public class StudentService : IStudentService
     {
         private readonly IStudentRepository _studentRepository;
+        private readonly IUserRepository _userRepository;
 
         public StudentService(
-            IStudentRepository studentRepository)
+    IStudentRepository studentRepository,
+    IUserRepository userRepository)
         {
             _studentRepository = studentRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<StudentResponseDto?> GetByIdAsync(int id)
@@ -75,9 +78,20 @@ namespace StudentManagement.Api.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            return await _studentRepository.DeleteAsync(id);
-        }
+            var student =
+                await _studentRepository.GetByIdAsync(id);
 
+            if (student == null)
+            {
+                return false;
+            }
+
+            await _studentRepository.DeleteAsync(id);
+
+            await _userRepository.DeleteAsync(student.UserId);
+
+            return true;
+        }
         private static StudentResponseDto MapToDto(
             Student student)
         {
