@@ -295,20 +295,83 @@
   @if (!loading && students.length > 0) {
 
 
-    <!-- Statistics -->
-    <div class="stats-card">
+<div class="stats-grid">
 
-      <div>
+  <div class="stat-card">
 
-        <span>Total Students</span>
+    <span>Total Students</span>
 
-        <strong>
-          {{ students.length }}
-        </strong>
+    <strong>
+      {{ totalStudents }}
+    </strong>
 
-      </div>
+  </div>
 
+
+  <div class="stat-card">
+
+    <span>IT Students</span>
+
+    <strong>
+      {{ itStudents }}
+    </strong>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <span>CSE Students</span>
+
+    <strong>
+      {{ cseStudents }}
+    </strong>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <span>Other Departments</span>
+
+    <strong>
+      {{ otherStudents }}
+    </strong>
+
+  </div>
+
+</div>
+
+
+<div class="year-section">
+
+  <h2>Students by Year</h2>
+
+  <div class="year-grid">
+
+    <div class="year-card">
+      <span>1st Year</span>
+      <strong>{{ year1Students }}</strong>
     </div>
+
+    <div class="year-card">
+      <span>2nd Year</span>
+      <strong>{{ year2Students }}</strong>
+    </div>
+
+    <div class="year-card">
+      <span>3rd Year</span>
+      <strong>{{ year3Students }}</strong>
+    </div>
+
+    <div class="year-card">
+      <span>4th Year</span>
+      <strong>{{ year4Students }}</strong>
+    </div>
+
+  </div>
+
+</div>
 
     <button
   class="add-button"

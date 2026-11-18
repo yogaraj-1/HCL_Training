@@ -76,6 +76,16 @@ export class AdminDashboardComponent implements OnInit {
     phone: ''
   };
 
+  totalStudents = 0;
+itStudents = 0;
+cseStudents = 0;
+otherStudents = 0;
+
+year1Students = 0;
+year2Students = 0;
+year3Students = 0;
+year4Students = 0;
+
   private apiUrl =
     'https://localhost:7143/api/students';
 
@@ -104,6 +114,7 @@ export class AdminDashboardComponent implements OnInit {
       next: (response) => {
 
         this.students = response;
+        this.calculateStatistics();
 
         this.filteredStudents =
           response;
@@ -456,4 +467,50 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
+  calculateStatistics(): void {
+
+  this.totalStudents =
+    this.students.length;
+
+  this.itStudents =
+    this.students.filter(
+      student =>
+        student.department
+          .toLowerCase() === 'it'
+    ).length;
+
+  this.cseStudents =
+    this.students.filter(
+      student =>
+        student.department
+          .toLowerCase() === 'cse'
+    ).length;
+
+  this.otherStudents =
+    this.totalStudents -
+    this.itStudents -
+    this.cseStudents;
+
+
+  this.year1Students =
+    this.students.filter(
+      student => student.year === 1
+    ).length;
+
+  this.year2Students =
+    this.students.filter(
+      student => student.year === 2
+    ).length;
+
+  this.year3Students =
+    this.students.filter(
+      student => student.year === 3
+    ).length;
+
+  this.year4Students =
+    this.students.filter(
+      student => student.year === 4
+    ).length;
+
+}
 }
