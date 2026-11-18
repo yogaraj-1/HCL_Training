@@ -38,6 +38,10 @@ export class AdminDashboardComponent implements OnInit {
 
   students: Student[] = [];
 
+  filteredStudents: Student[] = [];
+
+  searchTerm = '';
+
   selectedStudent: Student | null = null;
 
   loading = true;
@@ -74,6 +78,8 @@ export class AdminDashboardComponent implements OnInit {
 
         this.students = response;
 
+        this.filteredStudents = response;
+
         this.loading = false;
 
         this.cdr.detectChanges();
@@ -82,7 +88,10 @@ export class AdminDashboardComponent implements OnInit {
 
       error: (error) => {
 
-        console.error('STUDENTS ERROR:', error);
+        console.error(
+          'STUDENTS ERROR:',
+          error
+        );
 
         this.loading = false;
 
@@ -94,6 +103,51 @@ export class AdminDashboardComponent implements OnInit {
       }
 
     });
+
+  }
+
+  searchStudents(): void {
+
+    const search =
+      this.searchTerm
+        .trim()
+        .toLowerCase();
+
+    if (!search) {
+
+      this.filteredStudents =
+        this.students;
+
+      return;
+
+    }
+
+    this.filteredStudents =
+      this.students.filter(student =>
+
+        student.name
+          .toLowerCase()
+          .includes(search)
+
+        ||
+
+        student.email
+          .toLowerCase()
+          .includes(search)
+
+        ||
+
+        student.registerNumber
+          .toLowerCase()
+          .includes(search)
+
+        ||
+
+        student.department
+          .toLowerCase()
+          .includes(search)
+
+      );
 
   }
 
@@ -131,14 +185,17 @@ export class AdminDashboardComponent implements OnInit {
 
     const data: UpdateStudent = {
 
-      name: this.selectedStudent.name,
+      name:
+        this.selectedStudent.name,
 
       department:
         this.selectedStudent.department,
 
-      year: this.selectedStudent.year,
+      year:
+        this.selectedStudent.year,
 
-      phone: this.selectedStudent.phone
+      phone:
+        this.selectedStudent.phone
 
     };
 
@@ -166,6 +223,8 @@ export class AdminDashboardComponent implements OnInit {
             response;
 
         }
+
+        this.searchStudents();
 
         this.selectedStudent = null;
 
@@ -198,50 +257,57 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
-deleteStudent(id: number): void {
+  deleteStudent(id: number): void {
 
-  const confirmed = confirm(
-    'Are you sure you want to delete this student?'
-  );
+    const confirmed = confirm(
+      'Are you sure you want to delete this student?'
+    );
 
-  if (!confirmed) {
-    return;
-  }
-
-  this.errorMessage = '';
-  this.successMessage = '';
-
-  this.http.delete(
-    `${this.apiUrl}/${id}`
-  ).subscribe({
-
-    next: () => {
-
-      this.students =
-        this.students.filter(
-          student => student.id !== id
-        );
-
-      this.successMessage =
-        'Student deleted successfully.';
-
-      this.cdr.detectChanges();
-    },
-
-    error: (error) => {
-
-      console.error(
-        'DELETE ERROR:',
-        error
-      );
-
-      this.errorMessage =
-        'Unable to delete student.';
-
-      this.cdr.detectChanges();
+    if (!confirmed) {
+      return;
     }
 
-  });
-}
+    this.errorMessage = '';
+
+    this.successMessage = '';
+
+    this.http.delete(
+      `${this.apiUrl}/${id}`
+    ).subscribe({
+
+      next: () => {
+
+        this.students =
+          this.students.filter(
+            student =>
+              student.id !== id
+          );
+
+        this.searchStudents();
+
+        this.successMessage =
+          'Student deleted successfully.';
+
+        this.cdr.detectChanges();
+
+      },
+
+      error: (error) => {
+
+        console.error(
+          'DELETE ERROR:',
+          error
+        );
+
+        this.errorMessage =
+          'Unable to delete student.';
+
+        this.cdr.detectChanges();
+
+      }
+
+    });
+
+  }
 
 }
