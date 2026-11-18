@@ -198,48 +198,50 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
-  deleteStudent(id: number): void {
+deleteStudent(id: number): void {
 
-    const confirmed =
-      confirm(
-        'Are you sure you want to delete this student?'
-      );
+  const confirmed = confirm(
+    'Are you sure you want to delete this student?'
+  );
 
-    if (!confirmed) {
-      return;
-    }
+  if (!confirmed) {
+    return;
+  }
 
-    this.http.delete(
-      `${this.apiUrl}/${id}`
-    ).subscribe({
+  this.errorMessage = '';
+  this.successMessage = '';
 
-      next: () => {
+  this.http.delete(
+    `${this.apiUrl}/${id}`
+  ).subscribe({
 
-        this.students =
-          this.students.filter(
-            student => student.id !== id
-          );
+    next: () => {
 
-        this.cdr.detectChanges();
-
-      },
-
-      error: (error) => {
-
-        console.error(
-          'DELETE ERROR:',
-          error
+      this.students =
+        this.students.filter(
+          student => student.id !== id
         );
 
-        this.errorMessage =
-          'Unable to delete student.';
+      this.successMessage =
+        'Student deleted successfully.';
 
-        this.cdr.detectChanges();
+      this.cdr.detectChanges();
+    },
 
-      }
+    error: (error) => {
 
-    });
+      console.error(
+        'DELETE ERROR:',
+        error
+      );
 
-  }
+      this.errorMessage =
+        'Unable to delete student.';
+
+      this.cdr.detectChanges();
+    }
+
+  });
+}
 
 }
