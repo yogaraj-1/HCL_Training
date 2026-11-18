@@ -1,1 +1,70 @@
-<p>student-dashboard works!</p>
+<div class="dashboard-container">
+
+  <h1>Student Dashboard</h1>
+
+  @if (loading) {
+
+    <h2>Loading student details...</h2>
+
+  }
+
+  @if (!loading && student) {
+
+    <div class="profile-card">
+
+      <h2>
+        Welcome, {{ student.name }}
+      </h2>
+
+      <div class="details">
+
+        <div>
+          <strong>Name</strong>
+          <p>{{ student.name }}</p>
+        </div>
+
+        <div>
+          <strong>Email</strong>
+          <p>{{ student.email }}</p>
+        </div>
+
+        <div>
+          <strong>Register Number</strong>
+          <p>{{ student.registerNumber }}</p>
+        </div>
+
+        <div>
+          <strong>Department</strong>
+          <p>{{ student.department }}</p>
+        </div>
+
+        <div>
+          <strong>Year</strong>
+          <p>{{ student.year }}</p>
+        </div>
+
+        <div>
+          <strong>Phone</strong>
+          <p>{{ student.phone }}</p>
+        </div>
+
+        <div>
+          <strong>Role</strong>
+          <p>{{ student.role }}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+  @if (!loading && errorMessage) {
+
+    <div class="error">
+      {{ errorMessage }}
+    </div>
+
+  }
+
+</div>

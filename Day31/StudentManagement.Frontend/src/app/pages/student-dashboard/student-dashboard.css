@@ -1,0 +1,51 @@
+.dashboard-container {
+  padding: 40px;
+}
+
+.dashboard-container h1 {
+  margin-bottom: 25px;
+}
+
+.profile-card {
+  max-width: 800px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.profile-card h2 {
+  margin-bottom: 25px;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.details div {
+  padding: 15px;
+  background: #f3f4f6;
+  border-radius: 6px;
+}
+
+.details strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.details p {
+  margin: 0;
+}
+
+.loading {
+  padding: 20px;
+}
+
+.error {
+  padding: 15px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 6px;
+}
