@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StudentManagement.Api.Data;
-
+using StudentManagement.Api.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
 builder.Services.AddOpenApi();
 
