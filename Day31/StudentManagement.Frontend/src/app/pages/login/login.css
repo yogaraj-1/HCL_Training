@@ -60,3 +60,10 @@ button {
 button:hover {
   background: #374151;
 }
+.error-message {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}

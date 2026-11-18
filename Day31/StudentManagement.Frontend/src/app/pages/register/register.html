@@ -6,6 +6,18 @@
 
     <h3>Student Registration</h3>
 
+    @if (message) {
+  <div class="success-message">
+    {{ message }}
+  </div>
+}
+
+@if (errorMessage) {
+  <div class="error-message">
+    {{ errorMessage }}
+  </div>
+}
+
     <form
       [formGroup]="registerForm"
       (ngSubmit)="onSubmit()"

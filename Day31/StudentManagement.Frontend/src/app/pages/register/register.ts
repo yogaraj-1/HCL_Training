@@ -6,6 +6,8 @@ import {
   Validators
 } from '@angular/forms';
 
+import { AuthService } from '../../core/services/auth';
+
 @Component({
   selector: 'app-register',
   imports: [ReactiveFormsModule],
@@ -50,20 +52,60 @@ export class RegisterComponent {
 
   });
 
+  message = '';
+  errorMessage = '';
 
-  onSubmit() {
+  constructor(
+    private authService: AuthService
+  ) {}
+
+  onSubmit(): void {
 
     if (this.registerForm.invalid) {
-
       this.registerForm.markAllAsTouched();
-
       return;
     }
 
-    console.log(
-      'Registration Data:',
-      this.registerForm.value
-    );
-  }
+    this.message = '';
+    this.errorMessage = '';
 
+    const data = {
+      name: this.registerForm.value.name!,
+      email: this.registerForm.value.email!,
+      password: this.registerForm.value.password!,
+      registerNumber: this.registerForm.value.registerNumber!,
+      department: this.registerForm.value.department!,
+      year: this.registerForm.value.year!,
+      phone: this.registerForm.value.phone!
+    };
+
+    this.authService.register(data).subscribe({
+
+      next: (response) => {
+
+        console.log(
+          'Registration successful:',
+          response
+        );
+
+        this.message =
+          'Registration successful! You can now login.';
+
+        this.registerForm.reset();
+      },
+
+      error: (error) => {
+
+        console.error(
+          'Registration failed:',
+          error
+        );
+
+        this.errorMessage =
+          error.error?.message ||
+          'Registration failed.';
+      }
+
+    });
+  }
 }
