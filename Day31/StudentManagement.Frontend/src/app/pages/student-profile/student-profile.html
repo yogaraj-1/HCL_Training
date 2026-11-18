@@ -1,1 +1,204 @@
-<p>student-profile works!</p>
+<div class="profile-container">
+
+  <h1>My Profile</h1>
+
+  @if (loading) {
+
+    <div class="loading">
+      Loading profile...
+    </div>
+
+  }
+
+  @if (!loading && student) {
+
+    <div class="profile-card">
+
+      <div class="profile-header">
+
+        <div class="profile-avatar">
+          {{ student.name.charAt(0) }}
+        </div>
+
+        <div>
+          <h2>{{ student.name }}</h2>
+          <p>{{ student.role }}</p>
+        </div>
+
+      </div>
+
+      @if (!editing) {
+
+        <div class="profile-details">
+
+          <div class="detail-item">
+            <span>Name</span>
+            <strong>{{ student.name }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span>Email</span>
+            <strong>{{ student.email }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span>Register Number</span>
+            <strong>{{ student.registerNumber }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span>Department</span>
+            <strong>{{ student.department }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span>Year</span>
+            <strong>{{ student.year }}</strong>
+          </div>
+
+          <div class="detail-item">
+            <span>Phone</span>
+            <strong>{{ student.phone }}</strong>
+          </div>
+
+        </div>
+
+        <button
+          class="edit-button"
+          (click)="startEditing()">
+
+          Edit Profile
+
+        </button>
+
+      }
+
+      @if (editing) {
+
+        <div class="edit-form">
+
+          <div class="form-group">
+
+            <label>Name</label>
+
+            <input
+              type="text"
+              [(ngModel)]="student.name">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+              type="email"
+              [value]="student.email"
+              disabled>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Register Number</label>
+
+            <input
+              type="text"
+              [value]="student.registerNumber"
+              disabled>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Department</label>
+
+            <input
+              type="text"
+              [(ngModel)]="student.department">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Year</label>
+
+            <select
+              [(ngModel)]="student.year">
+
+              <option [ngValue]="1">
+                1
+              </option>
+
+              <option [ngValue]="2">
+                2
+              </option>
+
+              <option [ngValue]="3">
+                3
+              </option>
+
+              <option [ngValue]="4">
+                4
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Phone</label>
+
+            <input
+              type="text"
+              [(ngModel)]="student.phone">
+
+          </div>
+
+          <div class="button-group">
+
+            <button
+              class="save-button"
+              (click)="updateProfile()"
+              [disabled]="saving">
+
+              {{ saving ? 'Saving...' : 'Update Profile' }}
+
+            </button>
+
+            <button
+              class="cancel-button"
+              (click)="cancelEditing()">
+
+              Cancel
+
+            </button>
+
+          </div>
+
+        </div>
+
+      }
+
+      @if (successMessage) {
+
+        <div class="success">
+          {{ successMessage }}
+        </div>
+
+      }
+
+      @if (errorMessage) {
+
+        <div class="error">
+          {{ errorMessage }}
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+</div>
