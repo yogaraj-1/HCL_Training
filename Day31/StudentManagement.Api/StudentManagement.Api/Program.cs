@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using StudentManagement.Api.Data;
 using StudentManagement.Api.Repositories;
+using StudentManagement.Api.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
