@@ -6,7 +6,11 @@ import { StudentDashboardComponent } from './pages/student-dashboard/student-das
 import { StudentProfileComponent } from './pages/student-profile/student-profile';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard';
 
+import { authGuard } from './core/guards/auth.guard';
+import { roleGuard } from './core/guards/role.guard';
+
 export const routes: Routes = [
+
   {
     path: '',
     redirectTo: 'login',
@@ -25,21 +29,34 @@ export const routes: Routes = [
 
   {
     path: 'student/dashboard',
-    component: StudentDashboardComponent
+    component: StudentDashboardComponent,
+    canActivate: [
+      authGuard,
+      roleGuard('Student')
+    ]
   },
 
   {
     path: 'student/profile',
-    component: StudentProfileComponent
+    component: StudentProfileComponent,
+    canActivate: [
+      authGuard,
+      roleGuard('Student')
+    ]
   },
 
   {
     path: 'admin/dashboard',
-    component: AdminDashboardComponent
+    component: AdminDashboardComponent,
+    canActivate: [
+      authGuard,
+      roleGuard('Admin')
+    ]
   },
 
   {
     path: '**',
     redirectTo: 'login'
   }
+
 ];
