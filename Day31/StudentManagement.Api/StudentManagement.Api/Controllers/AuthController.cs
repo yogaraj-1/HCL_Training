@@ -33,5 +33,21 @@ namespace StudentManagement.Api.Controllers
                 message = "Student registered successfully."
             });
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDto dto)
+        {
+            var result = await _authService.LoginAsync(dto);
+
+            if (result == null)
+            {
+                return Unauthorized(new
+                {
+                    message = "Invalid email or password."
+                });
+            }
+
+            return Ok(result);
+        }
     }
 }
