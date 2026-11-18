@@ -2,17 +2,14 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "0dea893a-3184-461a-9ce1-cee2b92848fa"
   },
   "newProjectRoot": "projects",
   "projects": {
-    "Movie-Booking-Frontend": {
+    "StudentManagement.Frontend": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -22,7 +19,6 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
@@ -30,7 +26,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ]
           },
           "configurations": {
@@ -61,10 +57,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Movie-Booking-Frontend:build:production"
+              "buildTarget": "StudentManagement.Frontend:build:production"
             },
             "development": {
-              "buildTarget": "Movie-Booking-Frontend:build:development"
+              "buildTarget": "StudentManagement.Frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
