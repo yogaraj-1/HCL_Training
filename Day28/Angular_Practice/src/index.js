@@ -23,7 +23,7 @@ const students = [
     {
         id: 103,
         name: "Vikram Selvam",
-        age: 19,
+        age: 17,
         department: "Mechanical",
         email: "vikram.s@example.edu",
         phone: "9876543212",
@@ -61,4 +61,14 @@ function display(StudentList) {
         console.log("------------------------------------");
     });
 }
+function voteEligible(StudentList) {
+    console.log("=== Student Voting  Eligibility ===\n");
+    StudentList.forEach((student) => {
+        if (student.age >= 18) {
+            console.log(`ID         : ${student.id}`);
+            console.log(`Name       : ${student.name}`);
+        }
+    });
+}
 display(students);
+voteEligible(students);

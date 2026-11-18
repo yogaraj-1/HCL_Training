@@ -16,7 +16,7 @@ export class HomeComponent {
   name = 'Yogaraj P';
   role = 'Full Stack Developer';
   intro =
-    'I build modern web applications using Angular, React, Node.js, Java, MongoDB and other modern technologies.';
+    'I build modern web applications using Angular, React, Node.js, Java, .NET, MongoDB and other modern technologies.';
   photoUrl = 'images/yogaraj.jpg';
   photoAlt = 'Portrait of Yogaraj P';
 

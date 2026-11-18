@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PortfolioService } from '../../core/services/portfolio.service';
@@ -8,6 +8,7 @@ import { ProjectCardComponent } from '../../shared/project-card/project-card';
 
 @Component({
   selector: 'app-projects',
+  standalone: true,
   imports: [FormsModule, ProjectCardComponent],
   templateUrl: './projects.html',
   styleUrl: './projects.css'
@@ -21,7 +22,9 @@ export class ProjectsComponent {
   error = this.loader.error;
 
   categories = ['All', 'Frontend', 'Backend', 'Full Stack', 'AI', '.NET'];
-  selectedCategory = signal('All');
+
+  // 1. Read saved category from sessionStorage on load (fallback to 'All' if none exists)
+  selectedCategory = signal(this.getSavedCategory());
   searchTerm = signal(''); // bound with [(ngModel)]
 
   // Search and category filter work together
@@ -40,6 +43,26 @@ export class ProjectsComponent {
       return matchesCategory && matchesSearch;
     });
   });
+
+  constructor() {
+    // 2. Effect: Runs whenever selectedCategory() changes
+    effect(() => {
+      const category = this.selectedCategory();
+
+      // Condition: Remove from storage if 'All' is selected, otherwise save the active category
+      if (category === 'All') {
+        sessionStorage.removeItem('project_category');
+      } else {
+        sessionStorage.setItem('project_category', category);
+      }
+    });
+  }
+
+  // Safely validates that the saved value is still a valid category in your list
+  private getSavedCategory(): string {
+    const saved = sessionStorage.getItem('project_category');
+    return saved && this.categories.includes(saved) ? saved : 'All';
+  }
 
   selectCategory(category: string): void {
     this.selectedCategory.set(category);
