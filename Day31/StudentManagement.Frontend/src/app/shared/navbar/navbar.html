@@ -1,51 +1,87 @@
 <nav class="navbar">
 
+  <!-- Logo -->
   <div class="logo">
-    Student Management
+    <div class="logo-icon">
+      SM
+    </div>
+
+    <div class="logo-text">
+      <span>Student</span>
+      <strong>Management</strong>
+    </div>
   </div>
 
+
+  <!-- Navigation -->
   <div class="nav-links">
 
     @if (!loggedIn) {
 
-      <a routerLink="/login">
+      <a
+        routerLink="/login"
+        routerLinkActive="active">
+
         Login
+
       </a>
 
-      <a routerLink="/register">
+      <a
+        routerLink="/register"
+        routerLinkActive="active">
+
         Register
+
       </a>
 
     }
 
+
     @if (loggedIn && role === 'Student') {
 
-      <a routerLink="/student/dashboard">
+      <a
+        routerLink="/student/dashboard"
+        routerLinkActive="active">
+
         Dashboard
+
       </a>
 
-      <a routerLink="/student/profile">
+      <a
+        routerLink="/student/profile"
+        routerLinkActive="active">
+
         Profile
+
       </a>
 
       <button
         class="logout-button"
         (click)="logout()">
+
         Logout
+
       </button>
 
     }
 
+
     @if (loggedIn && role === 'Admin') {
 
-      <a routerLink="/admin/dashboard">
+      <a
+        routerLink="/admin/dashboard"
+        routerLinkActive="active">
+
         Admin Dashboard
+
       </a>
 
       <button
         class="logout-button"
         (click)="logout()">
+
         Logout
+
       </button>
 
     }

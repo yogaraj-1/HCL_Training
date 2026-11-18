@@ -1,56 +1,191 @@
-<div class="dashboard-container">
+<div class="dashboard-page">
 
-  <h1>Student Dashboard</h1>
+  <!-- Page Header -->
+  <div class="page-header">
+
+    <div>
+      <span class="page-label">STUDENT PORTAL</span>
+
+      <h1>Student Dashboard</h1>
+
+      <p>
+        Welcome back. Here is your academic information.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- Loading -->
 
   @if (loading) {
 
-    <h2>Loading student details...</h2>
+    <div class="loading-card">
+      <div class="loader"></div>
+
+      <p>
+        Loading student details...
+      </p>
+    </div>
 
   }
 
+
+  <!-- Student Details -->
+
   @if (!loading && student) {
 
-    <div class="profile-card">
+    <!-- Welcome Card -->
 
-      <h2>
-        Welcome, {{ student.name }}
-      </h2>
+    <div class="welcome-card">
 
-      <div class="details">
+      <div class="welcome-content">
 
-        <div>
-          <strong>Name</strong>
-          <p>{{ student.name }}</p>
+        <span class="welcome-label">
+          WELCOME BACK
+        </span>
+
+        <h2>
+          {{ student.name }}
+        </h2>
+
+        <p>
+          Your student profile is up to date.
+        </p>
+
+      </div>
+
+      <div class="student-avatar">
+        {{ student.name.charAt(0).toUpperCase() }}
+      </div>
+
+    </div>
+
+
+    <!-- Details Section -->
+
+    <div class="section-header">
+
+      <div>
+        <h2>Student Information</h2>
+
+        <p>
+          Your registered academic and contact details
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="details-grid">
+
+      <!-- Name -->
+
+      <div class="detail-card">
+
+        <div class="detail-icon">
+          N
         </div>
 
         <div>
-          <strong>Email</strong>
-          <p>{{ student.email }}</p>
+          <span>Name</span>
+          <strong>{{ student.name }}</strong>
+        </div>
+
+      </div>
+
+
+      <!-- Email -->
+
+      <div class="detail-card">
+
+        <div class="detail-icon">
+          @
         </div>
 
         <div>
-          <strong>Register Number</strong>
-          <p>{{ student.registerNumber }}</p>
+          <span>Email Address</span>
+          <strong>{{ student.email }}</strong>
+        </div>
+
+      </div>
+
+
+      <!-- Register Number -->
+
+      <div class="detail-card">
+
+        <div class="detail-icon">
+          #
         </div>
 
         <div>
-          <strong>Department</strong>
-          <p>{{ student.department }}</p>
+          <span>Register Number</span>
+          <strong>{{ student.registerNumber }}</strong>
+        </div>
+
+      </div>
+
+
+      <!-- Department -->
+
+      <div class="detail-card">
+
+        <div class="detail-icon">
+          D
         </div>
 
         <div>
-          <strong>Year</strong>
-          <p>{{ student.year }}</p>
+          <span>Department</span>
+          <strong>{{ student.department }}</strong>
+        </div>
+
+      </div>
+
+
+      <!-- Year -->
+
+      <div class="detail-card">
+
+        <div class="detail-icon">
+          Y
         </div>
 
         <div>
-          <strong>Phone</strong>
-          <p>{{ student.phone }}</p>
+          <span>Academic Year</span>
+          <strong>Year {{ student.year }}</strong>
+        </div>
+
+      </div>
+
+
+      <!-- Phone -->
+
+      <div class="detail-card">
+
+        <div class="detail-icon">
+          P
         </div>
 
         <div>
-          <strong>Role</strong>
-          <p>{{ student.role }}</p>
+          <span>Phone Number</span>
+          <strong>{{ student.phone }}</strong>
+        </div>
+
+      </div>
+
+
+      <!-- Role -->
+
+      <div class="detail-card">
+
+        <div class="detail-icon">
+          R
+        </div>
+
+        <div>
+          <span>Account Role</span>
+          <strong>{{ student.role }}</strong>
         </div>
 
       </div>
@@ -59,10 +194,25 @@
 
   }
 
+
+  <!-- Error -->
+
   @if (!loading && errorMessage) {
 
-    <div class="error">
-      {{ errorMessage }}
+    <div class="error-card">
+
+      <div class="error-icon">
+        !
+      </div>
+
+      <div>
+        <strong>Unable to load your profile</strong>
+
+        <p>
+          {{ errorMessage }}
+        </p>
+      </div>
+
     </div>
 
   }

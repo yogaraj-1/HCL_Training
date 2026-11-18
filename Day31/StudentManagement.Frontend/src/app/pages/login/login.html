@@ -1,72 +1,157 @@
-<div class="login-container">
+<div class="login-page">
 
   <div class="login-card">
 
-    <h2>Student Management System</h2>
+    <!-- Left / Brand Section -->
+    <div class="brand-section">
 
-    <h3>Login</h3>
-    
-    @if (errorMessage) {
-  <div class="error-message">
-    {{ errorMessage }}
-  </div>
-}
+      <div class="brand-icon">
+        SM
+      </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h1>Student Management</h1>
 
-      <!-- Email -->
+      <p>
+        Manage your academic information
+        in one simple place.
+      </p>
 
-      <div class="form-group">
+    </div>
 
-        <label>Email</label>
 
-        <input
-          type="email"
-          formControlName="email"
-          placeholder="Enter your email"
-        >
+    <!-- Login Section -->
+    <div class="form-section">
 
-        @if (
-          loginForm.get('email')?.touched &&
-          loginForm.get('email')?.invalid
-        ) {
-          <small>
-            Please enter a valid email.
-          </small>
-        }
+      <div class="form-header">
+
+        <h2>Welcome Back</h2>
+
+        <p>
+          Login to continue to your account
+        </p>
 
       </div>
 
 
-      <!-- Password -->
+      @if (errorMessage) {
 
-      <div class="form-group">
+        <div class="error-message">
+          {{ errorMessage }}
+        </div>
 
-        <label>Password</label>
+      }
 
-        <input
-          type="password"
-          formControlName="password"
-          placeholder="Enter your password"
-        >
 
-        @if (
-          loginForm.get('password')?.touched &&
-          loginForm.get('password')?.invalid
-        ) {
-          <small>
-            Password must contain at least 6 characters.
-          </small>
-        }
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()">
+
+        <!-- Email -->
+
+        <div class="form-group">
+
+          <label for="email">
+            Email Address
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="Enter your email">
+
+          @if (
+            loginForm.controls.email.touched &&
+            loginForm.controls.email.invalid
+          ) {
+
+            <small class="validation-error">
+
+              @if (
+                loginForm.controls.email.errors?.['required']
+              ) {
+                Email is required.
+              }
+
+              @if (
+                loginForm.controls.email.errors?.['email']
+              ) {
+                Enter a valid email address.
+              }
+
+            </small>
+
+          }
+
+        </div>
+
+
+        <!-- Password -->
+
+        <div class="form-group">
+
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Enter your password">
+
+          @if (
+            loginForm.controls.password.touched &&
+            loginForm.controls.password.invalid
+          ) {
+
+            <small class="validation-error">
+
+              @if (
+                loginForm.controls.password.errors?.['required']
+              ) {
+                Password is required.
+              }
+
+              @if (
+                loginForm.controls.password.errors?.['minlength']
+              ) {
+                Password must be at least 6 characters.
+              }
+
+            </small>
+
+          }
+
+        </div>
+
+
+        <!-- Login Button -->
+
+        <button
+          type="submit"
+          class="login-button">
+
+          Login
+
+        </button>
+
+      </form>
+
+
+      <!-- Register -->
+
+      <div class="register-link">
+
+        <span>Don't have an account?</span>
+
+        <a routerLink="/register">
+          Create an account
+        </a>
 
       </div>
 
-
-      <button type="submit">
-        Login
-      </button>
-
-    </form>
+    </div>
 
   </div>
 

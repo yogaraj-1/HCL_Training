@@ -1,240 +1,320 @@
-<div class="register-container">
+<div class="register-page">
 
   <div class="register-card">
 
-    <h1>Student Registration</h1>
+    <!-- Header -->
+
+    <div class="register-header">
+
+      <div class="brand-icon">
+        SM
+      </div>
+
+      <div>
+        <h1>Create Account</h1>
+
+        <p>
+          Register as a student
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- Messages -->
+
+    @if (message) {
+
+      <div class="success-message">
+        {{ message }}
+      </div>
+
+    }
+
+
+    @if (errorMessage) {
+
+      <div class="error-message">
+        {{ errorMessage }}
+      </div>
+
+    }
+
+
+    <!-- Registration Form -->
 
     <form
       [formGroup]="registerForm"
       (ngSubmit)="onSubmit()">
 
-      <!-- Name -->
-      <div class="form-group">
+      <div class="form-grid">
 
-        <label>Name</label>
+        <!-- Name -->
 
-        <input
-          type="text"
-          formControlName="name"
-          placeholder="Enter your name">
+        <div class="form-group">
 
-        @if (
-          registerForm.get('name')?.touched &&
-          registerForm.get('name')?.invalid
-        ) {
-          <small class="error">
-            Name is required.
-          </small>
-        }
+          <label for="name">
+            Full Name
+          </label>
 
-      </div>
-
-
-      <!-- Email -->
-      <div class="form-group">
-
-        <label>Email</label>
-
-        <input
-          type="email"
-          formControlName="email"
-          placeholder="Enter your email">
-
-        @if (
-          registerForm.get('email')?.touched &&
-          registerForm.get('email')?.invalid
-        ) {
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Enter your full name">
 
           @if (
-            registerForm.get('email')?.errors?.['required']
+            registerForm.controls.name.touched &&
+            registerForm.controls.name.invalid
           ) {
-            <small class="error">
-              Email is required.
+
+            <small class="validation-error">
+              Name is required.
             </small>
+
           }
 
-          @if (
-            registerForm.get('email')?.errors?.['email']
-          ) {
-            <small class="error">
-              Enter a valid email address.
-            </small>
-          }
-
-        }
-
-      </div>
-
-
-      <!-- Password -->
-      <div class="form-group">
-
-        <label>Password</label>
-
-        <input
-          type="password"
-          formControlName="password"
-          placeholder="Enter password">
-
-        @if (
-          registerForm.get('password')?.touched &&
-          registerForm.get('password')?.invalid
-        ) {
-
-          @if (
-            registerForm.get('password')?.errors?.['required']
-          ) {
-            <small class="error">
-              Password is required.
-            </small>
-          }
-
-          @if (
-            registerForm.get('password')?.errors?.['minlength']
-          ) {
-            <small class="error">
-              Password must contain at least 6 characters.
-            </small>
-          }
-
-        }
-
-      </div>
-
-
-      <!-- Register Number -->
-      <div class="form-group">
-
-        <label>Register Number</label>
-
-        <input
-          type="text"
-          formControlName="registerNumber"
-          placeholder="Enter register number">
-
-        @if (
-          registerForm.get('registerNumber')?.touched &&
-          registerForm.get('registerNumber')?.invalid
-        ) {
-          <small class="error">
-            Register number is required.
-          </small>
-        }
-
-      </div>
-
-
-      <!-- Department -->
-      <div class="form-group">
-
-        <label>Department</label>
-
-        <input
-          type="text"
-          formControlName="department"
-          placeholder="Enter department">
-
-        @if (
-          registerForm.get('department')?.touched &&
-          registerForm.get('department')?.invalid
-        ) {
-          <small class="error">
-            Department is required.
-          </small>
-        }
-
-      </div>
-
-
-      <!-- Year -->
-      <div class="form-group">
-
-        <label>Year</label>
-
-        <select formControlName="year">
-
-          <option [ngValue]="null">
-            Select Year
-          </option>
-
-          <option [ngValue]="1">
-            1st Year
-          </option>
-
-          <option [ngValue]="2">
-            2nd Year
-          </option>
-
-          <option [ngValue]="3">
-            3rd Year
-          </option>
-
-          <option [ngValue]="4">
-            4th Year
-          </option>
-
-        </select>
-
-        @if (
-          registerForm.get('year')?.touched &&
-          registerForm.get('year')?.invalid
-        ) {
-          <small class="error">
-            Please select a valid year.
-          </small>
-        }
-
-      </div>
-
-
-      <!-- Phone -->
-      <div class="form-group">
-
-        <label>Phone</label>
-
-        <input
-          type="text"
-          formControlName="phone"
-          placeholder="Enter phone number">
-
-        @if (
-          registerForm.get('phone')?.touched &&
-          registerForm.get('phone')?.invalid
-        ) {
-          <small class="error">
-            Phone number is required.
-          </small>
-        }
-
-      </div>
-
-
-      <!-- Success Message -->
-      @if (message) {
-
-        <div class="success">
-          {{ message }}
         </div>
 
-      }
 
+        <!-- Email -->
 
-      <!-- Error Message -->
-      @if (errorMessage) {
+        <div class="form-group">
 
-        <div class="error-box">
-          {{ errorMessage }}
+          <label for="email">
+            Email Address
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="Enter your email">
+
+          @if (
+            registerForm.controls.email.touched &&
+            registerForm.controls.email.invalid
+          ) {
+
+            <small class="validation-error">
+
+              @if (
+                registerForm.controls.email.errors?.['required']
+              ) {
+                Email is required.
+              }
+
+              @if (
+                registerForm.controls.email.errors?.['email']
+              ) {
+                Enter a valid email address.
+              }
+
+            </small>
+
+          }
+
         </div>
 
-      }
+
+        <!-- Password -->
+
+        <div class="form-group">
+
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Create a password">
+
+          @if (
+            registerForm.controls.password.touched &&
+            registerForm.controls.password.invalid
+          ) {
+
+            <small class="validation-error">
+
+              @if (
+                registerForm.controls.password.errors?.['required']
+              ) {
+                Password is required.
+              }
+
+              @if (
+                registerForm.controls.password.errors?.['minlength']
+              ) {
+                Password must be at least 6 characters.
+              }
+
+            </small>
+
+          }
+
+        </div>
 
 
-      <!-- Submit Button -->
-      <button type="submit">
-        Register
+        <!-- Register Number -->
+
+        <div class="form-group">
+
+          <label for="registerNumber">
+            Register Number
+          </label>
+
+          <input
+            id="registerNumber"
+            type="text"
+            formControlName="registerNumber"
+            placeholder="Enter register number">
+
+          @if (
+            registerForm.controls.registerNumber.touched &&
+            registerForm.controls.registerNumber.invalid
+          ) {
+
+            <small class="validation-error">
+              Register number is required.
+            </small>
+
+          }
+
+        </div>
+
+
+        <!-- Department -->
+
+        <div class="form-group">
+
+          <label for="department">
+            Department
+          </label>
+
+          <input
+            id="department"
+            type="text"
+            formControlName="department"
+            placeholder="Enter department">
+
+          @if (
+            registerForm.controls.department.touched &&
+            registerForm.controls.department.invalid
+          ) {
+
+            <small class="validation-error">
+              Department is required.
+            </small>
+
+          }
+
+        </div>
+
+
+        <!-- Year -->
+
+        <div class="form-group">
+
+          <label for="year">
+            Year
+          </label>
+
+          <select
+            id="year"
+            formControlName="year">
+
+            <option [ngValue]="null">
+              Select year
+            </option>
+
+            <option [ngValue]="1">
+              1st Year
+            </option>
+
+            <option [ngValue]="2">
+              2nd Year
+            </option>
+
+            <option [ngValue]="3">
+              3rd Year
+            </option>
+
+            <option [ngValue]="4">
+              4th Year
+            </option>
+
+          </select>
+
+          @if (
+            registerForm.controls.year.touched &&
+            registerForm.controls.year.invalid
+          ) {
+
+            <small class="validation-error">
+              Please select your year.
+            </small>
+
+          }
+
+        </div>
+
+
+        <!-- Phone -->
+
+        <div class="form-group">
+
+          <label for="phone">
+            Phone Number
+          </label>
+
+          <input
+            id="phone"
+            type="tel"
+            formControlName="phone"
+            placeholder="Enter phone number">
+
+          @if (
+            registerForm.controls.phone.touched &&
+            registerForm.controls.phone.invalid
+          ) {
+
+            <small class="validation-error">
+              Phone number is required.
+            </small>
+
+          }
+
+        </div>
+
+      </div>
+
+
+      <!-- Submit -->
+
+      <button
+        type="submit"
+        class="register-button">
+
+        Create Account
+
       </button>
 
     </form>
+
+
+    <!-- Login Link -->
+
+    <div class="login-link">
+
+      <span>Already have an account?</span>
+
+      <a routerLink="/login">
+        Login here
+      </a>
+
+    </div>
 
   </div>
 

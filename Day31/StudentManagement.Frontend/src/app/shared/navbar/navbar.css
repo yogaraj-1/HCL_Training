@@ -1,41 +1,244 @@
+/* ==============================
+   NAVBAR
+============================== */
+
 .navbar {
+  height: 72px;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background: #1f2937;
-  color: white;
+  justify-content: space-between;
+
+  padding: 0 45px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 2px 10px rgba(15, 23, 42, 0.06);
+
+  box-sizing: border-box;
+
+  position: relative;
+  z-index: 1000;
 }
+
+
+/* ==============================
+   LOGO
+============================== */
 
 .logo {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.nav-links {
   display: flex;
-  gap: 20px;
-}
+  align-items: center;
 
-.nav-links a {
-  color: white;
+  gap: 10px;
+
   text-decoration: none;
 }
 
-.nav-links a:hover {
-  text-decoration: underline;
+
+/* Logo Icon */
+
+.logo-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  border-radius: 9px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  box-shadow:
+    0 4px 10px rgba(37, 99, 235, 0.25);
 }
+
+
+/* Logo Text */
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1.05;
+}
+
+.logo-text span {
+  color: #64748b;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+.logo-text strong {
+  color: #1e293b;
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+
+/* ==============================
+   NAV LINKS
+============================== */
+
+.nav-links {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+/* Links */
+
+.nav-links a {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  height: 42px;
+
+  padding: 0 15px;
+
+  color: #64748b;
+
+  text-decoration: none;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* Hover */
+
+.nav-links a:hover {
+  color: #2563eb;
+
+  background: #eff6ff;
+}
+
+
+/* Active */
+
+.nav-links a.active {
+  color: #2563eb;
+
+  background: #eff6ff;
+}
+
+
+/* ==============================
+   LOGOUT
+============================== */
 
 .logout-button {
-  background: #dc2626;
-  color: white;
+  height: 40px;
+
+  padding: 0 17px;
+
+  margin-left: 8px;
+
   border: none;
-  padding: 8px 14px;
-  border-radius: 5px;
+
+  border-radius: 8px;
+
+  background: #fee2e2;
+
+  color: #dc2626;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
   cursor: pointer;
-  margin-left: 10px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
 }
 
+
 .logout-button:hover {
-  background: #b91c1c;
+  background: #dc2626;
+
+  color: #ffffff;
+}
+
+
+.logout-button:active {
+  transform: translateY(1px);
+}
+
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    height: auto;
+
+    min-height: 72px;
+
+    padding: 14px 20px;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+  }
+
+
+  .nav-links {
+    width: 100%;
+
+    justify-content: flex-end;
+
+    flex-wrap: wrap;
+  }
+
+
+  .nav-links a {
+    height: 38px;
+
+    padding: 0 12px;
+
+    font-size: 13px;
+  }
+
+
+  .logout-button {
+    height: 38px;
+
+    font-size: 13px;
+  }
+
 }

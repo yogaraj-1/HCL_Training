@@ -1,43 +1,129 @@
-<div class="profile-container">
+<div class="profile-page">
 
-  <h1>My Profile</h1>
+  <!-- Page Header -->
+  <div class="page-header">
+
+    <div>
+      <span class="page-label">STUDENT PORTAL</span>
+
+      <h1>My Profile</h1>
+
+      <p>
+        View and manage your personal information.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- Loading -->
 
   @if (loading) {
 
-    <div class="loading">
-      Loading profile...
+    <div class="loading-card">
+
+      <div class="loader"></div>
+
+      <p>Loading your profile...</p>
+
     </div>
 
   }
 
+
   @if (!loading && student) {
 
-    <div class="profile-card">
+    <!-- Profile Header -->
 
-      <div class="profile-header">
+    <div class="profile-header-card">
 
-        <div class="profile-avatar">
-          {{ student.name.charAt(0) }}
-        </div>
+      <div class="profile-avatar">
+        {{ student.name.charAt(0).toUpperCase() }}
+      </div>
 
-        <div>
-          <h2>{{ student.name }}</h2>
-          <p>{{ student.role }}</p>
-        </div>
+      <div class="profile-main-info">
+
+        <h2>
+          {{ student.name }}
+        </h2>
+
+        <p>
+          {{ student.email }}
+        </p>
+
+        <span class="role-badge">
+          {{ student.role }}
+        </span>
 
       </div>
 
+    </div>
+
+
+    <!-- Success Message -->
+
+    @if (successMessage) {
+
+      <div class="success-message">
+        {{ successMessage }}
+      </div>
+
+    }
+
+
+    <!-- Error Message -->
+
+    @if (errorMessage) {
+
+      <div class="error-message">
+        {{ errorMessage }}
+      </div>
+
+    }
+
+
+    <!-- Profile Information -->
+
+    <div class="profile-card">
+
+      <div class="card-header">
+
+        <div>
+          <h2>Personal Information</h2>
+
+          <p>
+            Your registered student details
+          </p>
+        </div>
+
+        @if (!editing) {
+
+          <button
+            class="edit-button"
+            (click)="startEditing()">
+
+            Edit Profile
+
+          </button>
+
+        }
+
+      </div>
+
+
+      <!-- View Mode -->
+
       @if (!editing) {
 
-        <div class="profile-details">
+        <div class="details-grid">
 
           <div class="detail-item">
-            <span>Name</span>
+            <span>Full Name</span>
             <strong>{{ student.name }}</strong>
           </div>
 
           <div class="detail-item">
-            <span>Email</span>
+            <span>Email Address</span>
             <strong>{{ student.email }}</strong>
           </div>
 
@@ -52,44 +138,49 @@
           </div>
 
           <div class="detail-item">
-            <span>Year</span>
-            <strong>{{ student.year }}</strong>
+            <span>Academic Year</span>
+            <strong>Year {{ student.year }}</strong>
           </div>
 
           <div class="detail-item">
-            <span>Phone</span>
+            <span>Phone Number</span>
             <strong>{{ student.phone }}</strong>
           </div>
 
         </div>
 
-        <button
-          class="edit-button"
-          (click)="startEditing()">
-
-          Edit Profile
-
-        </button>
-
       }
+
+
+      <!-- Edit Mode -->
 
       @if (editing) {
 
         <div class="edit-form">
 
+          <!-- Name -->
+
           <div class="form-group">
 
-            <label>Name</label>
+            <label>
+              Full Name
+            </label>
 
             <input
               type="text"
-              [(ngModel)]="student.name">
+              [(ngModel)]="student.name"
+              placeholder="Enter your name">
 
           </div>
 
+
+          <!-- Email -->
+
           <div class="form-group">
 
-            <label>Email</label>
+            <label>
+              Email Address
+            </label>
 
             <input
               type="email"
@@ -98,9 +189,14 @@
 
           </div>
 
+
+          <!-- Register Number -->
+
           <div class="form-group">
 
-            <label>Register Number</label>
+            <label>
+              Register Number
+            </label>
 
             <input
               type="text"
@@ -109,93 +205,126 @@
 
           </div>
 
+
+          <!-- Department -->
+
           <div class="form-group">
 
-            <label>Department</label>
+            <label>
+              Department
+            </label>
 
             <input
               type="text"
-              [(ngModel)]="student.department">
+              [(ngModel)]="student.department"
+              placeholder="Enter department">
 
           </div>
 
+
+          <!-- Year -->
+
           <div class="form-group">
 
-            <label>Year</label>
+            <label>
+              Academic Year
+            </label>
 
             <select
               [(ngModel)]="student.year">
 
               <option [ngValue]="1">
-                1
+                1st Year
               </option>
 
               <option [ngValue]="2">
-                2
+                2nd Year
               </option>
 
               <option [ngValue]="3">
-                3
+                3rd Year
               </option>
 
               <option [ngValue]="4">
-                4
+                4th Year
               </option>
 
             </select>
 
           </div>
 
+
+          <!-- Phone -->
+
           <div class="form-group">
 
-            <label>Phone</label>
+            <label>
+              Phone Number
+            </label>
 
             <input
-              type="text"
-              [(ngModel)]="student.phone">
-
-          </div>
-
-          <div class="button-group">
-
-            <button
-              class="save-button"
-              (click)="updateProfile()"
-              [disabled]="saving">
-
-              {{ saving ? 'Saving...' : 'Update Profile' }}
-
-            </button>
-
-            <button
-              class="cancel-button"
-              (click)="cancelEditing()">
-
-              Cancel
-
-            </button>
+              type="tel"
+              [(ngModel)]="student.phone"
+              placeholder="Enter phone number">
 
           </div>
 
         </div>
 
-      }
 
-      @if (successMessage) {
+        <!-- Edit Buttons -->
 
-        <div class="success">
-          {{ successMessage }}
+        <div class="button-group">
+
+          <button
+            class="save-button"
+            (click)="updateProfile()"
+            [disabled]="saving">
+
+            {{ saving ? 'Saving...' : 'Save Changes' }}
+
+          </button>
+
+
+          <button
+            class="cancel-button"
+            (click)="cancelEditing()"
+            [disabled]="saving">
+
+            Cancel
+
+          </button>
+
         </div>
 
       }
 
-      @if (errorMessage) {
+    </div>
 
-        <div class="error">
+  }
+
+
+  <!-- Error when profile doesn't exist -->
+
+  @if (!loading && !student && errorMessage) {
+
+    <div class="error-card">
+
+      <div class="error-icon">
+        !
+      </div>
+
+      <div>
+
+        <strong>
+          Unable to load your profile
+        </strong>
+
+        <p>
           {{ errorMessage }}
-        </div>
+        </p>
 
-      }
+      </div>
 
     </div>
 
