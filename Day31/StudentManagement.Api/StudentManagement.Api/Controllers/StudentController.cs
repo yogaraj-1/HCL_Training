@@ -19,7 +19,7 @@ namespace StudentManagement.Api.Controllers
             _studentService = studentService;
         }
 
-        // GET: api/students/me
+        // Student can view their own profile
         [HttpGet("me")]
         [Authorize(Roles = "Student")]
         public async Task<IActionResult> GetMyProfile()
@@ -40,7 +40,7 @@ namespace StudentManagement.Api.Controllers
             return Ok(student);
         }
 
-        // GET: api/students
+        // Admin can view all students
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllStudents()
@@ -51,7 +51,7 @@ namespace StudentManagement.Api.Controllers
             return Ok(students);
         }
 
-        // GET: api/students/{id}
+        // Admin can view a specific student
         [HttpGet("{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetStudent(int id)
@@ -70,18 +70,14 @@ namespace StudentManagement.Api.Controllers
             return Ok(student);
         }
 
-        // PUT: api/students/{id}
+        // Student can update own profile.
+        // Admin can update any student.
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin,Student")]
         public async Task<IActionResult> UpdateStudent(
             int id,
             UpdateStudentDto dto)
         {
-            var currentUserId = GetCurrentUserId();
-
-            var currentUserRole =
-                User.FindFirstValue(ClaimTypes.Role);
-
             var student =
                 await _studentService.GetByIdAsync(id);
 
@@ -93,7 +89,11 @@ namespace StudentManagement.Api.Controllers
                 });
             }
 
-            // Student can update only their own profile
+            var currentUserId = GetCurrentUserId();
+
+            var currentUserRole =
+                User.FindFirstValue(ClaimTypes.Role);
+
             if (currentUserRole == "Student" &&
                 student.UserId != currentUserId)
             {
@@ -106,7 +106,7 @@ namespace StudentManagement.Api.Controllers
             return Ok(updatedStudent);
         }
 
-        // DELETE: api/students/{id}
+        // Only Admin can delete
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteStudent(int id)
