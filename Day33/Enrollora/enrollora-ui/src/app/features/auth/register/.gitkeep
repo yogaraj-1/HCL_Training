@@ -1,0 +1,5 @@
+info: Microsoft.EntityFrameworkCore.Database.Command[2001]
+      Executed DbCommand (5ms) [Parameters=[],CommandType='Text',CommandTimeout='30]
+      SELECT [c].[CourseId], [c].[Capacity]
+      FROM [Courses] AS [c]
+      WHERE [c].[IsActive] = CAST(1 AS bit)
